@@ -109,7 +109,7 @@ if(isset($_POST['submit'])) {
     $upload = move_uploaded_file($tmp_name, "foto/". $file);
 
     $sql = "INSERT INTO `buku` (`id_buku`, `penulis`, `tahun`, `judul`, `kota`, `penerbit`, `cover`, `sinopsis`, `stok`) VALUES ('', '$nama', '$tgl', '$judul', '$kota', '$penerbit', '$file', '$sinopsis', '$stok')";
-    $result = mysqli_query($db, $sql);
+    $result = mysqli_query($perpustakaan, $sql);
     echo "Data berasil ditambah. <a href='index.php'>Lihat Data</a>";
 }
 ?>
