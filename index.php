@@ -2,12 +2,12 @@
 
 include 'config.php';
  
-session_start();
+// session_start();
  
-if (isset($_SESSION['nama'])) {
-    header("Location: halaman.php");
-}
-error_reporting(0);
+// if (isset($_SESSION['nama'])) {
+//     header("Location: halaman.php");
+// }
+// error_reporting(0);
 
 if (isset($_POST['submit'])) {
     $nama = $_POST['nama'];
