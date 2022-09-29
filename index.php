@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
         <div class="input-group mb-3">
             <button name="submit" class="btn btn-outline-primary">Masuk</button>
         </div>
-        <!-- <p class="login-register-text">Anda belum punya akun? <a href="daftar.php">Daftar</a></p> -->
+        <!-- <p class="login-register-text">Anda belum punya akun? <a href="daftar.php">Daftar</a></p> dalam proses revisi -->
         <p class="login-register-text">Masuk sebagai Siswa! <a href="daftar.php">klik disini</a></p>
     </form>
 </div>
