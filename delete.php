@@ -9,9 +9,9 @@ include "config.php";
 //     header("Location: admin.php");
 //   }
 
-$id_mahasiswa = $_GET['id_buku'];
+$id_buku = $_GET['id_buku'];
 
-$result = mysqli_query($db, "SELECT * FROM perpustakaan WHERE id_buku=$id_buku");
+$result = mysqli_query($perpustakaan, "SELECT * FROM buku WHERE id_buku=$id_buku");
 
 $data = $result -> fetch_assoc();
 
@@ -21,7 +21,7 @@ if (file_exists("foto/$foto")){
     unlink("foto/$foto");
 }
 
-$result = mysqli_query($db, "DELETE FROM db_sekolah WHERE id_mahasiswa=$id_mahasiswa");
+$result = mysqli_query($perpustakaan, "DELETE FROM buku WHERE id_buku=$id_buku");
 
-header("location:index.php");
+header("location:halaman.php");
 ?>
