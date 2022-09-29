@@ -80,7 +80,7 @@ if(isset($_GET['cari'])){
       ?>
         <tbody>
         <tr>
-            <td><?= $data['0']?></td>
+            <td><?= $no ?></td>
             <td><?= $data['1']?></td>
             <td><?= $data['2']?></td>
             <td><?= $data['3']?></td>
@@ -99,6 +99,7 @@ if(isset($_GET['cari'])){
         </tr>
         </tbody>
     <?php
+    $no++;
       }
       ?>
 </table>
