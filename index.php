@@ -13,11 +13,11 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-    $query = mysqli_query($db, "SELECT * FROM users WHERE username='$username' AND password='$password'");
+    $query = mysqli_query($db, "SELECT * FROM perpustakaan WHERE nama='$username' AND password='$password'");
     $data = mysqli_fetch_assoc($query);
 
     if($data){
-        $_SESSION['username']=$data['username'];
+        $_SESSION['nama']=$data['nama'];
         $_SESSION['akses']=$data['akses'];
 
         if($_SESSION['akses']=='admin'){
@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
         <h2>Menu Masuk</h2>
         <div class="mb-3">
             <label class="form-label">Username</label>
-            <input type="username" class="form-control" placeholder="username" name="username" value="<?php echo $username; ?>" required>
+            <input type="username" class="form-control" placeholder="nama" name="nama" value="<?php echo $username; ?>" required>
         </div>
         <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>

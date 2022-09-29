@@ -4,7 +4,7 @@ include 'config.php';
  
 session_start();
  
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['nama'])) {
     header("Location: index.php");
 }
 
@@ -35,13 +35,22 @@ if (isset($_SESSION['username'])) {
   </div>
 </nav>
 
-<div class="login-wrapper d-flex justify-content-center align-items-center" style="height: 70vh;">
+<div class="login-wrapper d-flex justify-content-center align-items-center" style="height: 80vh;">
     <div class="input-wrapper p-4 w-25 bg-secondary rounded-4 bg-dark text-white">
     <form action="" method="POST">
         <h2>Menu Daftar</h2>
         <div class="mb-3">
           <label class="form-lable">Username</label>
-          <input type="teks" class="form-control" placeholder="Input username" name="username" required>
+          <input type="teks" class="form-control" placeholder="Input username" name="nama" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
+            <input type="text" placeholder="Input Jenis Kelamin" class="form-control" name="jenis_kelamin">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Alamat</label>
+            <input type="text" placeholder="Input Jenis Kelamin" class="form-control" name="alamat" required>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -65,16 +74,18 @@ if (isset($_SESSION['username'])) {
 
 <?php
 if(isset($_POST['submit'])) {
-    $username = $_POST['username'];
+    $nama = $_POST['nama'];
+    $jenis_kelamin = $_POST['jenis_kelamin'];
+    $alamat = $_POST['alamat'];
     $password = $_POST['password'];
     $upassword = $_POST['upassword'];
     
     if ($password == $upassword) {
-        $sql = "SELECT * FROM users WHERE username='$username'";
-        $result = mysqli_query($db, $sql);
+        $sql = "SELECT * FROM petugas WHERE nama='$nama'";
+        $result = mysqli_query($perpustakaan, $sql);
     if (!$result->num_rows > 0) {
-        $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-        $result = mysqli_query($db, $sql);
+        $sql = "INSERT INTO petugas (nama, password, jenis_kelamin, alamat) VALUES ('$nama', '$password', '$jenis_kelamin', '$alamat')";
+        $result = mysqli_query($perpustakaan, $sql);
             
     if ($result) {
         echo "<script>alert('Selamat, registrasi berhasil!')</script>";
