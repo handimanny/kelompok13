@@ -32,12 +32,14 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Kode Buku</th>
+                    <th>Penulis Buku</th>
+                    <th>Tahun Terbit</th>
                     <th>Judul Buku</th>
-                    <th>Kategori Buku</th>
-                    <th>Pengarang Buku</th>
+                    <th>Kota Buku</th>
                     <th>Penerbit Buku</th>
-                    <th>Jumlah Halaman</th>
+                    <th>Cover Buku</th>
+                    <th>Sinopsis</th>
+                    <th>Stok Buku</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
