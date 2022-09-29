@@ -45,7 +45,10 @@ if (isset($_SESSION['nama'])) {
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
-            <input type="text" placeholder="Input Jenis Kelamin" class="form-control" name="jenis_kelamin">
+            <select class="form-control" name="jenis_kelamin">
+              <option value="L">Laki-laki</option>
+              <option value="P">Perempuan</option>
+            </select>
         </div>
 
         <div class="mb-3">
