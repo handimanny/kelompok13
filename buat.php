@@ -5,12 +5,11 @@ include_once("config.php");
 session_start();
 
 if(!isset($_SESSION['username'])){
-  header("Location: admin.php");
+  header("Location: halaman.php");
 }
 
-// akses penguna tertentu
 if($_SESSION['akses']==''){
-  header("Location: admin.php");
+  header("Location: halaman.php");
 }
 
 ?>
@@ -26,7 +25,7 @@ if($_SESSION['akses']==''){
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="admin.php">Kelompok13</a>
+    <a class="navbar-brand" href="halaman.php">Kelompok13</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -45,23 +44,43 @@ if($_SESSION['akses']==''){
           <?php echo "<h4>Silahkan buat data, " . $_SESSION['username'] ."!". "</h4>"; ?>
         </div>
         <div class="mb-3">
-          <label class="form-lable">Id Mahasiswa</label>
+          <label class="form-lable">Id Buku</label>
           <input type="number" class="form-control" placeholder="Input Id" name="id_mahasiswa">
         </div>
         <div class="mb-3">
-          <label class="form-lable">Nama Mahasiswa</label>
-          <input type="text" class="form-control" placeholder="Input Nama Mahasiswa" name="nama">
+          <label class="form-lable">Nama Penulis</label>
+          <input type="text" class="form-control" placeholder="Input Nama Penulis" name="nama">
         </div>
         <div class="mb-3">
-          <label class="form-lable">Tanggal Lahir</label>
+          <label class="form-lable">Tahun Terbit</label>
           <input type="date" class="form-control" name="tgl_lahir">
         </div>
         <div class="mb-3">
-          <label class="form-lable">NIM</label>
-          <input type="number" class="form-control" placeholder="Input NIM" name="nim">
+          <label class="form-lable">Judul Buku</label>
+          <input type="text" class="form-control" placeholder="Input Judul" name="nim">
         </div>
         <div class="mb-3">
-          <label class="form-label">Jurusan</label>
+          <label class="form-lable">Kota Asal *</label>
+          <input type="number" class="form-control" placeholder="*">
+        </div>
+        <div class="mb-3">
+          <label class="form-lable">Penerbit *</label>
+          <input type="number" class="form-control" placeholder="*">
+        </div>
+        <div class="mb-3">
+          <label class="form-lable">Cover</label>
+          <input type="file" class="form-control" name="foto">
+        </div>
+        <div class="mb-3">
+          <label class="form-lable">Sinopsis *</label>
+          <input type="number" class="form-control" placeholder="*">
+        </div>
+        <div class="mb-3">
+          <label class="form-lable">Stok *</label>
+          <input type="number" class="form-control" placeholder="*">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Hapus</label>
           <select class="form-select" name="id_jurusan">
             <?php
             $ambil = mysqli_query($db,"SELECT * FROM db_sekolah JOIN db_jurusan ON db_sekolah.id_jurusan = db_jurusan.id_jurusan WHERE db_sekolah.id_jurusan = db_jurusan.id_jurusan");
@@ -76,10 +95,6 @@ if($_SESSION['akses']==''){
             }
             ?>
           </select>
-        </div>
-        <div class="mb-3">
-          <label class="form-lable">Foto</label>
-          <input type="file" class="form-control" name="foto">
         </div>
             <input class="btn btn-outline-dark" type="submit" name="Submit" value="Tambah Data">
     </form>

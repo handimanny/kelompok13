@@ -5,7 +5,7 @@ include 'config.php';
 session_start();
  
 if (isset($_SESSION['username'])) {
-    header("Location: admin.php");
+    header("Location: halaman.php");
 }
 error_reporting(0);
 
@@ -21,9 +21,9 @@ if (isset($_POST['submit'])) {
         $_SESSION['akses']=$data['akses'];
 
         if($_SESSION['akses']=='admin'){
-          header('location:admin.php');
+          header('location:halaman.php');
         } else if($_SESSION['akses']==''){
-          header('location:admin.php');
+          header('location:halaman.php');
         }
 
     } else {

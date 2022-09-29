@@ -25,7 +25,7 @@ if(isset($_GET['cari'])){
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="admin.php">Kelompok13</a>
+    <a class="navbar-brand" href="halaman.php">Kelompok13</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,7 +39,7 @@ if(isset($_GET['cari'])){
 </nav>
 
   <div class="container p-1 mt-4">
-      <form class="d-flex" role="search" action="admin.php" method="get">
+      <form class="d-flex" role="search" action="halaman.php" method="get">
         <input class="form-control me-2" type="search" placeholder="Cari Data" aria-label="Search" name="cari">
         <button class="btn btn-outline-dark" type="submit">Cari</button>
       </form>
@@ -67,12 +67,15 @@ if(isset($_GET['cari'])){
 
 <tbody>
     <tr>
-        <th>Id</th>
-        <th>Nama</th>
-        <th>Tanggal Lahir</th>
-        <th>Nim</th>
-        <th>Jurusan</th>
-        <th>Foto</th>
+        <th>No Id</th>
+        <th>Penulis Buku</th>
+        <th>Tahun Terbit</th>
+        <th>Judul Buku</th>
+        <th>Kota Asal</th>
+        <th>Penerbit</th>
+        <th>Cover</th>
+        <th>Sinopsis</th>
+        <th>Stok</th>
   
   <?php if($_SESSION['akses'] == 'admin')
   {

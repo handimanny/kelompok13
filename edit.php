@@ -4,12 +4,12 @@ include_once("config.php");
 session_start();
 
 if(!isset($_SESSION['username'])){
-  header("Location: admin.php");
+  header("Location: halaman.php");
 }
 
 // akses penguna tertentu
 if($_SESSION['akses']==''){
-  header("Location: admin.php");
+  header("Location: halaman.php");
 }
 
 if(isset($_POST['update']))
@@ -58,7 +58,7 @@ while($data = mysqli_fetch_array($result))
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="admin.php">Kelompok13</a>
+    <a class="navbar-brand" href="halaman.php">Kelompok13</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -80,24 +80,42 @@ while($data = mysqli_fetch_array($result))
     </div>
     
     <div class="mb-3">
-      <label class="form-lable">Id Mahasiswa</label>
-      <input type="number" class="form-control" name="nama" value=<?php echo $id_mahasiswa;?>>
-    </div>
-    <div class="mb-3">
-      <label class="form-lable">Nama Mahasiswa</label>
+      <label class="form-lable">Nama Penulis</label>
       <input type="text" class="form-control" name="nama" value=<?php echo $nama;?>>
     </div>
     <div class="mb-3">
-      <label class="form-lable">Tanggal Lahir</label>
+      <label class="form-lable">Tahun Terbit</label>
       <input type="date" class="form-control" name="tgl_lahir" value=<?php echo $tgl_lahir;?>>
     </div>
     <div class="mb-3">
-      <label class="form-lable">NIM</label>
-      <input type="number" class="form-control" name="nim" value=<?php echo $nim;?>>
+      <label class="form-lable">Judul Buku</label>
+      <input type="text" class="form-control" name="nim" value=<?php echo $nim;?>>
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Jurusan</label>
+          <label class="form-lable">Kota Asal *</label>
+          <input type="number" class="form-control" placeholder="*">
+    </div>
+    <div class="mb-3">
+          <label class="form-lable">Penerbit *</label>
+          <input type="number" class="form-control" placeholder="*">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-lable">Cover</label>
+      <input type="file" class="form-control" name="foto" value=<?php echo $file;?>>
+    </div>
+    <div class="mb-3">
+          <label class="form-lable">Sinopsis *</label>
+          <input type="number" class="form-control" placeholder="*">
+    </div>
+    <div class="mb-3">
+          <label class="form-lable">Stok *</label>
+          <input type="number" class="form-control" placeholder="*">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Hapus</label>
       <select class="form-select" name="id_jurusan" value=<?php echo $id_jurusan;?>>
         <?php
           $ambil = mysqli_query($db,"SELECT * FROM db_sekolah JOIN db_jurusan ON db_sekolah.id_jurusan = db_jurusan.id_jurusan WHERE db_sekolah.id_jurusan = db_jurusan.id_jurusan");
@@ -114,10 +132,6 @@ while($data = mysqli_fetch_array($result))
       </select>
     </div>
 
-    <div class="mb-3">
-      <label class="form-lable">Foto</label>
-      <input type="file" class="form-control" name="foto" value=<?php echo $file;?>>
-    </div>
     <div class="mb-3">
       <input type="hidden" name="id_mahasiswa" value=<?php echo $_GET['id_mahasiswa'];?>>
       <input class="btn btn-outline-dark" type="submit" name="update" value="Perbarui Data">
