@@ -1,19 +1,19 @@
 <?php 
- 
+
 include 'config.php';
  
 session_start();
  
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['nama'])) {
     header("Location: halaman.php");
 }
 error_reporting(0);
 
 if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
+    $nama = $_POST['nama'];
     $password = $_POST['password'];
     
-    $query = mysqli_query($db, "SELECT * FROM perpustakaan WHERE nama='$username' AND password='$password'");
+    $query = mysqli_query($perpustakaan, "SELECT * FROM petugas WHERE nama='$nama' AND password='$password'");
     $data = mysqli_fetch_assoc($query);
 
     if($data){
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
         echo "<script>alert('Username atau password Anda salah. Silahkan coba lagi!')</script>";
     }
 }
- 
+
 ?>
 
 </body>
@@ -77,7 +77,8 @@ if (isset($_POST['submit'])) {
         <div class="input-group mb-3">
             <button name="submit" class="btn btn-outline-primary">Masuk</button>
         </div>
-        <p class="login-register-text">Anda belum punya akun? <a href="daftar.php">Daftar</a></p>
+        <!-- <p class="login-register-text">Anda belum punya akun? <a href="daftar.php">Daftar</a></p> -->
+        <p class="login-register-text">Masuk sebagai Siswa! <a href="daftar.php">klik disini</a></p>
     </form>
 </div>
 </div>
