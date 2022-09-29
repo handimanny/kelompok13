@@ -2,12 +2,6 @@
 
 include_once("config.php");
 
-session_start();
- 
-if (!isset($_SESSION['username'])) {
-    header("Location: index.php");
-}
-
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
 	echo "";
@@ -38,30 +32,23 @@ if(isset($_GET['cari'])){
   </div>
 </nav>
 
-  <div class="container p-1 mt-4">
-      <form class="d-flex" role="search" action="halaman.php" method="get">
+<br>
+
+  <div class="container">
+      <form class="d-flex" role="search" action="index2.php" method="get">
         <input class="form-control me-2" type="search" placeholder="Cari Data" aria-label="Search" name="cari">
         <button class="btn btn-outline-dark" type="submit">Cari</button>
       </form>
     </div>
   </div>
 
-  <div class="container">
-        <form action="" method="POST" class="login-email">
-            <?php echo "<h4>Selamat Datang, " . $_SESSION['username'] ."!". "</h4>"; ?>
-        </form>
-    </div>
-
-<?php if($_SESSION['akses'] == 'admin'){
-  ?>
+<br>
 
 <div class="text-center">
 <a href="buat.php" class="btn btn-outline-dark">Tambah Data</a>
 </div>
 
-<?php
-}
-?>
+<br>
 
 <table class="table table-dark p-1 mt-4 border border-success container">
 
@@ -76,17 +63,7 @@ if(isset($_GET['cari'])){
         <th>Cover</th>
         <th>Sinopsis</th>
         <th>Stok</th>
-  
-  <?php if($_SESSION['akses'] == 'admin')
-  {
-  ?>
-  
         <th>Update</th>
-  
-  <?php
-  }
-  ?>
-
     </tr>
 </tbody>
 
@@ -94,38 +71,34 @@ if(isset($_GET['cari'])){
     
     if(isset($_GET['cari'])){
       $cari = $_GET['cari'];
-      $result = mysqli_query($db,"SELECT * FROM db_sekolah JOIN db_jurusan ON db_sekolah.id_jurusan = db_jurusan.id_jurusan WHERE nama LIKE '%".$cari."%'");				
+      $result = mysqli_query($perpustakaan,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
     }else{
-      $result = mysqli_query($db,"SELECT * FROM db_sekolah JOIN db_jurusan ON db_sekolah.id_jurusan = db_jurusan.id_jurusan WHERE db_sekolah.id_jurusan = db_jurusan.id_jurusan");
+      $result = mysqli_query($perpustakaan,"SELECT * FROM buku");
     }
     $no =1;
     while($data = mysqli_fetch_array($result)) {         
-      
       ?>
-
         <tbody>
         <tr>
-            <td><?= $no;?></td>
+            <td><?= $data['0']?></td>
             <td><?= $data['1']?></td>
             <td><?= $data['2']?></td>
             <td><?= $data['3']?></td>
-            <td><?= $data['nama_jurusan']?></td>
+            <td><?= $data['4']?></td>
+            <td><?= $data['5']?></td>
             <td>
-              <img src="foto/<?= $data['5']?>" width="30px" class="img-thumbnail" alt="">
+              <img src="foto/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
             </td>
-            <?php if($_SESSION['akses'] == 'admin'){?>
+            <td><?= $data['7']?></td>
+            <td><?= $data['8']?></td>
             <td colspan="2">
-            <a href="edit.php?id_mahasiswa=<?=$data['id_mahasiswa']?>" class="btn btn-outline-primary">Edit</a>
+            <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
             |
-            <a href="delete.php?id_mahasiswa=<?=$data['id_mahasiswa']?>" class="btn btn-outline-warning">Hapus</a>
+            <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-warning">Hapus</a>
             </td>
-            <?php
-          }
-          ?>
         </tr>
         </tbody>
     <?php
-    $no++;
       }
       ?>
 </table>
