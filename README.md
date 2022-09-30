@@ -14,6 +14,7 @@ https://github.com/sultonainunn/perpustakaan
 //handi - full coding daftar.html
 * 3.daftar.php ( daftar untuk petugas )
 
+//belum
 * 4.daftarsiswa.php ( daftar untuk siswa )
 
 //handi - full coding delete.html
