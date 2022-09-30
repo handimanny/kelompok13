@@ -23,11 +23,11 @@ if (isset($_POST['submit'])) {
 
     if($data){
         $_SESSION['nama']=$data['nama'];
-        $_SESSION['akses']=$data['akses'];
+        $_SESSION['level']=$data['level'];
 
-        if($_SESSION['akses']=='admin'){
+        if($_SESSION['level']=='admin'){
           header('location:halaman.php');
-        } else if($_SESSION['akses']==''){
+        } else if($_SESSION['level']==''){
           header('location:halaman.php');
         }
 

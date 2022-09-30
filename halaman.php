@@ -54,8 +54,9 @@ if(isset($_GET['cari'])){
 
 <div class="text-center">
 
-<?php if($_SESSION['level'] == 'admin'){
-  ?>
+<?php if($_SESSION['level'] == 'admin')
+{
+?>
 
 <a href="buat.php" class="btn btn-outline-dark">Tambah Buku</a>
 <a href="daftar.php" class="btn btn-outline-dark">Tambah Petugas</a>
