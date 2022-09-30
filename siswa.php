@@ -8,6 +8,10 @@ if (!isset($_SESSION['nis'])) {
   header("Location: halaman.php");
 }
 
+// if (!isset($_SESSION['nama'])) {
+//   header("Location: halaman.php");
+// }
+
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
 	echo "";

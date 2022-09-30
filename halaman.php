@@ -42,6 +42,12 @@ if(isset($_GET['cari'])){
   </div>
 </nav>
 
+<div class="container">
+          <form action="" method="POST" class="login-email">
+            <?php echo "<h4>Silahkan buat data, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+          </form>
+</div>
+
   <div class="container mt-4">
       <form class="d-flex" role="search" action="halaman.php" method="get">
         <input class="form-control me-2" type="search" placeholder="Cari Data" aria-label="Search" name="cari">

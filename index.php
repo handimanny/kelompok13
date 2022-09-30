@@ -9,7 +9,7 @@ if (isset($_SESSION['nama'])) {
 }
 
 if (isset($_SESSION['nis'])) {
-  header("Location: halaman.php");
+  header("Location: siswa.php");
 }
 
 error_reporting(0);
