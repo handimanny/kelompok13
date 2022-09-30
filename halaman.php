@@ -48,7 +48,7 @@ if(isset($_GET['cari'])){
 <a href="buat.php" class="btn btn-outline-dark">Tambah Buku</a>
 <a href="daftar.php" class="btn btn-outline-dark">Tambah Petugas</a>
 <a href="daftarsiswa.php" class="btn btn-outline-dark">Tambah Siswa</a>
-<a href="riwayat" class="btn btn-outline-dark">Riwayat Pinjam</a>
+<a href="riwayat.php" class="btn btn-outline-dark">Riwayat Pinjam</a>
 </div>
 
 <br>
