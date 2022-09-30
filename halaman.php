@@ -5,11 +5,11 @@ include_once("config.php");
 session_start();
 
 if (!isset($_SESSION['nama'])) {
-  header("Location: halaman.php");
+  header("Location: index.php");
 }
 
 // if (!isset($_SESSION['nis'])) {
-//   header("Location: siswa.php");
+//   header("Location: index.php");
 // }
 
 if(isset($_GET['cari'])){
