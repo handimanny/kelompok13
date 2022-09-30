@@ -42,10 +42,10 @@ if(isset($_GET['cari'])){
   </div>
 </nav>
 
-<div class="container">
-          <form action="" method="POST" class="login-email">
-            <?php echo "<h4>Silahkan buat data, " . $_SESSION['nama'] ."!". "</h4>"; ?>
-          </form>
+<div class="container mt-4">
+  <form action="" method="POST" class="login-email">
+    <?php echo "<h4>Selamat datang, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+  </form>
 </div>
 
   <div class="container mt-4">
@@ -56,15 +56,14 @@ if(isset($_GET['cari'])){
     </div>
   </div>
 
-<br>
-
-<div class="text-center">
+<div class="text-center mt-4">
 
 <?php if($_SESSION['level'] == 'admin')
 {
 ?>
 
 <a href="buat.php" class="btn btn-outline-dark">Tambah Buku</a>
+
 <a href="daftar.php" class="btn btn-outline-dark">Tambah Petugas</a>
 
 <?php
@@ -74,8 +73,6 @@ if(isset($_GET['cari'])){
 <a href="daftarsiswa.php" class="btn btn-outline-dark">Tambah Siswa</a>
 <a href="riwayat.php" class="btn btn-outline-dark">Riwayat Pinjam</a>
 </div>
-
-<br>
 
 <table class="table table-dark p-1 mt-4 border border-success container">
 
