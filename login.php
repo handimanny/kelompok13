@@ -8,6 +8,10 @@ if (isset($_SESSION['nis'])) {
     header("Location: siswa.php");
 }
 
+if (isset($_SESSION['nama'])) {
+    header("Location: index.php");
+}
+
 error_reporting(0);
 
 if (isset($_POST['submit'])) {

@@ -7,6 +7,11 @@ session_start();
 if (isset($_SESSION['nama'])) {
     header("Location: halaman.php");
 }
+
+if (isset($_SESSION['nis'])) {
+  header("Location: halaman.php");
+}
+
 error_reporting(0);
 
 if (isset($_POST['submit'])) {

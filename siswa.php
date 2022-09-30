@@ -2,6 +2,12 @@
 
 include_once("config.php");
 
+session_start();
+
+if (!isset($_SESSION['nis'])) {
+  header("Location: halaman.php");
+}
+
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
 	echo "";

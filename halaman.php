@@ -2,6 +2,16 @@
 
 include_once("config.php");
 
+session_start();
+
+if (!isset($_SESSION['nama'])) {
+  header("Location: halaman.php");
+}
+
+// if (!isset($_SESSION['nis'])) {
+//   header("Location: siswa.php");
+// }
+
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
 	echo "";
@@ -32,9 +42,7 @@ if(isset($_GET['cari'])){
   </div>
 </nav>
 
-<br>
-
-  <div class="container">
+  <div class="container mt-4">
       <form class="d-flex" role="search" action="halaman.php" method="get">
         <input class="form-control me-2" type="search" placeholder="Cari Data" aria-label="Search" name="cari">
         <button class="btn btn-outline-dark" type="submit">Cari</button>
@@ -45,8 +53,17 @@ if(isset($_GET['cari'])){
 <br>
 
 <div class="text-center">
+
+<?php if($_SESSION['level'] == 'admin'){
+  ?>
+
 <a href="buat.php" class="btn btn-outline-dark">Tambah Buku</a>
 <a href="daftar.php" class="btn btn-outline-dark">Tambah Petugas</a>
+
+<?php
+}
+?>
+
 <a href="daftarsiswa.php" class="btn btn-outline-dark">Tambah Siswa</a>
 <a href="riwayat.php" class="btn btn-outline-dark">Riwayat Pinjam</a>
 </div>
