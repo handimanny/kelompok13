@@ -5,9 +5,9 @@ $db_username = "root";
 $db_password = "";
 $db_name = "perpustakaan";
 
-$perpustakaan = mysqli_connect($db_servername, $db_username, $db_password, $db_name);
+$conn = mysqli_connect($db_servername, $db_username, $db_password, $db_name);
 
-if (!$perpustakaan) {
+if (!$conn) {
     die("<script>alert('Gagal tersambung dengan database.')</script>");
 }
 

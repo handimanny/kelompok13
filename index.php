@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $nama = $_POST['nama'];
     $password = $_POST['password'];
     
-    $query = mysqli_query($perpustakaan, "SELECT * FROM petugas WHERE nama='$nama' AND password='$password'");
+    $query = mysqli_query($conn, "SELECT * FROM petugas WHERE nama='$nama' AND password='$password'");
     $data = mysqli_fetch_assoc($query);
 
     if($data){

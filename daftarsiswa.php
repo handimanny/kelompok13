@@ -98,11 +98,11 @@ if(isset($_POST['submit'])) {
     
   if ($password == $upassword) {
         $sql = "SELECT * FROM siswa WHERE username='$username'";
-        $result = mysqli_query($perpustakaan, $sql);
+        $result = mysqli_query($conn, $sql);
         $data=mysqli_num_rows($result);
     if (!$result->num_rows > 0) {
         $sql = "INSERT INTO `siswa`  (`nis`, `nama`, `username`, `password`, `jenis_kelamin`, `alamat`, `id_kelas`) VALUES (NULL, '$nama', '$username', '$password', '$jenis_kelamin', '$alamat', '$kelas');";
-        $result = mysqli_query($perpustakaan, $sql);
+        $result = mysqli_query($conn, $sql);
             
     if ($result) {
         echo "<script>alert('Selamat, registrasi berhasil!')</script>";

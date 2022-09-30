@@ -17,7 +17,7 @@ error_reporting(0);
 if (isset($_POST['submit'])) {
     $nis = $_POST['nis'];
     
-    $query = mysqli_query($perpustakaan, "SELECT * FROM siswa WHERE nis='$nis'");
+    $query = mysqli_query($conn, "SELECT * FROM siswa WHERE nis='$nis'");
     $data = mysqli_fetch_assoc($query);
 
     if($data){
