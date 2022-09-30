@@ -8,9 +8,9 @@ if(!isset($_SESSION['nama'])){
   header("Location: halaman.php");
 }
 
-// if($_SESSION['akses']==''){
-//   header("Location: halaman.php");
-// }
+if($_SESSION['level']==''){
+  header("Location: halaman.php");
+}
 
 ?>
 
@@ -41,7 +41,9 @@ if(!isset($_SESSION['nama'])){
 <div class="container p-3 mt-3">
     <form action="buat.php" name="form1" method="post" enctype="multipart/form-data">
         <div class="mb-3">
-          <h4>Silahkan buat data !</h4>
+          <form action="" method="POST" class="login-email">
+            <?php echo "<h4>Silahkan buat data, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+        </form>
         </div>
         <div class="mb-3">
           <label class="form-lable">Id Buku</label>
