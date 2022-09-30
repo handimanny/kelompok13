@@ -19,6 +19,7 @@ https://github.com/sultonainunn/perpustakaan
 //handi - full coding delete.html
 * 5.delete.php
 
+//belum
 * 6.edit.php
 
 //handi - full coding halaman.html
@@ -30,6 +31,7 @@ https://github.com/sultonainunn/perpustakaan
 //handi - full coding keluar.html
 * 9.keluar.php
 
+//belum
 * 10.kembalikan.php
 
 //handi - full coding login.html
@@ -38,7 +40,14 @@ https://github.com/sultonainunn/perpustakaan
 //agung - full coding config.html
 * 12.perpustakaan.sql
 
+//belum
 * 13.pinjam.php
+
+//belum
 * 14.README.md
+
+//belum
 * 15.riwayat.php
+
+//belum
 * 16.siswa.php
