@@ -3,9 +3,9 @@
 include 'config.php';
  
 session_start();
-
-if(!isset($_SESSION['nama'])){
-  header("Location: halaman.php");
+ 
+if (isset($_SESSION['nama'])) {
+    header("Location: index.php");
 }
 
 ?>
@@ -35,7 +35,7 @@ if(!isset($_SESSION['nama'])){
   </div>
 </nav>
 
-<div class="login-wrapper d-flex justify-content-center align-items-center" style="height: 90vh;">
+<div class="login-wrapper d-flex justify-content-center align-items-center" style="height: 100px, padding-top: 100px;">
     <div class="input-wrapper p-4 w-25 bg-secondary rounded-4 bg-dark text-white">
     <form action="" method="POST">
         <h2>Menu Daftar</h2>
@@ -44,15 +44,27 @@ if(!isset($_SESSION['nama'])){
           <input type="text" class="form-control" placeholder="Input nama" name="nama" required>
         </div>
         <div class="mb-3">
+          <label class="form-lable">Username</label>
+          <input type="text" class="form-control" placeholder="Input username" name="username" required>
+        </div>
+        <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
             <select class="form-control" name="jenis_kelamin">
               <option value="L">Laki-laki</option>
               <option value="P">Perempuan</option>
             </select>
         </div>
+
         <div class="mb-3">
             <label class="form-label">Alamat</label>
             <input type="text" placeholder="Input Alamat" class="form-control" name="alamat" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Kelas</label>
+            <select class="form-control" name="kelas">
+              <option value="1">6A</option>
+              <option value="2">6B</option>
+            </select>
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -77,22 +89,24 @@ if(!isset($_SESSION['nama'])){
 <?php
 if(isset($_POST['submit'])) {
     $nama = $_POST['nama'];
+    $username = $_POST['username'];
     $jenis_kelamin = $_POST['jenis_kelamin'];
     $alamat = $_POST['alamat'];
+    $kelas = $_POST['kelas'];
     $password = $_POST['password'];
     $upassword = $_POST['upassword'];
     
   if ($password == $upassword) {
-        $sql = "SELECT * FROM petugas WHERE nama='$nama'";
+        $sql = "SELECT * FROM siswa WHERE username='$username'";
         $result = mysqli_query($perpustakaan, $sql);
         $data=mysqli_num_rows($result);
     if (!$result->num_rows > 0) {
-        $sql = "INSERT INTO petugas (nama, jenis_kelamin, alamat, password ) VALUES ('$nama', '$jenis_kelamin', '$alamat', '$password')";
+        $sql = "INSERT INTO `siswa`  (`nis`, `nama`, `username`, `password`, `jenis_kelamin`, `alamat`, `id_kelas`) VALUES (NULL, '$nama', '$username', '$password', '$jenis_kelamin', '$alamat', '$kelas');";
         $result = mysqli_query($perpustakaan, $sql);
             
     if ($result) {
         echo "<script>alert('Selamat, registrasi berhasil!')</script>";
-        $nama = "";
+        $username = "";
         $_POST['password'] = "";
     $_POST['upassword'] = "";
     } else {
@@ -107,7 +121,7 @@ if(isset($_POST['submit'])) {
     }
 }
 ?>
-            <!-- Anda sudah punya akun? <a href="index.php">Masuk</a> -->
+            Anda sudah punya akun? <a href="index.php">Masuk</a>
         </form>
         
 </div>

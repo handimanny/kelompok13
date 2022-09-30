@@ -3,14 +3,14 @@ include_once("config.php");
 
 session_start();
 
-if(!isset($_SESSION['username'])){
-  header("Location: halaman.php");
-}
+// if(!isset($_SESSION['username'])){
+//   header("Location: halaman.php");
+// }
 
 // akses penguna tertentu
-if($_SESSION['akses']==''){
-  header("Location: halaman.php");
-}
+// if($_SESSION['akses']==''){
+//   header("Location: halaman.php");
+// }
 
 if(isset($_POST['update']))
 {	

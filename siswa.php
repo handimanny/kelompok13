@@ -32,26 +32,17 @@ if(isset($_GET['cari'])){
   </div>
 </nav>
 
-<br>
+<div class="text-center mt-4">
+<a href="riwayat.php" class="btn btn-outline-dark">Riwayat Pinjam</a>
+</div>
 
-  <div class="container">
-      <form class="d-flex" role="search" action="halaman.php" method="get">
+  <div class="container mt-4">
+      <form class="d-flex" role="search" action="index2.php" method="get">
         <input class="form-control me-2" type="search" placeholder="Cari Data" aria-label="Search" name="cari">
         <button class="btn btn-outline-dark" type="submit">Cari</button>
       </form>
     </div>
   </div>
-
-<br>
-
-<div class="text-center">
-<a href="buat.php" class="btn btn-outline-dark">Tambah Buku</a>
-<a href="daftar.php" class="btn btn-outline-dark">Tambah Petugas</a>
-<a href="daftarsiswa.php" class="btn btn-outline-dark">Tambah Siswa</a>
-<a href="riwayat" class="btn btn-outline-dark">Riwayat Pinjam</a>
-</div>
-
-<br>
 
 <table class="table table-dark p-1 mt-4 border border-success container">
 
@@ -66,7 +57,6 @@ if(isset($_GET['cari'])){
         <th>Cover</th>
         <th>Sinopsis</th>
         <th>Stok</th>
-        <th class="text-center" >Update</th>
     </tr>
 </tbody>
 
@@ -94,15 +84,6 @@ if(isset($_GET['cari'])){
             </td>
             <td><?= $data['7']?></td>
             <td><?= $data['8']?></td>
-            <td colspan="2">
-            <a href="pinjam.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-success">Pinjam</a>
-            |
-            <a href="kembalikan.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-warning">Kembalikan</a>
-            |
-            <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
-            |
-            <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
         </tr>
         </tbody>
     <?php

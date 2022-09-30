@@ -2,11 +2,11 @@
 
 include_once("config.php");
 
-// session_start();
+session_start();
 
-// if(!isset($_SESSION['username'])){
-//   header("Location: halaman.php");
-// }
+if(!isset($_SESSION['nama'])){
+  header("Location: halaman.php");
+}
 
 // if($_SESSION['akses']==''){
 //   header("Location: halaman.php");
@@ -79,21 +79,11 @@ include_once("config.php");
           <label class="form-lable">Stok</label>
           <input type="text" class="form-control" placeholder="Jumlah Stok" name="stok">
         </div>
-            <input class="btn btn-outline-dark" type="submit" name="submit" value="Tambah Data">
+        <div class="mb-3">
+          <input class="btn btn-outline-dark" type="submit" name="submit" value="Tambah Data">
+        </div>
     </form>
-</div>
-
-
-
-
-    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
-
-</body>
-</html>
-
-<?php
-
+            <?php
 if(isset($_POST['submit'])) {
     $id_buku = $_POST['id_buku'];
     $nama = $_POST['nama'];
@@ -113,3 +103,13 @@ if(isset($_POST['submit'])) {
     echo "Data berasil ditambah. <a href='index.php'>Lihat Data</a>";
 }
 ?>
+</div>
+
+
+
+
+    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
+
+</body>
+</html>
