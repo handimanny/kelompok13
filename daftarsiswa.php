@@ -75,11 +75,11 @@ session_start();
             <label class="form-check-label">Lihat Password</label>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Input Ulang Password</label>
-            <input id="muncul2" type="password" placeholder="Input ulang password" class="form-control" name="upassword" required>
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input id="muncul" type="password" placeholder="Input password" class="form-control" name="upassword" required>
         </div>
         <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" onclick="tampil2()">
+            <input type="checkbox" class="form-check-input" onclick="tampil()">
             <label class="form-check-label">Lihat Password</label>
         </div>
         <div class="mb-3">
@@ -98,11 +98,11 @@ if(isset($_POST['submit'])) {
     
   if ($password == $upassword) {
         $sql = "SELECT * FROM siswa WHERE username='$username'";
-        $result = mysqli_query($perpustakaan, $sql);
+        $result = mysqli_query($conn, $sql);
         $data=mysqli_num_rows($result);
     if (!$result->num_rows > 0) {
         $sql = "INSERT INTO `siswa`  (`nis`, `nama`, `username`, `password`, `jenis_kelamin`, `alamat`, `id_kelas`) VALUES (NULL, '$nama', '$username', '$password', '$jenis_kelamin', '$alamat', '$kelas');";
-        $result = mysqli_query($perpustakaan, $sql);
+        $result = mysqli_query($conn, $sql);
             
     if ($result) {
         echo "<script>alert('Selamat, registrasi berhasil!')</script>";
@@ -141,7 +141,7 @@ function tampil() {
 }
 </script>
 
-<script>
+<!-- <script>
 function tampil2() {
   var x = document.getElementById("muncul2");
   if (x.type === "password") {
@@ -150,7 +150,7 @@ function tampil2() {
     x.type = "password";
   }
 }
-</script>
+</script> -->
 
 </body>
 </html>

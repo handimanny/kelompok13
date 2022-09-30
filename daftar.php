@@ -2,11 +2,11 @@
  
 include 'config.php';
  
-session_start();
+// session_start();
 
-if(!isset($_SESSION['nama'])){
-  header("Location: halaman.php");
-}
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
+// }
 
 ?>
 
@@ -84,11 +84,11 @@ if(isset($_POST['submit'])) {
     
   if ($password == $upassword) {
         $sql = "SELECT * FROM petugas WHERE nama='$nama'";
-        $result = mysqli_query($perpustakaan, $sql);
+        $result = mysqli_query($conn, $sql);
         $data=mysqli_num_rows($result);
     if (!$result->num_rows > 0) {
         $sql = "INSERT INTO petugas (nama, jenis_kelamin, alamat, password ) VALUES ('$nama', '$jenis_kelamin', '$alamat', '$password')";
-        $result = mysqli_query($perpustakaan, $sql);
+        $result = mysqli_query($conn, $sql);
             
     if ($result) {
         echo "<script>alert('Selamat, registrasi berhasil!')</script>";

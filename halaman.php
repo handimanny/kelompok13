@@ -2,11 +2,11 @@
 
 include_once("config.php");
 
-session_start();
+// session_start();
 
-if (!isset($_SESSION['nama'])) {
-  header("Location: halaman.php");
-}
+// if (!isset($_SESSION['nama'])) {
+//   header("Location: halaman.php");
+// }
 
 // if (!isset($_SESSION['nis'])) {
 //   header("Location: siswa.php");
