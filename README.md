@@ -6,7 +6,7 @@ https://github.com/sultonainunn/perpustakaan
 membuat sistem perpustakaan
 
 //agung - full coding buat.html
-# 1.buat.php ( input buku baru )
+* 1.buat.php ( input buku baru )
 
 //handi - full coding config.html
 # 2.config.php
