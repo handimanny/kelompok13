@@ -3,7 +3,7 @@
 intruksi di web
 https://github.com/sultonainunn/perpustakaan
 
-membuat sistem perpustakaan
+# membuat sistem perpustakaan
 
 //agung - full coding buat.html
 * 1.buat.php ( input buku baru )
