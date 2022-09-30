@@ -116,11 +116,19 @@ if(isset($_GET['cari'])){
             <a href="pinjam.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-success">Pinjam</a>
             |
             <a href="kembalikan.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-warning">Kembalikan</a>
+            
+            <?php if($_SESSION['level'] == 'admin')
+            {
+            ?>
             |
             <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
             |
             <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
             </td>
+
+            <?php
+            }
+            ?>
         </tr>
         </tbody>
     <?php
