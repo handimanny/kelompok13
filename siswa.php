@@ -8,6 +8,10 @@ if (!isset($_SESSION['nis'])) {
   header("Location: halaman.php");
 }
 
+// if (!isset($_SESSION['nama'])) {
+//   header("Location: halaman.php");
+// }
+
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
 	echo "";
@@ -70,9 +74,9 @@ if(isset($_GET['cari'])){
     
     if(isset($_GET['cari'])){
       $cari = $_GET['cari'];
-      $result = mysqli_query($perpustakaan,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
+      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
     }else{
-      $result = mysqli_query($perpustakaan,"SELECT * FROM buku");
+      $result = mysqli_query($conn,"SELECT * FROM buku");
     }
     $no =1;
     while($data = mysqli_fetch_array($result)) {         

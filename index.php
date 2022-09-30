@@ -9,7 +9,7 @@ if (isset($_SESSION['nama'])) {
 }
 
 if (isset($_SESSION['nis'])) {
-  header("Location: halaman.php");
+  header("Location: siswa.php");
 }
 
 error_reporting(0);
@@ -18,16 +18,16 @@ if (isset($_POST['submit'])) {
     $nama = $_POST['nama'];
     $password = $_POST['password'];
     
-    $query = mysqli_query($perpustakaan, "SELECT * FROM petugas WHERE nama='$nama' AND password='$password'");
+    $query = mysqli_query($conn, "SELECT * FROM petugas WHERE nama='$nama' AND password='$password'");
     $data = mysqli_fetch_assoc($query);
 
     if($data){
         $_SESSION['nama']=$data['nama'];
-        $_SESSION['akses']=$data['akses'];
+        $_SESSION['level']=$data['level'];
 
-        if($_SESSION['akses']=='admin'){
+        if($_SESSION['level']=='admin'){
           header('location:halaman.php');
-        } else if($_SESSION['akses']==''){
+        } else if($_SESSION['level']==''){
           header('location:halaman.php');
         }
 

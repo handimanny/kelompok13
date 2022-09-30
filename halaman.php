@@ -4,12 +4,18 @@ include_once("config.php");
 
 // session_start();
 
+<<<<<<< HEAD
 // if (!isset($_SESSION['nama'])) {
 //   header("Location: halaman.php");
 // }
+=======
+if (!isset($_SESSION['nama'])) {
+  header("Location: index.php");
+}
+>>>>>>> 1ce17eb0c4e0e4dcb8722976e094110f27c094ea
 
 // if (!isset($_SESSION['nis'])) {
-//   header("Location: siswa.php");
+//   header("Location: index.php");
 // }
 
 if(isset($_GET['cari'])){
@@ -42,6 +48,12 @@ if(isset($_GET['cari'])){
   </div>
 </nav>
 
+<div class="container mt-4">
+  <form action="" method="POST" class="login-email">
+    <?php echo "<h4>Selamat datang, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+  </form>
+</div>
+
   <div class="container mt-4">
       <form class="d-flex" role="search" action="halaman.php" method="get">
         <input class="form-control me-2" type="search" placeholder="Cari Data" aria-label="Search" name="cari">
@@ -50,14 +62,14 @@ if(isset($_GET['cari'])){
     </div>
   </div>
 
-<br>
+<div class="text-center mt-4">
 
-<div class="text-center">
-
-<?php if($_SESSION['level'] == 'admin'){
-  ?>
+<?php if($_SESSION['level'] == 'admin')
+{
+?>
 
 <a href="buat.php" class="btn btn-outline-dark">Tambah Buku</a>
+
 <a href="daftar.php" class="btn btn-outline-dark">Tambah Petugas</a>
 
 <?php
@@ -67,8 +79,6 @@ if(isset($_GET['cari'])){
 <a href="daftarsiswa.php" class="btn btn-outline-dark">Tambah Siswa</a>
 <a href="riwayat.php" class="btn btn-outline-dark">Riwayat Pinjam</a>
 </div>
-
-<br>
 
 <table class="table table-dark p-1 mt-4 border border-success container">
 
@@ -91,9 +101,9 @@ if(isset($_GET['cari'])){
     
     if(isset($_GET['cari'])){
       $cari = $_GET['cari'];
-      $result = mysqli_query($perpustakaan,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
+      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
     }else{
-      $result = mysqli_query($perpustakaan,"SELECT * FROM buku");
+      $result = mysqli_query($conn,"SELECT * FROM buku");
     }
     $no =1;
     while($data = mysqli_fetch_array($result)) {         
@@ -115,11 +125,19 @@ if(isset($_GET['cari'])){
             <a href="pinjam.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-success">Pinjam</a>
             |
             <a href="kembalikan.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-warning">Kembalikan</a>
+            
+            <?php if($_SESSION['level'] == 'admin')
+            {
+            ?>
             |
             <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
             |
             <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
             </td>
+
+            <?php
+            }
+            ?>
         </tr>
         </tbody>
     <?php
