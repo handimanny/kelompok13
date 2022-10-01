@@ -58,17 +58,17 @@ if(isset($_GET['cari'])){
     </div>
   </div>
 
-<table class="table table-dark p-1 mt-4 border border-success container">
+<table class="table table-primary p-1 mt-4 border border-primary container">
 
 <tbody>
     <tr>
         <th>No Id</th>
-        <th>Penulis Buku</th>
+        <th>Cover</th>
+        <th>Judul</th>
+        <th>Penulis</th>
         <th>Tahun Terbit</th>
-        <th>Judul Buku</th>
         <th>Kota Asal</th>
         <th>Penerbit</th>
-        <th>Cover</th>
         <th>Sinopsis</th>
         <th>Stok</th>
     </tr>
@@ -88,14 +88,14 @@ if(isset($_GET['cari'])){
         <tbody>
         <tr>
             <td><?= $no ?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
-            <td><?= $data['4']?></td>
-            <td><?= $data['5']?></td>
             <td>
               <img src="foto/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
             </td>
+            <td><?= $data['3']?></td>
+            <td><?= $data['1']?></td>
+            <td><?= $data['2']?></td>
+            <td><?= $data['4']?></td>
+            <td><?= $data['5']?></td>
             <td><?= $data['7']?></td>
             <td><?= $data['8']?></td>
         </tr>

@@ -78,15 +78,15 @@ if(isset($_GET['cari'])){
 <a href="riwayat.php" class="btn btn-outline-dark">Riwayat Pinjam</a>
 </div>
 
-<table class="table table-dark p-1 mt-4 border border-success container">
+<table class="table table-primary p-1 mt-4 border border-primary container">
 
 <tbody>
     <tr>
         <th>No Id</th>
         <th>Cover</th>
-        <th>Penulis Buku</th>
+        <th>Judul</th>
+        <th>Penulis</th>
         <th>Tahun Terbit</th>
-        <th>Judul Buku</th>
         <th>Kota Asal</th>
         <th>Penerbit</th>
         <th>Sinopsis</th>
@@ -112,9 +112,9 @@ if(isset($_GET['cari'])){
             <td>
               <img src="foto/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
             </td>
+            <td><?= $data['3']?></td>
             <td><?= $data['1']?></td>
             <td><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
             <td><?= $data['4']?></td>
             <td><?= $data['5']?></td>
             <td><?= $data['7']?></td>
@@ -122,7 +122,7 @@ if(isset($_GET['cari'])){
             <td colspan="2">
             <a href="pinjam.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-success">Pinjam</a>
             |
-            <a href="kembalikan.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-warning">Kembalikan</a>
+            <a href="kembalikan.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-info">Kembalikan</a>
             
             <?php if($_SESSION['level'] == 'admin')
             {
