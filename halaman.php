@@ -28,13 +28,36 @@ if(isset($_GET['cari'])){
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="bootstrap/style.css">
+<link rel="stylesheet" href="bootstrap/style2.css">
  
 <body>
 
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark"></i></a>
+  <a href="">Halaman</a>
+  <a href="buat.php">Tambah Buku</a>
+
+<?php if($_SESSION['level'] == 'admin')
+{
+?>
+
+  <a href="daftar.php">Tambah Petugas</a>
+
+<?php
+}
+?>
+
+  <a href="daftarsiswa.php">Tambah Siswa</a>
+  <a href="riwayat.php">Riwayat Pinjam</a>
+  <a href="pinjam.php">Peminjaman</a>
+  <a href="kembalikan.php">Pengembalian</a>
+
+</div>
+
 <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
   <div class="container">
-  <a class="navbar-brand text-white" href="halaman.php"><i class="fa-solid fa-book"></i> Perpustakaan13</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand text-white" onclick="openNav()" href="#"><i class="fa-solid fa-book"></i> Perpustakaan13</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     
@@ -59,27 +82,6 @@ if(isset($_GET['cari'])){
       </form>
     </div>
   </div>
-
-<div class="container mt-4">
-
-<a href="buat.php" class="btn btn-outline-dark">Tambah Buku</a>
-
-<?php if($_SESSION['level'] == 'admin')
-{
-?>
-
-<a href="daftar.php" class="btn btn-outline-dark">Tambah Petugas</a>
-
-<?php
-}
-?>
-
-<a href="daftarsiswa.php" class="btn btn-outline-dark">Tambah Siswa</a>
-<a href="riwayat.php" class="btn btn-outline-dark">Riwayat Pinjam</a>
-<a href="pinjam.php" class="btn btn-outline-dark">Peminjaman</a>
-<a href="kembalikan.php" class="btn btn-outline-dark">Pengembalian</a>
-
-</div>
 
 <table class="table table-primary p-1 mt-4 border border-primary container">
 
@@ -140,5 +142,16 @@ if(isset($_GET['cari'])){
 <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
 
+<script>
+  function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
 </body>
 </html>
