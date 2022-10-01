@@ -55,16 +55,16 @@ if (isset($_POST['submit'])) {
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="bootstrap/style.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="bootstrap/style2.css">
 
 <body>
 
 <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">x</a>
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark"></i></a>
+  <a href="">Login Petugas</a>
+  <a href="login.php">Login Siswa</a>
+  <!-- <a href="#">Clients</a>
+  <a href="#">Contact</a> -->
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
