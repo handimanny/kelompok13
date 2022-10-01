@@ -83,12 +83,12 @@ if(isset($_GET['cari'])){
 <tbody>
     <tr>
         <th>No Id</th>
+        <th>Cover</th>
         <th>Penulis Buku</th>
         <th>Tahun Terbit</th>
         <th>Judul Buku</th>
         <th>Kota Asal</th>
         <th>Penerbit</th>
-        <th>Cover</th>
         <th>Sinopsis</th>
         <th>Stok</th>
         <th class="text-center" >Update</th>
@@ -108,15 +108,15 @@ if(isset($_GET['cari'])){
       ?>
         <tbody>
         <tr>
-            <td><?= $no ?></td>
+            <td class="text-center"><?= $no ?></td>
+            <td>
+              <img src="foto/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
+            </td>
             <td><?= $data['1']?></td>
             <td><?= $data['2']?></td>
             <td><?= $data['3']?></td>
             <td><?= $data['4']?></td>
             <td><?= $data['5']?></td>
-            <td>
-              <img src="foto/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
-            </td>
             <td><?= $data['7']?></td>
             <td><?= $data['8']?></td>
             <td colspan="2">
