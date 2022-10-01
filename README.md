@@ -5,50 +5,50 @@ https://github.com/sultonainunn/perpustakaan
 
 # membuat sistem perpustakaan
 
-//proses
+//sudah
 * 1.buat.php ( input buku baru )
 
-//proses
+//sudah
 * 2.config.php
 
-//proses
+//sudah
 * 3.daftar.php ( daftar untuk petugas )
 
-//proses
+//sudah
 * 4.daftarsiswa.php ( daftar untuk siswa )
 
-//proses
-* 5.delete.php
+//sudah
+* 5.delete.php ( untuk hapus buku )
 
-//proses
-* 6.edit.php
+//sudah
+* 6.edit.php ( untuk edit buku )
 
-//proses
+//sudah
 * 7.halaman.php ( home admin & petugas )
 
-//proses
+//sudah
 * 8.index.php ( halaman login )
 
-//proses
+//sudah
 * 9.keluar.php
 
 //belum
 * 10.kembalikan.php
 
-//proses
-* 11.login.php
+//sudah
+* 11.login.php ( masuk untuk siswa )
 
-//proses
+//sudah
 * 12.perpustakaan.sql
 
 //belum
 * 13.pinjam.php
 
-//belum
+//opsional
 * 14.README.md
 
 //belum
 * 15.riwayat.php
 
-//belum
-* 16.siswa.php
+//sudah
+* 16.siswa.php ( halaman dasbord siswa )
