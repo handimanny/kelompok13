@@ -136,7 +136,7 @@ session_start();
         <tbody>
         <h2>Petugas</h2>
           <tr>
-              <th class="text-center">No Id</th>
+              <th class="text-center">No</th>
               <th class="text-center">Nama</th>
               <th class="text-center">Jenis_kelamin</th>
               <th class="text-center">Alamat</th>

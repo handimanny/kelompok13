@@ -45,8 +45,13 @@ session_start();
   </div>
 </nav>
 
-<div class="login-wrapper d-flex justify-content-center align-items-center" style="height: 90vh;">
-    <div class="input-wrapper p-4 w-25 bg-secondary rounded-4 bg-dark text-white">
+<div class="row d-flex justify-content-center align-items-center mt-3">
+      <div class="col-xl-10">
+          <div class="row g-0">
+            
+            <div class="col-lg-5">
+              <div class="login-wrap card-body p-md-5 mx-md-4">
+
     <form action="" method="POST">
         <h2>Menu Daftar</h2>
         <div class="mb-3">
@@ -102,6 +107,55 @@ if(isset($_POST['submit'])) {
         
   </div>
 </div>
+
+            <div class="col-lg-5">
+              <div class="login-wrap card-body p-md-5 mx-md-4">
+<table>
+        <tbody>
+        <h2>Siswa</h2>
+          <tr>
+              <th class="text-center">No</th>
+              <th class="text-center">Nama</th>
+              <th class="text-center">Jenis_kelamin</th>
+              <th class="text-center">Alamat</th>
+              <th class="text-center">Update</th>
+          </tr>
+        </tbody>
+
+        <?php
+    
+    if(isset($_GET['cari'])){
+      $cari = $_GET['cari'];
+      $result = mysqli_query($conn,"SELECT * FROM siswa WHERE nama LIKE '%".$cari."%'");				
+    }else{
+      $result = mysqli_query($conn,"SELECT * FROM siswa");
+    }
+    $no =1;
+    while($data = mysqli_fetch_array($result)) {         
+      ?>
+        <tbody>
+        <tr>
+            <td><?= $no ?></td>
+            <td><?= $data['1']?></td>
+            <td class="text-center"><?= $data['2']?></td>
+            <td><?= $data['3']?></td>
+            <td colspan="2">
+            <a href="#?nis=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
+            |
+            <a href="#?nis=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
+            </td>
+        </tr>
+        </tbody>
+    <?php
+    $no++;
+      }
+      ?>
+</table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
