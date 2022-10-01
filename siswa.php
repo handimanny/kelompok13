@@ -62,15 +62,15 @@ if(isset($_GET['cari'])){
 
 <tbody>
     <tr>
-        <th>No Id</th>
-        <th>Cover</th>
-        <th>Judul</th>
-        <th>Penulis</th>
-        <th>Tahun Terbit</th>
-        <th>Kota Asal</th>
-        <th>Penerbit</th>
-        <th>Sinopsis</th>
-        <th>Stok</th>
+        <th class="text-center">No Id</th>
+        <th class="text-center">Cover</th>
+        <th class="text-center">Judul</th>
+        <th class="text-center">Penulis</th>
+        <th class="text-center">Tahun Terbit</th>
+        <th class="text-center">Kota Asal</th>
+        <th class="text-center">Penerbit</th>
+        <th class="text-center">Sinopsis</th>
+        <th class="text-center">Stok</th>
     </tr>
 </tbody>
 
@@ -87,17 +87,17 @@ if(isset($_GET['cari'])){
       ?>
         <tbody>
         <tr>
-            <td><?= $no ?></td>
-            <td>
-              <img src="foto/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
+            <td class="text-center"><?= $no ?></td>
+            <td class="text-center">
+              <img src="foto/<?= $data['6']?>" width="200px" class="img-thumbnail" alt="">
             </td>
-            <td><?= $data['3']?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['4']?></td>
-            <td><?= $data['5']?></td>
+            <td class="text-center"><?= $data['3']?></td>
+            <td class="text-center"><?= $data['1']?></td>
+            <td class="text-center"><?= $data['2']?></td>
+            <td class="text-center"><?= $data['4']?></td>
+            <td class="text-center"><?= $data['5']?></td>
             <td><?= $data['7']?></td>
-            <td><?= $data['8']?></td>
+            <td class="text-center"><?= $data['8']?></td>
         </tr>
         </tbody>
     <?php
