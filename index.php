@@ -61,8 +61,8 @@ if (isset($_POST['submit'])) {
 
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark"></i></a>
-  <a href="">Login Petugas</a>
-  <a href="login.php">Login Siswa</a>
+  <a href=""><span class="fa fa-user-o"></span> Login Petugas</a>
+  <a href="login.php"><span class="fa fa-user-o"></span> Login Siswa</a>
   <!-- <a href="#">Clients</a>
   <a href="#">Contact</a> -->
 </div>
