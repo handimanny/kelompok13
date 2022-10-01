@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Sep 2022 pada 03.12
+-- Waktu pembuatan: 01 Okt 2022 pada 04.45
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.6
 
@@ -44,13 +44,13 @@ CREATE TABLE `buku` (
 --
 
 INSERT INTO `buku` (`id_buku`, `penulis`, `tahun`, `judul`, `kota`, `penerbit`, `cover`, `sinopsis`, `stok`) VALUES
-(1, 'penulis', 2001, 'judul', 'kota', 'penerbit', 'img5.png', 'sinopsis', 10),
-(2, 'penulis', 2001, 'judul', 'kota', 'penerbit', 'img1.png', 'sinopsis', 10),
-(3, 'penulis', 2001, 'judul', 'kota', 'penerbit', 'img3.png', 'sinopsis', 10),
-(4, 'penulis', 2001, 'judul', 'kota', 'penerbit', 'img2.png', 'sinopsis', 10),
-(5, 'penulis', 2001, 'judul', 'kota', 'penerbit', 'img4.png', 'sinopsis', 10),
-(6, 'penulis', 2001, 'judul', 'kota', 'penerbit', 'img5.png', 'sinopsis', 10),
-(7, 'penulis', 2001, 'judul', 'kota', 'penerbit', 'img6.png', 'sinopsis', 10);
+(1, 'Ilana', 2001, 'Winter', 'kota', 'penerbit', 'img5.png', 'sinopsis', 10),
+(2, 'Dewi', 2019, 'Filosofi', 'kota', 'penerbit', 'img1.png', 'sinopsis', 5),
+(3, 'Raditya', 2006, 'judul', 'kota', 'Marmut', 'img3.png', 'sinopsis', 10),
+(4, 'Dini', 2002, 'Namaku', 'kota', 'penerbit', 'img2.png', 'sinopsis', 3),
+(5, 'Andrea', 2004, 'Laskar', 'kota', 'penerbit', 'img4.png', 'sinopsis', 10),
+(6, 'Winna', 2000, 'Refrain', 'kota', 'penerbit', 'img5.png', 'sinopsis', 5),
+(7, 'Orizuka', 2020, 'Infinitely', 'kota', 'penerbit', 'img7.png', 'sinopsis', 2);
 
 -- --------------------------------------------------------
 
@@ -268,7 +268,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT untuk tabel `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_peminjaman`
@@ -304,7 +304,7 @@ ALTER TABLE `pengembalian`
 -- AUTO_INCREMENT untuk tabel `petugas`
 --
 ALTER TABLE `petugas`
-  MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `nip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `siswa`

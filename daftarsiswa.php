@@ -3,9 +3,9 @@
 include 'config.php';
  
 session_start();
- 
-// if (isset($_SESSION['nama'])) {
-//     header("Location: index.php");
+
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
 // }
 
 ?>
@@ -22,135 +22,143 @@ session_start();
     <title>Masuk</title>
 </head>
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="bootstrap/style.css">
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="index.php">Kelompok13</a>
+  <a class="navbar-brand text-white" href="halaman.php"><i class="fa-solid fa-book"></i> Perpustakaan13</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
+      </ul>
+      <form>
+        <a href='keluar.php' class="btn btn-danger rounded">Keluar</a>
+      </form>
+    </div>
   </div>
 </nav>
 
-<div class="login-wrapper d-flex justify-content-center align-items-center" style="height: 100px, padding-top: 100px;">
-    <div class="input-wrapper p-4 w-25 bg-secondary rounded-4 bg-dark text-white">
+<div class="row d-flex justify-content-center align-items-center mt-3">
+      <div class="col-xl-10">
+          <div class="row g-0">
+            
+            <div class="col-lg-5">
+              <div class="login-wrap card-body p-md-5 mx-md-4">
+
     <form action="" method="POST">
         <h2>Menu Daftar</h2>
         <div class="mb-3">
-          <label class="form-lable">Nama</label>
-          <input type="text" class="form-control" placeholder="Input nama" name="nama" required>
+          <!-- <label class="form-lable">Nomor NIS</label> -->
+          <input type="text" class="form-control" placeholder="Input NIS" name="nis" required>
         </div>
         <div class="mb-3">
-          <label class="form-lable">Username</label>
-          <input type="text" class="form-control" placeholder="Input username" name="username" required>
+            <!-- <label class="form-label">Nama</label> -->
+            <input type="text" placeholder="Input Nama" class="form-control" name="nama" required>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
+            <!-- <label class="form-label">Jenis Kelamin</label> -->
             <select class="form-control" name="jenis_kelamin">
               <option value="L">Laki-laki</option>
               <option value="P">Perempuan</option>
             </select>
         </div>
-
         <div class="mb-3">
-            <label class="form-label">Alamat</label>
+            <!-- <label class="form-label">Alamat</label> -->
             <input type="text" placeholder="Input Alamat" class="form-control" name="alamat" required>
         </div>
         <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Kelas</label>
-            <select class="form-control" name="kelas">
-              <option value="1">6A</option>
-              <option value="2">6B</option>
+            <!-- <label class="form-label">Input Kelas</label> -->
+            <select class="form-control" name="id_kelas">
+              <option value="1">Kelas 6A</option>
+              <option value="2">Kelas 6B</option>
             </select>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input id="muncul" type="password" placeholder="Input password" class="form-control" name="password" required>
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" onclick="tampil()">
-            <label class="form-check-label">Lihat Password</label>
-        </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input id="muncul" type="password" placeholder="Input password" class="form-control" name="upassword" required>
-        </div>
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" onclick="tampil()">
-            <label class="form-check-label">Lihat Password</label>
         </div>
         <div class="mb-3">
             <button name="submit" class="btn btn-outline-primary">Daftar</button>
         </div>
 
 <?php
+
 if(isset($_POST['submit'])) {
+    $nis = $_POST['nis'];
     $nama = $_POST['nama'];
-    $username = $_POST['username'];
     $jenis_kelamin = $_POST['jenis_kelamin'];
     $alamat = $_POST['alamat'];
-    $kelas = $_POST['kelas'];
-    $password = $_POST['password'];
-    $upassword = $_POST['upassword'];
-    
-  if ($password == $upassword) {
-        $sql = "SELECT * FROM siswa WHERE username='$username'";
-        $result = mysqli_query($conn, $sql);
-        $data=mysqli_num_rows($result);
-    if (!$result->num_rows > 0) {
-        $sql = "INSERT INTO `siswa`  (`nis`, `nama`, `username`, `password`, `jenis_kelamin`, `alamat`, `id_kelas`) VALUES (NULL, '$nama', '$username', '$password', '$jenis_kelamin', '$alamat', '$kelas');";
-        $result = mysqli_query($conn, $sql);
-            
+    $id_kelas = $_POST['id_kelas'];
+  
+    $sql = "INSERT INTO siswa (nis, nama, jenis_kelamin, alamat, id_kelas ) VALUES ('$nis', '$nama', '$jenis_kelamin', '$alamat', '$id_kelas')";
+    $result = mysqli_query($conn, $sql);
+
     if ($result) {
-        echo "<script>alert('Selamat, registrasi berhasil!')</script>";
-        $username = "";
-        $_POST['password'] = "";
-    $_POST['upassword'] = "";
-    } else {
-        echo "<script>alert('Waduh! Terjadi kesalahan.')</script>";
-    }
-    } else {
-        echo "<script>alert('Waduh! User Sudah Terdaftar.')</script>";
-    }
-            
-    } else {
-        echo "<script>alert('Password Tidak Sesuai')</script>";
-    }
+    echo "<script>alert('Selamat, registrasi berhasil!')</script>";
 }
+}
+
 ?>
-            Anda sudah punya akun? <a href="index.php">Masuk</a>
+            <!-- Anda sudah punya akun? <a href="index.php">Masuk</a> -->
         </form>
         
+  </div>
 </div>
-</div>
+
+            <div class="col-lg-5">
+              <div class="login-wrap card-body p-md-5 mx-md-4">
+<table>
+        <tbody>
+        <h2>Siswa</h2>
+          <tr>
+              <th class="text-center">No</th>
+              <th class="text-center">Nama</th>
+              <th class="text-center">Jenis_kelamin</th>
+              <th class="text-center">Alamat</th>
+              <th class="text-center">Update</th>
+          </tr>
+        </tbody>
+
+        <?php
+    
+    if(isset($_GET['cari'])){
+      $cari = $_GET['cari'];
+      $result = mysqli_query($conn,"SELECT * FROM siswa WHERE nama LIKE '%".$cari."%'");				
+    }else{
+      $result = mysqli_query($conn,"SELECT * FROM siswa");
+    }
+    $no =1;
+    while($data = mysqli_fetch_array($result)) {         
+      ?>
+        <tbody>
+        <tr>
+            <td><?= $no ?></td>
+            <td><?= $data['1']?></td>
+            <td class="text-center"><?= $data['2']?></td>
+            <td><?= $data['3']?></td>
+            <td colspan="2">
+            <a href="#?nis=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
+            |
+            <a href="#?nis=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
+            </td>
+        </tr>
+        </tbody>
+    <?php
+    $no++;
+      }
+      ?>
+</table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
-
-<script>
-function tampil() {
-  var x = document.getElementById("muncul");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script>
-
-<!-- <script>
-function tampil2() {
-  var x = document.getElementById("muncul2");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script> -->
 
 </body>
 </html>

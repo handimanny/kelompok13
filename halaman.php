@@ -2,17 +2,11 @@
 
 include_once("config.php");
 
-// session_start();
+session_start();
 
-<<<<<<< HEAD
 // if (!isset($_SESSION['nama'])) {
-//   header("Location: halaman.php");
+//   header("Location: index.php");
 // }
-=======
-if (!isset($_SESSION['nama'])) {
-  header("Location: index.php");
-}
->>>>>>> 1ce17eb0c4e0e4dcb8722976e094110f27c094ea
 
 // if (!isset($_SESSION['nis'])) {
 //   header("Location: index.php");
@@ -29,20 +23,24 @@ if(isset($_GET['cari'])){
     <title>Home</title>
 </head>
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="bootstrap/style.css">
  
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
   <div class="container">
-    <a class="navbar-brand" href="halaman.php">Kelompok13</a>
+  <a class="navbar-brand text-white" href="halaman.php"><i class="fa-solid fa-book"></i> Perpustakaan13</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     
       </ul>
       <form>
-        <a href='keluar.php' class="btn btn-outline-success">Keluar</a>
+        <a href='keluar.php' class="btn btn-danger rounded">Keluar</a>
       </form>
     </div>
   </div>
@@ -57,18 +55,18 @@ if(isset($_GET['cari'])){
   <div class="container mt-4">
       <form class="d-flex" role="search" action="halaman.php" method="get">
         <input class="form-control me-2" type="search" placeholder="Cari Data" aria-label="Search" name="cari">
-        <button class="btn btn-outline-dark" type="submit">Cari</button>
+        <button class="btn btn-outline-dark rounded" type="submit">Cari</button>
       </form>
     </div>
   </div>
 
-<div class="text-center mt-4">
+<div class="container mt-4">
+
+<a href="buat.php" class="btn btn-outline-dark">Tambah Buku</a>
 
 <?php if($_SESSION['level'] == 'admin')
 {
 ?>
-
-<a href="buat.php" class="btn btn-outline-dark">Tambah Buku</a>
 
 <a href="daftar.php" class="btn btn-outline-dark">Tambah Petugas</a>
 
@@ -78,20 +76,23 @@ if(isset($_GET['cari'])){
 
 <a href="daftarsiswa.php" class="btn btn-outline-dark">Tambah Siswa</a>
 <a href="riwayat.php" class="btn btn-outline-dark">Riwayat Pinjam</a>
+<a href="pinjam.php" class="btn btn-outline-dark">Peminjaman</a>
+<a href="kembalikan.php" class="btn btn-outline-dark">Pengembalian</a>
+
 </div>
 
-<table class="table table-dark p-1 mt-4 border border-success container">
+<table class="table table-primary p-1 mt-4 border border-primary container">
 
 <tbody>
     <tr>
         <th>No Id</th>
-        <th>Penulis Buku</th>
+        <th>Cover</th>
+        <th>Judul</th>
+        <th>Penulis</th>
         <th>Tahun Terbit</th>
-        <th>Judul Buku</th>
         <th>Kota Asal</th>
         <th>Penerbit</th>
-        <th>Cover</th>
-        <th>Sinopsis</th>
+        <!-- <th>Sinopsis</th> -->
         <th>Stok</th>
         <th class="text-center" >Update</th>
     </tr>
@@ -110,34 +111,24 @@ if(isset($_GET['cari'])){
       ?>
         <tbody>
         <tr>
-            <td><?= $no ?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
-            <td><?= $data['4']?></td>
-            <td><?= $data['5']?></td>
+            <td class="text-center"><?= $no ?></td>
             <td>
               <img src="foto/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
             </td>
-            <td><?= $data['7']?></td>
+            <td><?= $data['3']?></td>
+            <td><?= $data['1']?></td>
+            <td><?= $data['2']?></td>
+            <td><?= $data['4']?></td>
+            <td><?= $data['5']?></td>
+            <!-- <td><?= $data['7']?></td> -->
             <td><?= $data['8']?></td>
-            <td colspan="2">
-            <a href="pinjam.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-success">Pinjam</a>
-            |
-            <a href="kembalikan.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-warning">Kembalikan</a>
+            <td colspan="2">            
             
-            <?php if($_SESSION['level'] == 'admin')
-            {
-            ?>
-            |
             <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
             |
             <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
             </td>
 
-            <?php
-            }
-            ?>
         </tr>
         </tbody>
     <?php
