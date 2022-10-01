@@ -1,29 +1,3 @@
-<?php
-include_once("config.php");
-
-session_start();
-
-$id_buku = $_GET['id_buku'];
- 
-$result = mysqli_query($conn, "SELECT * FROM buku WHERE id_buku=$id_buku");
-
-while($data = mysqli_fetch_array($result))
-{
-  $id_buku = $data['id_buku'];
-  $penulis = $data['penulis'];
-  $tahun = $data['tahun'];
-  $judul = $data['judul'];
-  $kota = $data['kota'];
-  $penerbit = $data['penerbit'];
-  $sinopsis = $data['sinopsis'];
-  $stok = $data['stok'];
-
-  $file = $data['cover'];
-
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,48 +37,48 @@ while($data = mysqli_fetch_array($result))
             <div>
               <div class="login-wrap p-md-5 mx-md-1">
                 
-              <?php echo "<h4>Silahkan print bukti, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+              <!-- <?php echo "<h4>Print bukti peminjaman, " . $_SESSION['nama'] ."!". "</h4>"; ?> -->
 
               <form name="update_user" method="post" enctype="multipart/form-data" action="">
     
     <div class="mb-3">
       <!-- <label class="form-lable">Nama Penulis</label> -->
-      <input type="text" class="form-control" name="penulis" value=<?php echo $penulis;?>>
+      <input type="text" class="form-control" name="penulis" placeholder="Nama Penulis">
     </div>
     <div class="mb-3">
       <!-- <label class="form-lable">Tahun Terbit</label> -->
-      <input type="text" class="form-control" name="tahun" value=<?php echo $tahun;?>>
+      <input type="text" class="form-control" name="tahun" placeholder="Tahun">
     </div>
     <div class="mb-3">
       <!-- <label class="form-lable">Judul Buku</label> -->
-      <input type="text" class="form-control" name="judul" value=<?php echo $judul;?>>
+      <input type="text" class="form-control" name="judul" placeholder="Judul Buku">
     </div>
 
     <div class="mb-3">
           <!-- <label class="form-lable">Kota Asal</label> -->
-          <input type="text" class="form-control" name="kota" value=<?php echo $kota;?>>
+          <input type="text" class="form-control" name="kota" placeholder="Kota">
     </div>
     <div class="mb-3">
           <!-- <label class="form-lable">Penerbit</label> -->
-          <input type="text" class="form-control" name="penerbit" value=<?php echo $penerbit;?>>
+          <input type="text" class="form-control" name="penerbit" placeholder="Penerbit">
     </div>
 
     <div class="mb-3">
       <!-- <label class="form-lable">Cover</label> -->
-      <input type="text" class="form-control" name="cover" value=<?php echo $file;?>>
+      <input type="text" class="form-control" name="cover" placeholder="Cover">
     </div>
     <div class="mb-3">
           <!-- <label class="form-lable">Sinopsis</label> -->
-          <input type="text" class="form-control" name="sinopsis" value=<?php echo $sinopsis;?>>
+          <input type="text" class="form-control" name="sinopsis" placeholder="Sinopsis">
     </div>
     <div class="mb-3">
           <!-- <label class="form-lable">Stok</label> -->
-          <input type="number" class="form-control" name="stok" value=<?php echo $stok;?>>
+          <input type="number" class="form-control" name="stok" placeholder="Stok">
     </div>
 
     <div class="mb-3">
-      <input type="hidden" name="id_buku" value=<?php echo $_GET['id_buku'];?>>
-      <input class="btn btn-outline-dark" type="submit" name="update" value="Print">
+      <input type="hidden" name="id_buku">
+      <input class="btn btn-outline-dark" type="submit" name="update" value="Meminjamkan">
     </div>
     </form>
 
