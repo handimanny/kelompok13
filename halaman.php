@@ -4,9 +4,9 @@ include_once("config.php");
 
 session_start();
 
-if (!isset($_SESSION['nama'])) {
-  header("Location: index.php");
-}
+// if (!isset($_SESSION['nama'])) {
+//   header("Location: index.php");
+// }
 
 // if (!isset($_SESSION['nis'])) {
 //   header("Location: index.php");

@@ -4,9 +4,9 @@ include 'config.php';
  
 session_start();
 
-if(!isset($_SESSION['nama'])){
-  header("Location: halaman.php");
-}
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
+// }
 
 ?>
 

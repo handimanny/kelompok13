@@ -4,13 +4,13 @@ include 'config.php';
  
 session_start();
  
-if (isset($_SESSION['nis'])) {
-    header("Location: siswa.php");
-}
+// if (isset($_SESSION['nis'])) {
+//     header("Location: siswa.php");
+// }
 
-if (isset($_SESSION['nama'])) {
-    header("Location: index.php");
-}
+// if (isset($_SESSION['nama'])) {
+//     header("Location: index.php");
+// }
 
 error_reporting(0);
 
