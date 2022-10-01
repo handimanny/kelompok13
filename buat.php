@@ -43,9 +43,7 @@ session_start();
 </nav>
 
 <div class="container p-3 mt-3">
-  <form action="" method="POST">
-    <?php echo "<h4>Silahkan input buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
-  </form>
+  <?php echo "<h4>Silahkan input buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
   <form action="buat.php" name="form1" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
         </div>
