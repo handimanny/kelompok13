@@ -1,3 +1,31 @@
+<?php 
+
+include 'config.php';
+
+if (isset($_POST['submit'])) {
+    $nis = $_POST['nis'];
+    
+    $query = mysqli_query($conn, "SELECT * FROM siswa WHERE nis='$nis'");
+    $data = mysqli_fetch_assoc($query);
+
+    if($data){
+        $_SESSION['nis']=$data['nis'];
+        $_SESSION['akses']=$data['akses'];
+
+        if($_SESSION['akses']=='admin'){
+          header('location:siswa.php');
+        } else if($_SESSION['akses']==''){
+          header('location:..\main\siswa.php');
+        }
+
+    } else {
+        echo "<script>alert('NIS yang Anda masukan salah. Silahkan coba lagi!')</script>";
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" class="form-screen">
 <head>
@@ -55,12 +83,12 @@
         </p>
       </header>
       <div class="card-content">
-        <form method="get">
+        <form method="POST">
 
           <div class="field spaced">
             <label class="label">Login</label>
             <div class="control icons-left">
-              <input class="input" type="text" name="login" placeholder="user@example.com" autocomplete="username">
+              <input class="input" type="text" name="nis" placeholder="Username" autocomplete="username">
               <span class="icon is-small left"><i class="mdi mdi-account"></i></span>
             </div>
             <p class="help">
@@ -79,20 +107,11 @@
             </p>
           </div>
 
-          <div class="field spaced">
-            <div class="control">
-              <label class="checkbox"><input type="checkbox" name="remember" value="1" checked>
-                <span class="check"></span>
-                <span class="control-label">Remember</span>
-              </label>
-            </div>
-          </div>
-
           <hr>
 
           <div class="field grouped">
             <div class="control">
-              <button type="submit" class="button blue">
+              <button type="submit" name="submit" class="button blue">
                 Login
               </button>
             </div>
