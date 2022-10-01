@@ -28,7 +28,7 @@ if(isset($_POST['update']))
     $upload = move_uploaded_file($tmp_name, "foto/". $file);
 
     $result = mysqli_query($conn, "UPDATE buku SET id_buku='$id_buku',penulis='$penulis',tahun='$tahun',judul='$judul',kota='$kota',penerbit='$penerbit',sinopsis='$sinopsis',stok='$stok',cover='$file' WHERE id_buku=$id_buku");
-    header("Location: index.php");
+    header("Location: halaman.php");
 }
 ?>
 
@@ -39,14 +39,14 @@ $result = mysqli_query($conn, "SELECT * FROM buku WHERE id_buku=$id_buku");
 
 while($data = mysqli_fetch_array($result))
 {
-  $id_buku=$_POST['id_buku'];  
-  $penulis=$_POST['penulis'];
-  $tahun=$_POST['tahun'];
-  $judul=$_POST['judul'];
-  $kota=$_POST['kota'];
-  $penerbit=$_POST['penerbit'];
-  $sinopsis=$_POST['sinopsis'];
-  $stok=$_POST['stok'];
+  $id_buku = $data['id_buku'];
+  $penulis = $data['penulis'];
+  $tahun = $data['tahun'];
+  $judul = $data['judul'];
+  $kota = $data['kota'];
+  $penerbit = $data['penerbit'];
+  $sinopsis = $data['sinopsis'];
+  $stok = $data['stok'];
 
   $file = $data['cover'];
 
@@ -105,11 +105,11 @@ while($data = mysqli_fetch_array($result))
 
     <div class="mb-3">
           <label class="form-lable">Kota Asal</label>
-          <input type="number" class="form-control" placeholder="*" name="kota" value=<?php echo $kota;?>>
+          <input type="text" class="form-control" name="kota" value=<?php echo $kota;?>>
     </div>
     <div class="mb-3">
-          <label class="form-lable">Penerbit *</label>
-          <input type="number" class="form-control" placeholder="*" name="penerbit" value=<?php echo $penerbit;?>>
+          <label class="form-lable">Penerbit</label>
+          <input type="text" class="form-control" name="penerbit" value=<?php echo $penerbit;?>>
     </div>
 
     <div class="mb-3">
@@ -117,12 +117,12 @@ while($data = mysqli_fetch_array($result))
       <input type="file" class="form-control" name="cover" value=<?php echo $file;?>>
     </div>
     <div class="mb-3">
-          <label class="form-lable">Sinopsis *</label>
-          <input type="number" class="form-control" placeholder="*" name="sinopsis" value=<?php echo $sinopsis;?>>
+          <label class="form-lable">Sinopsis</label>
+          <input type="text" class="form-control" name="sinopsis" value=<?php echo $sinopsis;?>>
     </div>
     <div class="mb-3">
-          <label class="form-lable">Stok *</label>
-          <input type="number" class="form-control" placeholder="*" name="stok" value=<?php echo $stok;?>>
+          <label class="form-lable">Stok</label>
+          <input type="number" class="form-control" name="stok" value=<?php echo $stok;?>>
     </div>
 
     <div class="mb-3">
