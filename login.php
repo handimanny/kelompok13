@@ -22,9 +22,9 @@ if (isset($_POST['submit'])) {
 
     if($data){
         $_SESSION['nis']=$data['nis'];
-        $_SESSION['akses']=$data['akses'];
+        $_SESSION['level']=$data['level'];
 
-        if($_SESSION['akses']=='admin'){
+        if($_SESSION['level']=='admin'){
           header('location:siswa.php');
         } else if($_SESSION['akses']==''){
           header('location:siswa.php');
