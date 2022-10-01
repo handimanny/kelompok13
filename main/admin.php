@@ -110,13 +110,13 @@ if(isset($_GET['cari'])){
       </li>
       <li class="--set-active-forms-html">
         <a href="forms.html">
-          <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+          <span class="icon"><i class="mdi mdi-table"></i></span>
           <span class="menu-item-label">Kelas</span>
         </a>
       </li>
       <li class="--set-active-profile-html">
         <a href="tables.html">
-          <span class="icon"><i class="mdi mdi-table"></i></span>
+          <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
@@ -128,13 +128,13 @@ if(isset($_GET['cari'])){
       </li>
       <li>
         <a href="login.html">
-          <span class="icon"><i class="mdi mdi-minus"></i></span>
+          <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
           <span class="menu-item-label">Peminjaman</span>
         </a>
       </li>
       <li>
         <a href="login.html">
-          <span class="icon"><i class="mdi mdi-plus"></i></span>
+          <span class="icon"><i class="mdi mdi-cart-minus"></i></span>
           <span class="menu-item-label">Pengembalian</span>
         </a>
       </li>
