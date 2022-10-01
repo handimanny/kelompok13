@@ -150,58 +150,66 @@ if(isset($_GET['cari'])){
     <h1 class="title">
       Dashboard
     </h1>
-    <button class="button light">Button</button>
+    <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
 </section>
 
 <!-- main section -->
 <table class="table table-primary p-1 mt-4 border border-primary container">
-
   <tbody>
       <tr>
-          <th class="text-center">No Id</th>
-          <th class="text-center">Cover</th>
-          <th class="text-center">Judul</th>
-          <th class="text-center">Penulis</th>
-          <th class="text-center">Tahun Terbit</th>
-          <th class="text-center">Kota Asal</th>
-          <th class="text-center">Penerbit</th>
-          <th class="text-center">Sinopsis</th>
-          <th class="text-center">Stok</th>
+          <th>No Id</th>
+          <th>Cover</th>
+          <th>Judul</th>
+          <th>Penulis</th>
+          <th>Tahun Terbit</th>
+          <th>Kota Asal</th>
+          <th>Penerbit</th>
+          <!-- <th>Sinopsis</th> -->
+          <th>Stok</th>
+          <th class="text-center" >Update</th>
       </tr>
   </tbody>
-  
-      <?php
-      
-      if(isset($_GET['cari'])){
-        $cari = $_GET['cari'];
-        $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
-      }else{
-        $result = mysqli_query($conn,"SELECT * FROM buku");
+
+  <tbody>
+  <?php
+    
+    if(isset($_GET['cari'])){
+      $cari = $_GET['cari'];
+      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
+    }else{
+      $result = mysqli_query($conn,"SELECT * FROM buku");
+    }
+    $no =1;
+    while($data = mysqli_fetch_array($result)) {         
+      ?>
+        <tbody>
+        <tr>
+            <td class="text-center"><?= $no ?></td>
+            <td>
+              <img src="img/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
+            </td>
+            <td><?= $data['3']?></td>
+            <td><?= $data['1']?></td>
+            <td><?= $data['2']?></td>
+            <td><?= $data['4']?></td>
+            <td><?= $data['5']?></td>
+            <!-- <td><?= $data['7']?></td> -->
+            <td><?= $data['8']?></td>
+            <td colspan="2">            
+            
+            <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
+            |
+            <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
+            </td>
+
+        </tr>
+        </tbody>
+    <?php
+    $no++;
       }
-      $no =1;
-      while($data = mysqli_fetch_array($result)) {         
-        ?>
-          <tbody>
-          <tr>
-              <td class="text-center"><?= $no ?></td>
-              <td class="text-center">
-                <img src="foto/<?= $data['6']?>" width="200px" class="img-thumbnail" alt="">
-              </td>
-              <td class="text-center"><?= $data['3']?></td>
-              <td class="text-center"><?= $data['1']?></td>
-              <td class="text-center"><?= $data['2']?></td>
-              <td class="text-center"><?= $data['4']?></td>
-              <td class="text-center"><?= $data['5']?></td>
-              <td><?= $data['7']?></td>
-              <td class="text-center"><?= $data['8']?></td>
-          </tr>
-          </tbody>
-      <?php
-      $no++;
-        }
-        ?>
-  </table>
+      ?>
+</table>
 <!-- end main section -->
         <div class="table-pagination">
           <div class="flex items-center justify-between">
