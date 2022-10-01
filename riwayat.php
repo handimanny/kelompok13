@@ -53,7 +53,7 @@ session_start();
             <div>
               <div class="login-wrap p-md-5 mx-md-1">
                 
-              <?php echo "<h4>Riwayat pinjam". "</h4>"; ?>
+              <?php echo "<h4>Riwayat peminjaman". "</h4>"; ?>
 
               <table class="table p-1 mt-4 border container">
 
@@ -101,6 +101,27 @@ session_start();
     $no++;
       }
       ?>
+
+</table>
+
+<table>
+
+<?php echo "<h4>Riwayat pengembalian". "</h4>"; ?>
+
+              <table class="table p-1 mt-4 border container">
+
+<tbody>
+    <tr>
+        <th>No</th>
+        <th>Id Peminjaman</th>
+        <th>Id Siswa</th>
+        <th>Id Petugas</th>
+        <th>Tanggal Peminjaman</th>
+        <th>Tanggal Pengembalian</th>
+        <th class="text-center">Update</th>
+    </tr>
+</tbody>
+
       <?php
     
     if(isset($_GET['cari'])){
