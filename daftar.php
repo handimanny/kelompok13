@@ -55,22 +55,22 @@ session_start();
               <form action="" method="POST">
                   <h2>Menu Daftar</h2>
                   <div class="mb-3">
-                    <label class="form-lable">Nama</label>
+                    <!-- <label class="form-lable">Nama</label> -->
                     <input type="text" class="form-control" placeholder="Input nama" name="nama" required>
                   </div>
                   <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
+                      <!-- <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label> -->
                       <select class="form-control" name="jenis_kelamin">
                         <option value="L">Laki-laki</option>
                         <option value="P">Perempuan</option>
                       </select>
                   </div>
                   <div class="mb-3">
-                      <label class="form-label">Alamat</label>
+                      <!-- <label class="form-label">Alamat</label> -->
                       <input type="text" placeholder="Input Alamat" class="form-control" name="alamat" required>
                   </div>
                   <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Password</label>
+                      <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
                       <input id="muncul" type="password" placeholder="Input password" class="form-control" name="password" required>
                   </div>
                   <div class="mb-3 form-check">
@@ -78,7 +78,7 @@ session_start();
                       <label class="form-check-label">Lihat Password</label>
                   </div>
                   <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Input Ulang Password</label>
+                      <!-- <label for="exampleInputPassword1" class="form-label">Input Ulang Password</label> -->
                       <input id="muncul2" type="password" placeholder="Input ulang password" class="form-control" name="upassword" required>
                   </div>
                   <div class="mb-3 form-check">

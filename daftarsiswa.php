@@ -55,26 +55,26 @@ session_start();
     <form action="" method="POST">
         <h2>Menu Daftar</h2>
         <div class="mb-3">
-          <label class="form-lable">Nomor NIS</label>
+          <!-- <label class="form-lable">Nomor NIS</label> -->
           <input type="text" class="form-control" placeholder="Input NIS" name="nis" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Nama</label>
+            <!-- <label class="form-label">Nama</label> -->
             <input type="text" placeholder="Input Nama" class="form-control" name="nama" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Jenis Kelamin</label>
+            <!-- <label class="form-label">Jenis Kelamin</label> -->
             <select class="form-control" name="jenis_kelamin">
               <option value="L">Laki-laki</option>
               <option value="P">Perempuan</option>
             </select>
         </div>
         <div class="mb-3">
-            <label class="form-label">Alamat</label>
+            <!-- <label class="form-label">Alamat</label> -->
             <input type="text" placeholder="Input Alamat" class="form-control" name="alamat" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Input Kelas</label>
+            <!-- <label class="form-label">Input Kelas</label> -->
             <select class="form-control" name="id_kelas">
               <option value="1">Kelas 6A</option>
               <option value="2">Kelas 6B</option>

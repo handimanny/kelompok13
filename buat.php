@@ -42,48 +42,54 @@ session_start();
   </div>
 </nav>
 
-<div class="container p-3 mt-3">
-  <?php echo "<h4>Silahkan input buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+<div class="container mt-4">
+      <div class="col-xl-0">
+          <div class="row g-0">
+            
+            <div>
+              <div class="login-wrap p-md-5 mx-md-1">
+                
+              <?php echo "<h4>Silahkan input buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
   <form action="buat.php" name="form1" method="POST" enctype="multipart/form-data">
-      <div class="mb-3">
+      <div>
         </div>
-        <div class="mb-3">
-          <label class="form-lable">Id Buku</label>
+        <div class="mt-3">
+          <!-- <label class="form-lable">Id Buku</label> -->
           <input type="text" class="form-control" placeholder="Input Id" name="id_buku">
         </div>
-        <div class="mb-3">
-          <label class="form-lable">Nama Penulis</label>
+        <div class="mt-3">
+          <!-- <label class="form-lable">Nama Penulis</label> -->
           <input type="text" class="form-control" placeholder="Input Nama Penulis" name="penulis">
         </div>
-        <div class="mb-3">
-          <label class="form-lable">Tahun Terbit</label>
+        <div class="mt-3">
+          <!-- <label class="form-lable">Tahun Terbit</label> -->
           <input type="date" class="form-control" name="tahun">
         </div>
-        <div class="mb-3">
-          <label class="form-lable">Judul Buku</label>
+        <div class="mt-3">
+          <!-- <label class="form-lable">Judul Buku</label> -->
           <input type="text" class="form-control" placeholder="Input Judul" name="judul">
         </div>
-        <div class="mb-3">
-          <label class="form-lable">Kota Asal</label>
+        <div class="mt-3">
+          <!-- <label class="form-lable">Kota Asal</label> -->
           <input type="text" class="form-control" placeholder="Kota Asal" name="kota">
         </div>
-        <div class="mb-3">
-          <label class="form-lable">Penerbit</label>
+        <div class="mt-3">
+          <!-- <label class="form-lable">Penerbit</label> -->
           <input type="text" class="form-control" placeholder="Nama Penerbit" name="penerbit">
         </div>
-        <div class="mb-3">
-          <label class="form-lable">Cover</label>
+        <div class="mt-3">
+          <!-- <label class="form-lable">Cover</label> -->
           <input type="file" class="form-control" name="cover">
         </div>
-        <div class="mb-3">
-          <label class="form-lable">Sinopsis</label>
+        <div class="mt-3">
+          <!-- <label class="form-lable">Sinopsis</label> -->
           <input type="text" class="form-control" placeholder="Sinopsis" name="sinopsis">
         </div>
-        <div class="mb-3">
-          <label class="form-lable">Stok</label>
+        <div class="mt-3">
+          <!-- <label class="form-lable">Stok</label> -->
           <input type="text" class="form-control" placeholder="Jumlah Stok" name="stok">
         </div>
-        <div class="mb-3">
+        <div class="mt-3">
           <input class="btn btn-outline-dark" type="submit" name="submit" value="Tambah Data">
         </div>
 
@@ -104,15 +110,17 @@ if(isset($_POST['submit'])) {
 
     $sql = "INSERT INTO buku (id_buku, penulis, tahun, judul, kota, penerbit, cover, sinopsis, stok) VALUES ('$id_buku', '$penulis', '$tahun', '$judul', '$kota', '$penerbit', '$file', '$sinopsis', '$stok')";
     $result = mysqli_query($conn, $sql);
-    echo "Data berasil ditambah. <a href='index.php'>Lihat Data</a>";
+    echo "Data berasil ditambah. <a href='halaman.php'>Lihat Data</a>";
 }
 ?>
 
     </form>
-</div>
 
-
-
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>

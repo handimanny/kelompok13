@@ -82,46 +82,49 @@ while($data = mysqli_fetch_array($result))
   </div>
 </nav>
 
+<div class="container mt-4">
+      <div class="col-xl-0">
+          <div class="row g-0">
+            
+            <div>
+              <div class="login-wrap p-md-5 mx-md-1">
+                
+              <?php echo "<h4>Silahkan edit buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
 
-<div class="container p-3 mt-3">
-  <form name="update_user" method="post" enctype="multipart/form-data" action="">
-
-    <div class="mb-3">
-      <?php echo "<h4>Silahkan buat data, " . $_SESSION['nama'] ."!". "</h4>"; ?>
-    </div>
+              <form name="update_user" method="post" enctype="multipart/form-data" action="">
     
     <div class="mb-3">
-      <label class="form-lable">Nama Penulis</label>
+      <!-- <label class="form-lable">Nama Penulis</label> -->
       <input type="text" class="form-control" name="penulis" value=<?php echo $penulis;?>>
     </div>
     <div class="mb-3">
-      <label class="form-lable">Tahun Terbit</label>
+      <!-- <label class="form-lable">Tahun Terbit</label> -->
       <input type="date" class="form-control" name="tahun" value=<?php echo $tahun;?>>
     </div>
     <div class="mb-3">
-      <label class="form-lable">Judul Buku</label>
+      <!-- <label class="form-lable">Judul Buku</label> -->
       <input type="text" class="form-control" name="judul" value=<?php echo $judul;?>>
     </div>
 
     <div class="mb-3">
-          <label class="form-lable">Kota Asal</label>
+          <!-- <label class="form-lable">Kota Asal</label> -->
           <input type="text" class="form-control" name="kota" value=<?php echo $kota;?>>
     </div>
     <div class="mb-3">
-          <label class="form-lable">Penerbit</label>
+          <!-- <label class="form-lable">Penerbit</label> -->
           <input type="text" class="form-control" name="penerbit" value=<?php echo $penerbit;?>>
     </div>
 
     <div class="mb-3">
-      <label class="form-lable">Cover</label>
+      <!-- <label class="form-lable">Cover</label> -->
       <input type="file" class="form-control" name="cover" value=<?php echo $file;?>>
     </div>
     <div class="mb-3">
-          <label class="form-lable">Sinopsis</label>
+          <!-- <label class="form-lable">Sinopsis</label> -->
           <input type="text" class="form-control" name="sinopsis" value=<?php echo $sinopsis;?>>
     </div>
     <div class="mb-3">
-          <label class="form-lable">Stok</label>
+          <!-- <label class="form-lable">Stok</label> -->
           <input type="number" class="form-control" name="stok" value=<?php echo $stok;?>>
     </div>
 
@@ -130,7 +133,12 @@ while($data = mysqli_fetch_array($result))
       <input class="btn btn-outline-dark" type="submit" name="update" value="Perbarui Data">
     </div>
     </form>
-</div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
