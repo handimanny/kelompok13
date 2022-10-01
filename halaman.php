@@ -89,7 +89,7 @@ if(isset($_GET['cari'])){
         <th>Tahun Terbit</th>
         <th>Kota Asal</th>
         <th>Penerbit</th>
-        <th>Sinopsis</th>
+        <!-- <th>Sinopsis</th> -->
         <th>Stok</th>
         <th class="text-center" >Update</th>
     </tr>
@@ -117,7 +117,7 @@ if(isset($_GET['cari'])){
             <td><?= $data['2']?></td>
             <td><?= $data['4']?></td>
             <td><?= $data['5']?></td>
-            <td><?= $data['7']?></td>
+            <!-- <td><?= $data['7']?></td> -->
             <td><?= $data['8']?></td>
             <td colspan="2">
             <a href="pinjam.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-success">Pinjam</a>

@@ -1,3 +1,19 @@
+<?php
+
+include_once("config.php");
+
+session_start();
+
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
+// }
+
+// if($_SESSION['level']==''){
+//   header("Location: halaman.php");
+// }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,9 +46,100 @@
   </div>
 </nav>
 
-    <h1 class="text-center" >
-    Dalam Proses
-    </h1>
+<div class="container mt-4">
+      <div class="col-xl-0">
+          <div class="row g-0">
+            
+            <div>
+              <div class="login-wrap p-md-5 mx-md-1">
+                
+              <?php echo "<h4>Riwayat pinjam". "</h4>"; ?>
+
+              <table class="table p-1 mt-4 border container">
+
+<tbody>
+    <tr>
+        <th>No</th>
+        <th>Id Peminjaman</th>
+        <th>Id Siswa</th>
+        <th>Id Petugas</th>
+        <th>Tanggal Peminjaman</th>
+        <th>Tanggal Pengembalian</th>
+        <th class="text-center">Update</th>
+    </tr>
+</tbody>
+
+    <?php
+    
+    if(isset($_GET['cari'])){
+      $cari = $_GET['cari'];
+      $result = mysqli_query($conn,"SELECT * FROM peminjaman WHERE id_peminjaman LIKE '%".$cari."%'");				
+    }else{
+      $result = mysqli_query($conn,"SELECT * FROM peminjaman");
+    }
+    $no =1;
+    while($data = mysqli_fetch_array($result)) {         
+      ?>
+        <tbody>
+        <tr>
+            <td class="text-center"><?= $no ?></td>
+            <td><?= $data['0']?></td>
+            <td><?= $data['1']?></td>
+            <td><?= $data['2']?></td>
+            <td><?= $data['3']?></td>
+            <td><?= $data['4']?></td>
+            <td class="text-center" colspan="2">
+            
+            <a href="#?id_peminjaman=<?=$data['id_peminjaman']?>" class="btn btn-outline-primary">Edit</a>
+            |
+            <a href="#?id_peminjaman=<?=$data['id_peminjaman']?>" class="btn btn-outline-danger">Hapus</a>
+            </td>
+
+        </tr>
+        </tbody>
+    <?php
+    $no++;
+      }
+      ?>
+      <?php
+    
+    if(isset($_GET['cari'])){
+      $cari = $_GET['cari'];
+      $result = mysqli_query($conn,"SELECT * FROM pengembalian WHERE id_pengembalian LIKE '%".$cari."%'");				
+    }else{
+      $result = mysqli_query($conn,"SELECT * FROM pengembalian");
+    }
+    $no =1;
+    while($data = mysqli_fetch_array($result)) {         
+      ?>
+        <tbody>
+        <tr>
+            <td class="text-center"><?= $no ?></td>
+            <td><?= $data['0']?></td>
+            <td><?= $data['1']?></td>
+            <td><?= $data['2']?></td>
+            <td><?= $data['3']?></td>
+            <td><?= $data['3']?></td>
+            <td class="text-center" colspan="2">
+            
+            <a href="#?id_peminjaman=<?=$data['id_peminjaman']?>" class="btn btn-outline-primary">Edit</a>
+            |
+            <a href="#?id_peminjaman=<?=$data['id_peminjaman']?>" class="btn btn-outline-danger">Hapus</a>
+            </td>
+
+        </tr>
+        </tbody>
+    <?php
+    $no++;
+      }
+      ?>
+</table>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
