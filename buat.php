@@ -43,11 +43,11 @@ session_start();
 </nav>
 
 <div class="container p-3 mt-3">
-    <form action="buat.php" name="form1" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
-          <form action="" method="POST" class="login-email">
-            <?php echo "<h4>Silahkan buat data, " . $_SESSION['nama'] ."!". "</h4>"; ?>
-        </form>
+  <form action="" method="POST">
+    <?php echo "<h4>Silahkan input buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+  </form>
+  <form action="buat.php" name="form1" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
         </div>
         <div class="mb-3">
           <label class="form-lable">Id Buku</label>
@@ -55,11 +55,11 @@ session_start();
         </div>
         <div class="mb-3">
           <label class="form-lable">Nama Penulis</label>
-          <input type="text" class="form-control" placeholder="Input Nama Penulis" name="nama">
+          <input type="text" class="form-control" placeholder="Input Nama Penulis" name="penulis">
         </div>
         <div class="mb-3">
           <label class="form-lable">Tahun Terbit</label>
-          <input type="date" class="form-control" name="tgl">
+          <input type="date" class="form-control" name="tahun">
         </div>
         <div class="mb-3">
           <label class="form-lable">Judul Buku</label>
@@ -75,7 +75,7 @@ session_start();
         </div>
         <div class="mb-3">
           <label class="form-lable">Cover</label>
-          <input type="file" class="form-control" name="foto">
+          <input type="file" class="form-control" name="cover">
         </div>
         <div class="mb-3">
           <label class="form-lable">Sinopsis</label>
@@ -88,27 +88,29 @@ session_start();
         <div class="mb-3">
           <input class="btn btn-outline-dark" type="submit" name="submit" value="Tambah Data">
         </div>
-    </form>
+
 <?php
 if(isset($_POST['submit'])) {
     $id_buku = $_POST['id_buku'];
-    $nama = $_POST['nama'];
-    $tgl = $_POST['tgl'];
+    $penulis = $_POST['penulis'];
+    $tahun = $_POST['tahun'];
     $judul = $_POST['judul'];
     $kota = $_POST['kota'];
     $penerbit = $_POST['penerbit'];
     $sinopsis = $_POST['sinopsis'];
     $stok = $_POST['stok'];
 
-    $file = $_FILES['foto']['name'];
-    $tmp_name = $_FILES['foto']['tmp_name'];
+    $file = $_FILES['cover']['name'];
+    $tmp_name = $_FILES['cover']['tmp_name'];
     $upload = move_uploaded_file($tmp_name, "foto/". $file);
 
-    $sql = "INSERT INTO `buku` (`id_buku`, `penulis`, `tahun`, `judul`, `kota`, `penerbit`, `cover`, `sinopsis`, `stok`) VALUES ('', '$nama', '$tgl', '$judul', '$kota', '$penerbit', '$file', '$sinopsis', '$stok')";
+    $sql = "INSERT INTO buku (id_buku, penulis, tahun, judul, kota, penerbit, cover, sinopsis, stok) VALUES ('$id_buku', '$penulis', '$tahun', '$judul', '$kota', '$penerbit', '$file', '$sinopsis', '$stok')";
     $result = mysqli_query($conn, $sql);
     echo "Data berasil ditambah. <a href='index.php'>Lihat Data</a>";
 }
 ?>
+
+    </form>
 </div>
 
 
