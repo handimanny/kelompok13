@@ -1,8 +1,15 @@
 <?php
-
-include_once("config.php");
+include("config.php");
 
 session_start();
+
+// if (!isset($_SESSION['nama'])) {
+//   header("Location: index.php");
+// }
+
+// if (!isset($_SESSION['nis'])) {
+//   header("Location: index.php");
+// }
 
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
@@ -64,7 +71,9 @@ if(isset($_GET['cari'])){
       <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
     </a>
     <div class="navbar-item">
-      <div class="control"><input placeholder="Search everywhere..." class="input"></div>
+      <form class="control" role="search" action="" method="get">
+        <input class="input" type="search" placeholder="Cari Data" aria-label="Search" name="cari">
+      </form>
     </div>
   </div>
   <div class="navbar-brand is-right">
@@ -190,7 +199,7 @@ if(isset($_GET['cari'])){
     
     if(isset($_GET['cari'])){
       $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
+      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'" );				
     }else{
       $result = mysqli_query($conn,"SELECT * FROM buku");
     }
