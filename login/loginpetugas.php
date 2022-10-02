@@ -4,9 +4,6 @@ include 'config.php';
  
 // session_start();
  
-// if (isset($_SESSION['nis'])) {
-//     header("Location: .main.html");
-// }
 
 // if (isset($_SESSION['nama'])) {
 //     header("Location: index.php");
@@ -16,17 +13,24 @@ include 'config.php';
 
 session_start();
 
+if (isset($_SESSION['nip'])) {
+    header("Location: ../main/admin/dashboard.php");
+}
+
 if(isset($_POST['submit'])){
   $nip=$_POST['nip'];
   $password=$_POST['password'];
 
   $query= mysqli_query($conn,"SELECT * FROM `petugas` WHERE petugas.nip='$nip' and petugas.password='$password';");
   $data= mysqli_fetch_assoc($query);
-  echo $nip;
   if ($data){
     $_SESSION['nip']=$data['nip'];
     $_SESSION['level']=$data['level'];
-    header ('location: ../main/admin/dashboard.php');
+	if($_SESSION['level']=="petugas"){
+        header ('location: ../main/petugas/dashboard.php');
+    }else {
+        header ('location: ../main/admin/dashboard.php')
+    }
   }
   else {
     echo "<script>alert('username salah')</script>";

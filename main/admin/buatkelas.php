@@ -1,18 +1,14 @@
 <?php
 
 include_once("config.php");
+session_start();
 $sql="SELECT * FROM `kelas`";
 $result= mysqli_query($conn,$sql);
-// session_start();
 
-// if(!isset($_SESSION['nama'])){
-//   header("Location: halaman.php");
-// }
 
-// if($_SESSION['level']==''){
-//   header("Location: halaman.php");
-// }
-
+if(!isset($_SESSION['username'])){
+  header("Location: ../../admin/loginadmin.php");
+}
 ?>
 
 <!DOCTYPE html>
