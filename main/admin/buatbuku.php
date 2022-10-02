@@ -2,7 +2,7 @@
 
 include_once("config.php");
 
-session_start();
+// session_start();
 
 // if(!isset($_SESSION['nama'])){
 //   header("Location: halaman.php");
