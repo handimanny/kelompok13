@@ -174,9 +174,6 @@ session_start();
             <div class="login-wrap p-md-5 mx-md-1">
                 
   <form action="buat.php" name="form1" method="POST" enctype="multipart/form-data">
-      <div>
-      <?php echo "<h4>Silahkan input buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
-      <br>
         </div>
         <div class="mt-3">
           <label class="form-lable">Id Buku</label>
