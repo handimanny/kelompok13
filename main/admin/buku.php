@@ -14,7 +14,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Halaman Admin</title>
+  <title>Daftar Buku</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -146,7 +146,7 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Halaman</li>
+      <li>Buku</li>
     </ul>
   </div>
 </section>
@@ -154,7 +154,7 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Halaman
+      Daftar Buku
     </h1>
     <a href="buatbuku.php" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
