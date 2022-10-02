@@ -94,9 +94,9 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="dashboard.php">
+        <a href="admin.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Dashboard</span>
+          <span class="menu-item-label">Halaman</span>
         </a>
       </li>
     </ul>
@@ -115,7 +115,7 @@ if(isset($_GET['cari'])){
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="buku.php">
+        <a href="buat.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
@@ -275,57 +275,7 @@ if(isset($_GET['cari'])){
 </table>
 </section>
 
-<<<<<<< HEAD:main/petugas.php
 <br>
-=======
-<!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-  <tbody>
-      <tr>
-          <th>NIP</th>
-          <th>Nama</th>
-          <th>Jenis Kelamin</th>
-          <th>Alamat</th>
-          <th class="text-center" >Update</th>
-      </tr>
-  </tbody>
-
-  <tbody>
-  <?php
-    
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM petugas WHERE nama LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM petugas");
-    }
-    $no =1;
-    while($data = mysqli_fetch_array($result)) {         
-      ?>
-        <tbody>
-        <tr>
-            <td class="text-center"><?= $no ?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
-
-            <td colspan="2">            
-            
-            <a href="edit.php?id_buku=<?=$data['nip']?>" class="btn btn-outline-primary">Edit</a>
-            |
-            <a href="delete.php?id_buku=<?=$data['nip']?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
-
-        </tr>
-        </tbody>
-    <?php
-    $no++;
-      }
-      ?>
-</table>
-<!-- end main section -->
-
->>>>>>> 59df2f09631dd852552412ea90e519c03da33a2d:main/admin/petugas.php
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
