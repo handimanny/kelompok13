@@ -2,6 +2,8 @@
 
 include_once("config.php");
 
+session_start();
+
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
 	echo "";
@@ -161,8 +163,11 @@ if(isset($_GET['cari'])){
 </section>
 
 <section class="is-hero-bar">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+  <?php echo "<h4>Silahkan input buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+</section>
 
+<section class="is-hero-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
 <!-- main section -->
 <table class="table table-primary p-1 mt-4 border border-primary container">
   <tbody>

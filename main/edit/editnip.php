@@ -110,7 +110,7 @@ while($data = mysqli_fetch_array($result))
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
-      <a href="keluar.php" title="Log out" class="navbar-item desktop-icon-only">
+      <a href="../keluar.php" title="Log out" class="navbar-item desktop-icon-only">
         <span class="icon"><i class="mdi mdi-logout"></i></span>
         <span>Log out</span>
       </a>
@@ -201,9 +201,6 @@ while($data = mysqli_fetch_array($result))
         <div class="row g-0">
           <div>
             <div class="login-wrap p-md-5 mx-md-1">
-                
-<?php echo "<h4>Silahkan edit buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
-<br>
 
 <form name="update_user" method="post" enctype="multipart/form-data" action="">
 
