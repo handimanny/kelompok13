@@ -154,80 +154,50 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <table>
     <h1>Proses Pengembalian</h1>
+
     <form action="" method="POST">
-                  <div class="mb-3">
-                    <label class="form-lable">Nama</label>
-                    <input type="text" class="input" placeholder="Input nama" name="nama" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Jenis Kelamin</label>
-                      <select class="input" name="jenis_kelamin">
-                        <option value="L">Laki-laki</option>
-                        <option value="P">Perempuan</option>
-                      </select>
-                  </div>
-                  <div class="mb-3">
-                      <label class="form-label">Alamat</label>
-                      <input type="text" placeholder="Input Alamat" class="input" name="alamat" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Password</label>
-                      <input id="muncul" type="password" placeholder="Input password" class="input" name="password" required>
-                  </div>
-                  <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" onclick="tampil()">
-                      <label class="form-check-label">Lihat Password</label>
-                  </div>
-                  <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Input Ulang Password</label>
-                      <input id="muncul2" type="password" placeholder="Input ulang password" class="input" name="upassword" required>
-                  </div>
-                  <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" onclick="tampil2()">
-                      <label class="form-check-label">Lihat Password</label>
-                  </div>
-                  <br>
-                  <div class="mb-3">
-                      <button name="submit" class="button green">Daftar</button>
-                  </div>
-          
-          <?php
-          if(isset($_POST['submit'])) {
-              $nama = $_POST['nama'];
-              $jenis_kelamin = $_POST['jenis_kelamin'];
-              $alamat = $_POST['alamat'];
-              $password = $_POST['password'];
-              $upassword = $_POST['upassword'];
-              
-          if ($password == $upassword) {
-              $sql = "SELECT * FROM petugas WHERE nama='$nama'";
-              $result = mysqli_query($conn, $sql);
-              $data=mysqli_num_rows($result);
-          if (!$result->num_rows > 0) {
-              $sql = "INSERT INTO petugas (nama, jenis_kelamin, alamat, password ) VALUES ('$nama', '$jenis_kelamin', '$alamat', '$password')";
-              $result = mysqli_query($conn, $sql);
-                      
-          if ($result) {
-              echo "<script>alert('Selamat, registrasi berhasil!')</script>";
-                  
-          $nama = "";
-          $_POST['password'] = "";
-          $_POST['upassword'] = "";
-          
-          } else {
-                  echo "<script>alert('Waduh! Terjadi kesalahan.')</script>";
-          }
-          
-          } else {
-                  echo "<script>alert('Waduh! User Sudah Terdaftar.')</script>";
-          }
-                      
-          } else {
-                  echo "<script>alert('Password Tidak Sesuai')</script>";
-          }
-          }
-          ?>
-  </form>
+        <div class="mb-3">
+          <label class="form-lable">ID Pengembalian</label>
+          <input type="text" class="input" placeholder="ID Pengembaian" name="id_pengembalian" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ID Peminjaman</label>
+            <input type="text" placeholder="ID Peminjaman" class="input" name="id_peminjaman" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Tanggal Pengembalian</label>
+          <input type="date" class="input" name="tanggal_pengembalian" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Denda</label>
+            <input type="text" placeholder="Denda" class="input" name="denda" required>
+        </div>
+        <br>
+        <div class="mb-3">
+            <button name="submit" class="button green">Proses</button>
+        </div>
+
+<?php
+
+if(isset($_POST['submit'])) {
+    $nis = $_POST['nis'];
+    $nama = $_POST['nama'];
+    $jenis_kelamin = $_POST['jenis_kelamin'];
+    $alamat = $_POST['alamat'];
+    $id_kelas = $_POST['id_kelas'];
+  
+    $sql = "INSERT INTO siswa (nis, nama, jenis_kelamin, alamat, id_kelas ) VALUES ('$nis', '$nama', '$jenis_kelamin', '$alamat', '$id_kelas')";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+    echo "<script>alert('Proses! pinjam berhasil')</script>";
+}
+}
+
+?>
+            <!-- Anda sudah punya akun? <a href="index.php">Masuk</a> -->
+        </form>
+
 </table>
 
 <br>
@@ -236,35 +206,30 @@ if(isset($_GET['cari'])){
         <tbody>
           <h1>Riwayat Pengembalian</h1>
           <tr>
-              <th class="text-center">No</th>
-              <th class="text-center">Nama</th>
-              <th class="text-center">Jenis_kelamin</th>
-              <th class="text-center">Alamat</th>
-              <th class="text-center">Update</th>
+              <th>Id Pengembalian</th>
+              <th>Id Peminjaman</th>
+              <th>Tanggal Pengembalian</th>
+              <th>Denda</th>
+              <th>Update</th>
           </tr>
         </tbody>
 
-        <?php
+    <?php
+    $result = mysqli_query($conn,"SELECT * FROM pengembalian");
     
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM petugas WHERE nama LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM petugas");
-    }
     $no =1;
     while($data = mysqli_fetch_array($result)) {         
       ?>
         <tbody>
         <tr>
-            <td><?= $no ?></td>
+            <td><?= $data['0']?></td>
             <td><?= $data['1']?></td>
-            <td class="text-center"><?= $data['2']?></td>
+            <td><?= $data['2']?></td>
             <td><?= $data['3']?></td>
             <td colspan="2">
-            <a href="edit/editnip.php?nip=<?=$data['nip']?>" class="button green">Edit</a>
+            <a href="#" class="button green">Edit</a>
             |
-            <a href="hapus/deletenip.php?nip=<?=$data['nip']?>" class="button red">Hapus</a>
+            <a href="#" class="button red">Hapus</a>
             </td>
         </tr>
         </tbody>
@@ -310,29 +275,6 @@ if(isset($_GET['cari'])){
 
 <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
-
-<script>
-function tampil() {
-  var x = document.getElementById("muncul");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-</script>
-
-<script>
-function tampil2() {
-  var x = document.getElementById("muncul2");
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
-}
-
-</script>
 
 </body>
 </html>
