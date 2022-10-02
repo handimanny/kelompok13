@@ -2,15 +2,11 @@
 
 include_once("config.php");
 
-// session_start();
+session_start();
 
-// if(!isset($_SESSION['nama'])){
-//   header("Location: halaman.php");
-// }
-
-// if($_SESSION['level']==''){
-//   header("Location: halaman.php");
-// }
+if(!isset($_SESSION['nip'])){
+  header("Location: ../../login/loginpetugas.php");
+}
 
 ?>
 
