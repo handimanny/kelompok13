@@ -171,7 +171,7 @@ include_once("config.php");
         <div class="row g-0">
             <div class="login-wrap p-md-5 mx-md-1">
                 
-  <form action="buat.php" name="form1" method="POST" enctype="multipart/form-data">
+  <form name="form1" method="POST" enctype="multipart/form-data">
         </div>
         <div class="mt-3">
           <label class="form-lable">Id Buku</label>
