@@ -131,12 +131,6 @@ $result=mysqli_query($conn,"SELECT * FROM `kelas` ")
         </a>
       </li>
       <li>
-        <a href="petugas.php">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          <span class="menu-item-label">Petugas</span>
-        </a>
-      </li>
-      <li>
         <a href="peminjaman.php">
           <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
           <span class="menu-item-label">Peminjaman</span>
