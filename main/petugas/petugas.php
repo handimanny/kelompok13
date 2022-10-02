@@ -154,9 +154,9 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Dashboard
+      Daftar Petugas
     </h1>
-    <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
+    <a href="buatpetugas.php" class="btn btn-outline-dark button light">Tambah Petugas</a>
   </div>
 </section>
 
@@ -168,6 +168,8 @@ if(isset($_GET['cari'])){
           <th>Nama</th>
           <th>Jenis Kelamin</th>
           <th>Alamat</th>
+          <th>Password</th>
+          <th>Level</th>
           <th class="text-center" >Update</th>
       </tr>
   </tbody>
@@ -190,12 +192,14 @@ if(isset($_GET['cari'])){
             <td><?= $data['1']?></td>
             <td><?= $data['2']?></td>
             <td><?= $data['3']?></td>
+            <td><?= $data['4']?></td>
+            <td><?= $data['5']?></td>
 
             <td colspan="2">            
             
-            <a href="edit.php?id_buku=<?=$data['nip']?>" class="btn btn-outline-primary">Edit</a>
+            <a href="editpetugas.php?nip=<?=$data['nip']?>" class="btn btn-outline-primary">Edit</a>
             |
-            <a href="delete.php?id_buku=<?=$data['nip']?>" class="btn btn-outline-danger">Hapus</a>
+            <a href="deletepetugas.php?nip=<?=$data['nip']?>" class="btn btn-outline-danger">Hapus</a>
             </td>
 
         </tr>

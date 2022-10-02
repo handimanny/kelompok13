@@ -14,7 +14,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Halaman Admin</title>
+  <title>Daftar Buku</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -146,7 +146,7 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Halaman</li>
+      <li>Buku</li>
     </ul>
   </div>
 </section>
@@ -154,9 +154,9 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Halaman
+      Daftar Buku
     </h1>
-    <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
+    <a href="buatbuku.php" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
 </section>
 
@@ -164,7 +164,7 @@ if(isset($_GET['cari'])){
 <table class="table table-primary p-1 mt-4 border border-primary container">
   <tbody>
       <tr>
-          <th>No Id</th>
+          <th>No.</th>
           <th>Cover</th>
           <th>Judul</th>
           <th>Penulis</th>
@@ -204,9 +204,9 @@ if(isset($_GET['cari'])){
             <td><?= $data['8']?></td>
             <td colspan="2">            
             
-            <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
+            <a href="editbuku.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
             |
-            <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
+            <a href="deletebuku.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
             </td>
 
         </tr>

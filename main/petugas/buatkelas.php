@@ -1,56 +1,17 @@
 <?php
-include_once("config.php");
 
-session_start();
+include_once("config.php");
+$sql="SELECT * FROM `kelas`";
+$result= mysqli_query($conn,$sql);
+// session_start();
 
 // if(!isset($_SESSION['nama'])){
 //   header("Location: halaman.php");
 // }
 
-// akses penguna tertentu
-// if($_SESSION['akses']==''){
+// if($_SESSION['level']==''){
 //   header("Location: halaman.php");
 // }
-
-if(isset($_POST['update']))
-{	
-    $id_buku = $_POST['id_buku'];
-    $penulis=$_POST['penulis'];
-    $tahun=$_POST['tahun'];
-    $judul=$_POST['judul'];
-    $kota=$_POST['kota'];
-    $penerbit=$_POST['penerbit'];
-    $sinopsis=$_POST['sinopsis'];
-    $stok=$_POST['stok'];
-    
-    $file = $_FILES['cover']['name'];
-    $tmp_name = $_FILES['cover']['tmp_name'];
-    $upload = move_uploaded_file($tmp_name, "foto/". $file);
-
-    $result = mysqli_query($conn, "UPDATE buku SET id_buku='$id_buku',penulis='$penulis',tahun='$tahun',judul='$judul',kota='$kota',penerbit='$penerbit',sinopsis='$sinopsis',stok='$stok',cover='$file' WHERE id_buku=$id_buku");
-    header("Location: admin.php");
-}
-?>
-
-<?php
-$id_buku = $_GET['id_buku'];
- 
-$result = mysqli_query($conn, "SELECT * FROM buku WHERE id_buku=$id_buku");
-
-while($data = mysqli_fetch_array($result))
-{
-  $id_buku = $data['id_buku'];
-  $penulis = $data['penulis'];
-  $tahun = $data['tahun'];
-  $judul = $data['judul'];
-  $kota = $data['kota'];
-  $penerbit = $data['penerbit'];
-  $sinopsis = $data['sinopsis'];
-  $stok = $data['stok'];
-
-  $file = $data['cover'];
-
-}
 
 ?>
 
@@ -60,7 +21,7 @@ while($data = mysqli_fetch_array($result))
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Edit Buku</title>
+  <title>Tambah Kelas</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -107,9 +68,9 @@ while($data = mysqli_fetch_array($result))
     <a class="navbar-item mobile-aside-button">
       <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
     </a>
-    <div class="navbar-item">
+    <!-- <div class="navbar-item">
       <div class="control"><input placeholder="Search everywhere..." class="input"></div>
-    </div>
+    </div> -->
   </div>
   <div class="navbar-brand is-right">
     <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
@@ -140,9 +101,9 @@ while($data = mysqli_fetch_array($result))
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="admin.php">
+        <a href="dashboard.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Halaman</span>
+          <span class="menu-item-label">Dashboard</span>
         </a>
       </li>
     </ul>
@@ -161,7 +122,7 @@ while($data = mysqli_fetch_array($result))
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="buat.php">
+        <a href="buku.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
@@ -192,8 +153,7 @@ while($data = mysqli_fetch_array($result))
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Buku</li>
-      <li>Edit</li>
+      <li>Tambah Siswa</li>
     </ul>
   </div>
 </section>
@@ -201,67 +161,47 @@ while($data = mysqli_fetch_array($result))
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Forms Tambah Buku
+      Forms Tambah Siswa
     </h1>
   </div>
 </section>
 
 <section class="is-hero-bar">
-  <div>
     <div class="container mt-4">
       <div class="col-xl-0">
         <div class="row g-0">
-          <div>
             <div class="login-wrap p-md-5 mx-md-1">
                 
-<?php echo "<h4>Silahkan edit buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
-<br>
+  <form name="form1" method="POST" enctype="multipart/form-data">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Kelas</label>
+          <input type="text" class="input" placeholder="Input Kelas" name="kelas">
+        </div>
+      
+        <br>
+        <div class="mt-3">
+          <input class="button green" type="submit" name="submit" value="Tambah Data">
+        </div>
+                        </form>
 
-<form name="update_user" method="post" enctype="multipart/form-data" action="">
 
-<div class="mb-3">
-<label class="form-lable">Nama Penulis</label>
-<input type="text" class="input" name="penulis" value=<?php echo $penulis;?>>
-</div>
-<div class="mb-3">
-<label class="form-lable">Tahun Terbit</label>
-<input type="number" class="input" name="tahun" value=<?php echo $tahun;?>>
-</div>
-<div class="mb-3">
-<label class="form-lable">Judul Buku</label>
-<input type="text" class="input" name="judul" value=<?php echo $judul;?>>
-</div>
+<?php
+if(isset($_POST['submit'])) {
 
-<div class="mb-3">
-<label class="form-lable">Kota Asal</label>
-<input type="text" class="input" name="kota" value=<?php echo $kota;?>>
-</div>
-<div class="mb-3">
-<label class="form-lable">Penerbit</label>
-<input type="text" class="input" name="penerbit" value=<?php echo $penerbit;?>>
-</div>
+    $kelas = $_POST['kelas'];
+    
 
-<div class="mb-3">
-<label class="form-lable">Cover</label>
-<input type="file" class="input" name="cover" value=<?php echo $file;?>>
-</div>
-<div class="mb-3">
-<label class="form-lable">Sinopsis</label>
-<input type="text" class="input" name="sinopsis" value=<?php echo $sinopsis;?>>
-</div>
-<div class="mb-3">
-<label class="form-lable">Stok</label>
-<input type="number" class="input" name="stok" value=<?php echo $stok;?>>
-</div>
-<br>
-<div class="mb-3">
-<input type="hidden" name="id_buku" value=<?php echo $_GET['id_buku'];?>>
-<input class="button green" type="submit" name="update" value="Perbarui Data">
-</div>
-</form>
+    $sql = "INSERT INTO `kelas` (`id_kelas`, `nama_kelas`) VALUES ('', '$kelas');";
+    $result = mysqli_query($conn, $sql);
+    
+    echo "<script>window.location.href='kelas.php';</script>";
 
-            </div>
-          </div>
+}
+?>
+
+    </form>
+    
         </div>
       </div>
     </div>

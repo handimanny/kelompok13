@@ -1,11 +1,18 @@
 <?php
 
 include_once("config.php");
+$sql="SELECT * FROM `kelas`";
+$result= mysqli_query($conn,$sql);
+// session_start();
 
-if(isset($_GET['cari'])){
-	$cari = $_GET['cari'];
-	echo "";
-}
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
+// }
+
+// if($_SESSION['level']==''){
+//   header("Location: halaman.php");
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +21,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Siswa</title>
+  <title>Tambah Siswa</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -61,9 +68,9 @@ if(isset($_GET['cari'])){
     <a class="navbar-item mobile-aside-button">
       <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
     </a>
-    <div class="navbar-item">
+    <!-- <div class="navbar-item">
       <div class="control"><input placeholder="Search everywhere..." class="input"></div>
-    </div>
+    </div> -->
   </div>
   <div class="navbar-brand is-right">
     <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
@@ -146,7 +153,7 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Siswa</li>
+      <li>Tambah Siswa</li>
     </ul>
   </div>
 </section>
@@ -154,71 +161,83 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Daftar Siswa
+      Forms Tambah Siswa
     </h1>
-    <a href="buatsiswa.php" class="btn btn-outline-dark button light">Tambah Siswa</a>
   </div>
 </section>
 
-<!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-  <tbody>
-      <tr>
-          <th>NIS</th>
-          <th>Nama</th>
-          <th>Jenis Kelamin</th>
-          <th>Alamat</th>
-          <th>Kelas</th>
-          <th class="text-center" >Update</th>
-      </tr>
-  </tbody>
-
-  <tbody>
-  <?php
-    
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM `siswa` WHERE `nama` LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM `siswa` join `kelas` where siswa.id_kelas=kelas.id_kelas");
-    }
-    $no =1;
-    while($data = mysqli_fetch_array($result)) {         
-      ?>
-        <tbody>
-        <tr>
-            <td class="text-center"><?= $data['0'] ?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
-            <td> <?php echo $data['nama_kelas'] ?></td>
-
-            <td colspan="2">            
+<section class="is-hero-bar">
+    <div class="container mt-4">
+      <div class="col-xl-0">
+        <div class="row g-0">
+            <div class="login-wrap p-md-5 mx-md-1">
+                
+  <form name="form1" method="POST" enctype="multipart/form-data">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">NIS</label>
+          <input type="text" class="input" placeholder="Input Id" name="nis">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Nama</label>
+          <input type="text" class="input" placeholder="Input Nama Penulis" name="nama">
+        </div>
+        <div class="mt-3">
+          <label class="form-control">Jenis Kelamin</label>
+          <select class="btn btn-primary" name="jeniskel">
             
-            <a href="editsiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
-            |
-            <a href="deletesiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
+                <option value="L">L</option>
+                <option value="P">P</option>
+
+            </select>
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Alamat</label>
+          <input type="text" class="input" placeholder="Input Judul" name="alamat">
+        </div>
+        <div class="mb-3">
+        <label class="form-select" >Kelas</label> 
+        <select class="btn btn-primary" id="select_1" name="kelas">
+            <?php  
+                while($user_data = mysqli_fetch_array($result)) {       
+            ?>
+                <option value="<?php echo $user_data['id_kelas']; ?>"><?php echo $user_data['nama_kelas']; ?></option>
             <?php
-    }
-    ?>
-        </tr>
-        </tbody>
-</table>
-<!-- end main section -->
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
-            </div>
-            <small>Page 1 of 3</small>
-          </div>
+                            }
+            ?>
+            </select>
+</div>
+        <br>
+        <div class="mt-3">
+          <input class="button green" type="submit" name="submit" value="Tambah Data">
+        </div>
+                        </form>
+
+
+<?php
+if(isset($_POST['submit'])) {
+    $nis = $_POST['nis'];
+    $nama = $_POST['nama'];
+    $jeniskel = $_POST['jeniskel'];
+    $alamat = $_POST['alamat'];
+    $kelas = $_POST['kelas'];
+    
+
+    $sql = "INSERT INTO `siswa` (`nis`, `nama`, `jenis_kelamin`, `alamat`, `id_kelas`) VALUES ('$nis', '$nama', '$jeniskel', '$alamat', '$kelas');";
+    $result = mysqli_query($conn, $sql);
+    
+    echo "<script>window.location.href='buku.php';</script>";
+
+}
+?>
+
+    </form>
+    
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
@@ -229,12 +248,44 @@ if(isset($_GET['cari'])){
     </div>
   </div>
 </footer>
-   
-<!-- Scripts below are for demo only -->
-<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="js/chart.sample.min.js"></script>
+<div id="sample-modal" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button red --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+<div id="sample-modal-2" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button blue --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+</div>
+
+<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
 
 
 <script>
@@ -251,7 +302,6 @@ if(isset($_GET['cari'])){
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=658339141622648&ev=PageView&noscript=1"/></noscript>
 
-<!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 
 </body>

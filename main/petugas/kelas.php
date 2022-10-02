@@ -115,7 +115,7 @@ if(isset($_GET['cari'])){
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="buat.php">
+        <a href="buku.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
@@ -154,9 +154,9 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Dashboard
+      Daftar Kelas
     </h1>
-    <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
+    <a href="buatkelas.php" class="btn btn-outline-dark button light">Tambah Kelas</a>
   </div>
 </section>
 
@@ -191,9 +191,9 @@ if(isset($_GET['cari'])){
            
             <td colspan="2">            
             
-            <a href="edit.php?id_buku=<?=$data['id_kelas']?>" class="btn btn-outline-primary">Edit</a>
+            <a href="editkelas.php?id_kelas=<?=$data['id_kelas']?>" class="btn btn-outline-primary">Edit</a>
             |
-            <a href="delete.php?id_buku=<?=$data['id_kelas']?>" class="btn btn-outline-danger">Hapus</a>
+            <a href="deletekelas.php?id=<?php echo $data['id_kelas'] ?>" class="btn btn-outline-danger">Hapus</a>
             </td>
 
         </tr>

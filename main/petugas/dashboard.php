@@ -8,7 +8,7 @@ include('config.php');
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Halaman Admin</title>
+  <title>Dashboard</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -109,7 +109,7 @@ include('config.php');
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="buat.php">
+        <a href="buku.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
@@ -140,7 +140,7 @@ include('config.php');
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Halaman</li>
+      <li>Dashboard</li>
     </ul>
   </div>
 </section>

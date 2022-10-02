@@ -1,11 +1,57 @@
 <?php
-
 include_once("config.php");
 
-if(isset($_GET['cari'])){
-	$cari = $_GET['cari'];
-	echo "";
+session_start();
+
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
+// }
+
+// akses penguna tertentu
+// if($_SESSION['akses']==''){
+//   header("Location: halaman.php");
+// }
+
+if(isset($_POST['update']))
+{	
+    $id_buku = $_POST['id_buku'];
+    $penulis=$_POST['penulis'];
+    $tahun=$_POST['tahun'];
+    $judul=$_POST['judul'];
+    $kota=$_POST['kota'];
+    $penerbit=$_POST['penerbit'];
+    $sinopsis=$_POST['sinopsis'];
+    $stok=$_POST['stok'];
+    
+    $file = $_FILES['cover']['name'];
+    $tmp_name = $_FILES['cover']['tmp_name'];
+    $upload = move_uploaded_file($tmp_name, "foto/". $file);
+
+    $result = mysqli_query($conn, "UPDATE buku SET id_buku='$id_buku',penulis='$penulis',tahun='$tahun',judul='$judul',kota='$kota',penerbit='$penerbit',sinopsis='$sinopsis',stok='$stok',cover='$file' WHERE id_buku=$id_buku");
+    header("Location: admin.php");
 }
+?>
+
+<?php
+$id_buku = $_GET['id_buku'];
+ 
+$result = mysqli_query($conn, "SELECT * FROM buku WHERE id_buku=$id_buku");
+
+while($data = mysqli_fetch_array($result))
+{
+  $id_buku = $data['id_buku'];
+  $penulis = $data['penulis'];
+  $tahun = $data['tahun'];
+  $judul = $data['judul'];
+  $kota = $data['kota'];
+  $penerbit = $data['penerbit'];
+  $sinopsis = $data['sinopsis'];
+  $stok = $data['stok'];
+
+  $file = $data['cover'];
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +60,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Siswa</title>
+  <title>Edit Buku</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -146,7 +192,8 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Siswa</li>
+      <li>Buku</li>
+      <li>Edit</li>
     </ul>
   </div>
 </section>
@@ -154,71 +201,72 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Daftar Siswa
+      Forms Edit Buku
     </h1>
-    <a href="buatsiswa.php" class="btn btn-outline-dark button light">Tambah Siswa</a>
   </div>
 </section>
 
-<!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-  <tbody>
-      <tr>
-          <th>NIS</th>
-          <th>Nama</th>
-          <th>Jenis Kelamin</th>
-          <th>Alamat</th>
-          <th>Kelas</th>
-          <th class="text-center" >Update</th>
-      </tr>
-  </tbody>
+<section class="is-hero-bar">
+  <div>
+    <div class="container mt-4">
+      <div class="col-xl-0">
+        <div class="row g-0">
+          <div>
+            <div class="login-wrap p-md-5 mx-md-1">
+                
+<?php echo "<h4>Silahkan edit buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+<br>
 
-  <tbody>
-  <?php
-    
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM `siswa` WHERE `nama` LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM `siswa` join `kelas` where siswa.id_kelas=kelas.id_kelas");
-    }
-    $no =1;
-    while($data = mysqli_fetch_array($result)) {         
-      ?>
-        <tbody>
-        <tr>
-            <td class="text-center"><?= $data['0'] ?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
-            <td> <?php echo $data['nama_kelas'] ?></td>
+<form name="update_user" method="post" enctype="multipart/form-data" action="">
 
-            <td colspan="2">            
-            
-            <a href="editsiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
-            |
-            <a href="deletesiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
-            <?php
-    }
-    ?>
-        </tr>
-        </tbody>
-</table>
-<!-- end main section -->
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
+<div class="mb-3">
+<label class="form-lable">Nama Penulis</label>
+<input type="text" class="input" name="penulis" value=<?php echo $penulis;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Tahun Terbit</label>
+<input type="number" class="input" name="tahun" value=<?php echo $tahun;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Judul Buku</label>
+<input type="text" class="input" name="judul" value=<?php echo $judul;?>>
+</div>
+
+<div class="mb-3">
+<label class="form-lable">Kota Asal</label>
+<input type="text" class="input" name="kota" value=<?php echo $kota;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Penerbit</label>
+<input type="text" class="input" name="penerbit" value=<?php echo $penerbit;?>>
+</div>
+
+<div class="mb-3">
+<label class="form-lable">Cover</label>
+<input type="file" class="input" name="cover" value=<?php echo $file;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Sinopsis</label>
+<input type="text" class="input" name="sinopsis" value=<?php echo $sinopsis;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Stok</label>
+<input type="number" class="input" name="stok" value=<?php echo $stok;?>>
+</div>
+<br>
+<div class="mb-3">
+<input type="hidden" name="id_buku" value=<?php echo $_GET['id_buku'];?>>
+<input class="button green" type="submit" name="update" value="Perbarui Data">
+</div>
+</form>
+
             </div>
-            <small>Page 1 of 3</small>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
@@ -229,12 +277,44 @@ if(isset($_GET['cari'])){
     </div>
   </div>
 </footer>
-   
-<!-- Scripts below are for demo only -->
-<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="js/chart.sample.min.js"></script>
+<div id="sample-modal" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button red --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+<div id="sample-modal-2" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button blue --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+</div>
+
+<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
 
 
 <script>
@@ -251,7 +331,6 @@ if(isset($_GET['cari'])){
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=658339141622648&ev=PageView&noscript=1"/></noscript>
 
-<!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 
 </body>
