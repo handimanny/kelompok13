@@ -1,11 +1,18 @@
 <?php
 
 include_once("config.php");
+$sql="SELECT * FROM `kelas`";
+$result= mysqli_query($conn,$sql);
+// session_start();
 
-if(isset($_GET['cari'])){
-	$cari = $_GET['cari'];
-	echo "";
-}
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
+// }
+
+// if($_SESSION['level']==''){
+//   header("Location: halaman.php");
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +21,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Petugas</title>
+  <title>Tambah Buku</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -61,9 +68,9 @@ if(isset($_GET['cari'])){
     <a class="navbar-item mobile-aside-button">
       <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
     </a>
-    <div class="navbar-item">
+    <!-- <div class="navbar-item">
       <div class="control"><input placeholder="Search everywhere..." class="input"></div>
-    </div>
+    </div> -->
   </div>
   <div class="navbar-brand is-right">
     <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
@@ -94,9 +101,9 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="dashboard.php">
+        <a href="admin.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Dashboard</span>
+          <span class="menu-item-label">Halaman</span>
         </a>
       </li>
     </ul>
@@ -115,7 +122,7 @@ if(isset($_GET['cari'])){
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="buku.php">
+        <a href="buat.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
@@ -146,7 +153,7 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Petugas</li>
+      <li>Tambah Siswa</li>
     </ul>
   </div>
 </section>
@@ -154,63 +161,52 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Dashboard
+      Forms Tambah Buku
     </h1>
-    <a href="buatpetugas.php" class="btn btn-outline-dark button light">Tambah Petugas</a>
   </div>
 </section>
 
-<!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-  <tbody>
-      <tr>
-          <th>NIP</th>
-          <th>Nama</th>
-          <th>Jenis Kelamin</th>
-          <th>Alamat</th>
-          <th>Password</th>
-          <th>Level</th>
-          <th class="text-center" >Update</th>
-      </tr>
-  </tbody>
+<section class="is-hero-bar">
+    <div class="container mt-4">
+      <div class="col-xl-0">
+        <div class="row g-0">
+            <div class="login-wrap p-md-5 mx-md-1">
+                
+  <form name="form1" method="POST" enctype="multipart/form-data">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Kelas</label>
+          <input type="text" class="input" placeholder="Input Kelas" name="kelas">
+        </div>
+      
+        <br>
+        <div class="mt-3">
+          <input class="button green" type="submit" name="submit" value="Tambah Data">
+        </div>
+                        </form>
 
-  <tbody>
-  <?php
+
+<?php
+if(isset($_POST['submit'])) {
+
+    $kelas = $_POST['kelas'];
     
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM petugas WHERE nama LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM petugas");
-    }
-    $no =1;
-    while($data = mysqli_fetch_array($result)) {         
-      ?>
-        <tbody>
-        <tr>
-            <td class="text-center"><?= $no ?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
-            <td><?= $data['4']?></td>
-            <td><?= $data['5']?></td>
 
-            <td colspan="2">            
-            
-            <a href="editpetugas.php?nip=<?=$data['nip']?>" class="btn btn-outline-primary">Edit</a>
-            |
-            <a href="deletepetugas.php?nip=<?=$data['nip']?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
+    $sql = "INSERT INTO `kelas` (`id_kelas`, `nama_kelas`) VALUES ('', '$kelas');";
+    $result = mysqli_query($conn, $sql);
+    
+    echo "<script>window.location.href='kelas.php';</script>";
 
-        </tr>
-        </tbody>
-    <?php
-    $no++;
-      }
-      ?>
-</table>
-<!-- end main section -->
+}
+?>
 
+    </form>
+    
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
@@ -221,12 +217,44 @@ if(isset($_GET['cari'])){
     </div>
   </div>
 </footer>
-   
-<!-- Scripts below are for demo only -->
-<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="js/chart.sample.min.js"></script>
+<div id="sample-modal" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button red --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+<div id="sample-modal-2" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button blue --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+</div>
+
+<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
 
 
 <script>
@@ -243,7 +271,6 @@ if(isset($_GET['cari'])){
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=658339141622648&ev=PageView&noscript=1"/></noscript>
 
-<!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 
 </body>

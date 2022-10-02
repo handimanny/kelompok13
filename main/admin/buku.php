@@ -156,7 +156,7 @@ if(isset($_GET['cari'])){
     <h1 class="title">
       Halaman
     </h1>
-    <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
+    <a href="buatbuku.php" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
 </section>
 

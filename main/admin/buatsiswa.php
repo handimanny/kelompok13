@@ -1,7 +1,7 @@
 <?php
 
 include_once("config.php");
-$sql="SELECT * FROM `kelas`";
+$sql="SELECT * FROM `siswa`";
 $result= mysqli_query($conn,$sql);
 // session_start();
 

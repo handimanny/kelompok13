@@ -109,7 +109,7 @@ include('config.php');
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="buat.php">
+        <a href="buku.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
