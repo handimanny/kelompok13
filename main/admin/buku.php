@@ -76,11 +76,7 @@ if(isset($_GET['cari'])){
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
-<<<<<<< HEAD:main/admin/buku.php
       <a title="Log out" class="navbar-item desktop-icon-only">
-=======
-      <a href="keluar.php" title="Log out" class="navbar-item desktop-icon-only">
->>>>>>> 638225dd66e682576ab4e508d9e9a3eb5eb01a48:main/admin.php
         <span class="icon"><i class="mdi mdi-logout"></i></span>
         <span>Log out</span>
       </a>
@@ -210,11 +206,7 @@ if(isset($_GET['cari'])){
             
             <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
             |
-<<<<<<< HEAD:main/admin/buku.php
             <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
-=======
-            <a href="hapus/delete.php?id_buku=<?=$data['id_buku']?>" class="button red">Hapus</a>
->>>>>>> 638225dd66e682576ab4e508d9e9a3eb5eb01a48:main/admin.php
             </td>
 
         </tr>
