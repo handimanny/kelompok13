@@ -187,25 +187,23 @@ if(isset($_GET['cari'])){
       ?>
         <tbody>
         <tr>
-            <td class="text-center"><?= $no ?></td>
+            <td class="text-center"><?= $data['0'] ?></td>
             <td><?= $data['1']?></td>
-            <td><?= $data['4']?></td>
-            <td><?= $data['5']?></td>
-            <td><?= $data= mysqli_query($conn,"SELECT * FROM kelas") ?></td>
+            <td><?= $data['2']?></td>
+            <td><?= $data['3']?></td>
+            <td> <?php echo $data['nama_kelas'] ?></td>
 
             <td colspan="2">            
             
-            <a href="edit.php?id_buku=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
+            <a href="editsiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
             |
             <a href="delete.php?id_buku=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
             </td>
-
+            <?php
+    }
+    ?>
         </tr>
         </tbody>
-    <?php
-    $no++;
-      }
-      ?>
 </table>
 <!-- end main section -->
         <div class="table-pagination">
