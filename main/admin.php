@@ -206,7 +206,7 @@ if(isset($_GET['cari'])){
             
             <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="button green">Edit</a>
             |
-            <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="button red">Hapus</a>
+            <a href="hapus/delete.php?id_buku=<?=$data['id_buku']?>" class="button red">Hapus</a>
             </td>
 
         </tr>
