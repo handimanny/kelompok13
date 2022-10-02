@@ -2,6 +2,8 @@
 
 include_once("config.php");
 
+session_start();
+
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
 	echo "";
@@ -156,10 +158,16 @@ if(isset($_GET['cari'])){
     <h1 class="title">
       Halaman
     </h1>
-    <!-- <a href="buat.php" class="button blue">Tambah Buku</a> -->
+    <a href="buat.php" class="button blue">Tambah Buku</a>
   </div>
 </section>
 
+<section class="is-hero-bar">
+  <?php echo "<h4>Silahkan input buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+</section>
+
+<section class="is-hero-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
 <!-- main section -->
 <table class="table table-primary p-1 mt-4 border border-primary container">
   <tbody>
@@ -204,7 +212,7 @@ if(isset($_GET['cari'])){
             <td><?= $data['8']?></td>
             <td colspan="2">            
             
-            <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="button green">Edit</a>
+            <a href="edit/edit.php?id_buku=<?=$data['id_buku']?>" class="button green">Edit</a>
             |
             <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="button red">Hapus</a>
             </td>
@@ -217,6 +225,10 @@ if(isset($_GET['cari'])){
       ?>
 </table>
 <!-- end main section -->
+
+  </div>
+</section>
+
         <div class="table-pagination">
           <div class="flex items-center justify-between">
             <div class="buttons">

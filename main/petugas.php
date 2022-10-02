@@ -262,7 +262,7 @@ if(isset($_GET['cari'])){
             <td class="text-center"><?= $data['2']?></td>
             <td><?= $data['3']?></td>
             <td colspan="2">
-            <a href="#?nip=<?=$data['nip']?>" class="button green">Edit</a>
+            <a href="edit/editnip.php?nip=<?=$data['nip']?>" class="button green">Edit</a>
             |
             <a href="hapus/deletenip.php?nip=<?=$data['nip']?>" class="button red">Hapus</a>
             </td>

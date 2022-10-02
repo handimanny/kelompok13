@@ -1,11 +1,13 @@
-<?php
+<?php 
+ 
+include 'config.php';
+ 
+session_start();
 
-include_once("config.php");
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
+// }
 
-if(isset($_GET['cari'])){
-	$cari = $_GET['cari'];
-	echo "";
-}
 ?>
 
 <!DOCTYPE html>
@@ -154,34 +156,109 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Dashboard
+      Pendaftaran Siswa
     </h1>
-    <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
 </section>
 
-<!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-
-<center>
-  Tampilan taruh sini
-</center>  
-
-</table>
-<!-- end main section -->
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
-            </div>
-            <small>Page 1 of 3</small>
-          </div>
+<section class="is-hero-bar">
+  <form action="" method="POST">
+        <div class="mb-3">
+          <label class="form-lable">Nomor NIS</label>
+          <input type="text" class="input" placeholder="Input NIS" name="nis" required>
         </div>
-      </div>
-    </div>
-  </section>
+        <div class="mb-3">
+            <label class="form-label">Nama</label>
+            <input type="text" placeholder="Input Nama" class="input" name="nama" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Jenis Kelamin</label>
+            <select class="input" name="jenis_kelamin">
+              <option value="L">Laki-laki</option>
+              <option value="P">Perempuan</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Alamat</label>
+            <input type="text" placeholder="Input Alamat" class="input" name="alamat" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Input Kelas</label>
+            <select class="input" name="id_kelas">
+              <option value="1">Kelas 6A</option>
+              <option value="2">Kelas 6B</option>
+            </select>
+        </div>
+        <br>
+        <div class="mb-3">
+            <button name="submit" class="button green">Daftar</button>
+        </div>
+
+<?php
+
+if(isset($_POST['submit'])) {
+    $nis = $_POST['nis'];
+    $nama = $_POST['nama'];
+    $jenis_kelamin = $_POST['jenis_kelamin'];
+    $alamat = $_POST['alamat'];
+    $id_kelas = $_POST['id_kelas'];
+  
+    $sql = "INSERT INTO siswa (nis, nama, jenis_kelamin, alamat, id_kelas ) VALUES ('$nis', '$nama', '$jenis_kelamin', '$alamat', '$id_kelas')";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+    echo "<script>alert('Selamat, registrasi berhasil!')</script>";
+}
+}
+
+?>
+            <!-- Anda sudah punya akun? <a href="index.php">Masuk</a> -->
+        </form>
+
+<br>
+
+<table>
+  <h1>Siswa Terdaftar</h1>
+        <tbody>
+          <tr>
+              <th class="text-center">No</th>
+              <th class="text-center">Nama</th>
+              <th class="text-center">Jenis_kelamin</th>
+              <th class="text-center">Alamat</th>
+              <th class="text-center">Update</th>
+          </tr>
+        </tbody>
+
+        <?php
+    
+    if(isset($_GET['cari'])){
+      $cari = $_GET['cari'];
+      $result = mysqli_query($conn,"SELECT * FROM siswa WHERE nama LIKE '%".$cari."%'");				
+    }else{
+      $result = mysqli_query($conn,"SELECT * FROM siswa");
+    }
+    $no =1;
+    while($data = mysqli_fetch_array($result)) {         
+      ?>
+        <tbody>
+        <tr>
+            <td><?= $no ?></td>
+            <td><?= $data['1']?></td>
+            <td class="text-center"><?= $data['2']?></td>
+            <td><?= $data['3']?></td>
+            <td colspan="2">
+            <a href="edit/editnis.php?nis=<?=$data['nis']?>" class="button green">Edit</a>
+            |
+            <a href="hapus/deletenis.php?nis=<?=$data['nis']?>" class="button red">Hapus</a>
+            </td>
+        </tr>
+        </tbody>
+    <?php
+    $no++;
+      }
+      ?>
+</table>
+</section>
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
