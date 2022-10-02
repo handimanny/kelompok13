@@ -197,7 +197,7 @@ if(isset($_GET['cari'])){
             
             <a href="editsiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
             |
-            <a href="delete.php?id_buku=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
+            <a href="deletesiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
             </td>
             <?php
     }
