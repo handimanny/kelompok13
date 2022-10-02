@@ -1,11 +1,45 @@
 <?php
+include_once("../config.php");
 
-include_once("config.php");
+session_start();
 
-if(isset($_GET['cari'])){
-	$cari = $_GET['cari'];
-	echo "";
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
+// }
+
+// akses penguna tertentu
+// if($_SESSION['akses']==''){
+//   header("Location: halaman.php");
+// }
+
+if(isset($_POST['update']))
+{	
+    $nip = $_POST['nip'];
+    $nama=$_POST['nama'];
+    $jenis_kelamun=$_POST['jenis_kelamun'];
+    $alamat=$_POST['alamat'];
+    $password=$_POST['password'];
+
+    $result = mysqli_query($conn, "UPDATE petugas SET nip='$nip', nama='$nama', jenis_kelamin='$jenis_kelamin', alamat='$alamat', password='$password' WHERE nip=$nip");
+    header("Location: ../petugas.php");
 }
+?>
+
+<?php
+$nip = $_GET['nip'];
+ 
+$result = mysqli_query($conn, "SELECT * FROM petugas WHERE nip=$nip");
+
+while($data = mysqli_fetch_array($result))
+{
+    $nip = $data['nip'];
+    $nama= $data['nama'];
+    $jenis_kelamin= $data['jenis_kelamin'];
+    $alamat= $data['alamat'];
+    $password= $data['password'];
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -14,14 +48,14 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Halaman Admin</title>
+  <title>Edit Buku</title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="css/main.css?v=1628755089081">
+  <link rel="stylesheet" href="../css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
+  <link rel="icon" type="../image/png" sizes="32x32" href="favicon-32x32.png"/>
+  <link rel="icon" type="../image/png" sizes="16x16" href="favicon-16x16.png"/>
   <link rel="mask-icon" href="safari-pinned-tab.svg" color="#00b4b6"/>
 
   <meta name="description" content="Admin One - free Tailwind dashboard">
@@ -94,7 +128,7 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="admin.php">
+        <a href="../admin.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Halaman</span>
         </a>
@@ -103,37 +137,37 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Menu</p>
     <ul class="menu-list">
       <li class="--set-active-tables-html">
-        <a href="siswa.php">
+        <a href="../siswa.php">
           <span class="icon"><i class="mdi mdi-account-circle"></i></span>
           <span class="menu-item-label">Siswa</span>
         </a>
       </li>
       <li class="--set-active-forms-html">
-        <a href="kelas.php">
+        <a href="../kelas.php">
           <span class="icon"><i class="mdi mdi-table"></i></span>
           <span class="menu-item-label">Kelas</span>
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="buat.php">
+        <a href="../buat.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
       <li>
-        <a href="petugas.php">
+        <a href="../petugas.php">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
           <span class="menu-item-label">Petugas</span>
         </a>
       </li>
       <li>
-        <a href="peminjaman.php">
+        <a href="../peminjaman.php">
           <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
           <span class="menu-item-label">Peminjaman</span>
         </a>
       </li>
       <li>
-        <a href="pengembalian.php">
+        <a href="../pengembalian.php">
           <span class="icon"><i class="mdi mdi-cart-minus"></i></span>
           <span class="menu-item-label">Pengembalian</span>
         </a>
@@ -146,7 +180,8 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Halaman</li>
+      <li>Buku</li>
+      <li>Edit</li>
     </ul>
   </div>
 </section>
@@ -154,89 +189,63 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Halaman
+      Forms Edit Petugas
     </h1>
-    <a href="buat.php" class="button blue">Tambah Buku</a>
   </div>
 </section>
 
 <section class="is-hero-bar">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+  <div>
+    <div class="container mt-4">
+      <div class="col-xl-0">
+        <div class="row g-0">
+          <div>
+            <div class="login-wrap p-md-5 mx-md-1">
+                
+<?php echo "<h4>Silahkan edit buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+<br>
 
-<!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-  <tbody>
-      <tr>
-          <th>No Id</th>
-          <th>Cover</th>
-          <th>Judul</th>
-          <th>Penulis</th>
-          <th>Tahun Terbit</th>
-          <th>Kota Asal</th>
-          <th>Penerbit</th>
-          <!-- <th>Sinopsis</th> -->
-          <th>Stok</th>
-          <th class="text-center" >Update</th>
-      </tr>
-  </tbody>
+<form name="update_user" method="post" enctype="multipart/form-data" action="">
 
-  <tbody>
-  <?php
-    
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM buku");
-    }
-    $no =1;
-    while($data = mysqli_fetch_array($result)) {         
-      ?>
-        <tbody>
-        <tr>
-            <td class="text-center"><?= $no ?></td>
-            <td>
-              <img src="img/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
-            </td>
-            <td><?= $data['3']?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['4']?></td>
-            <td><?= $data['5']?></td>
-            <!-- <td><?= $data['7']?></td> -->
-            <td><?= $data['8']?></td>
-            <td colspan="2">            
-            
-            <a href="edit/edit.php?id_buku=<?=$data['id_buku']?>" class="button green">Edit</a>
-            |
-            <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="button red">Hapus</a>
-            </td>
+<div class="mb-3">
+<label class="form-lable">Nomor NIP</label>
+<input type="text" class="input" name="nip" value=<?php echo $nip;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Nama Petugas</label>
+<input type="text" class="input" name="nama" value=<?php echo $nama;?>>
+</div>
+<div class="mb-3">
+    <label class="form-label">Jenis Kelamin</label>
+    <select class="input" name="jenis_kelamin" value=<?php echo $jenis_kelamin;?>>
+      <option value="L">Laki-laki</option>
+      <option value="P">Perempuan</option>
+    </select>
+</div>
 
-        </tr>
-        </tbody>
-    <?php
-    $no++;
-      }
-      ?>
-</table>
-<!-- end main section -->
+<div class="mb-3">
+<label class="form-lable">Alamat</label>
+<input type="text" class="input" name="alamat" value=<?php echo $alamat;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Password</label>
+<input type="text" class="input" name="password" value=<?php echo $password;?>>
+</div>
 
-  </div>
-</section>
+<br>
+<div class="mb-3">
+<input type="hidden" name="nip" value=<?php echo $_GET['nip'];?>>
+<input class="button green" type="submit" name="update" value="Perbarui Data">
+</div>
+</form>
 
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
             </div>
-            <small>Page 1 of 3</small>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
@@ -247,12 +256,44 @@ if(isset($_GET['cari'])){
     </div>
   </div>
 </footer>
-   
-<!-- Scripts below are for demo only -->
-<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="js/chart.sample.min.js"></script>
+<div id="sample-modal" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button red --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+<div id="sample-modal-2" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button blue --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+</div>
+
+<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
 
 
 <script>
@@ -269,7 +310,6 @@ if(isset($_GET['cari'])){
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=658339141622648&ev=PageView&noscript=1"/></noscript>
 
-<!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 
 </body>

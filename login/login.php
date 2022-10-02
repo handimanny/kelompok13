@@ -25,9 +25,9 @@ if (isset($_POST['submit'])) {
         $_SESSION['level']=$data['level'];
 
         if($_SESSION['level']=='admin'){
-          header('location:..\main\siswa.php');
+          header('location:..\main\home.php');
         } else if($_SESSION['level']==''){
-          header('location:..\main\siswa.php');
+          header('location:..\main\home.php');
         }
 
     } else {

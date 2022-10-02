@@ -14,7 +14,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Halaman Admin</title>
+  <title>Halaman Siswa</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -94,7 +94,7 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="admin.php">
+        <a href="">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Halaman</span>
         </a>
@@ -103,37 +103,14 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Menu</p>
     <ul class="menu-list">
       <li class="--set-active-tables-html">
-        <a href="siswa.php">
-          <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-          <span class="menu-item-label">Siswa</span>
-        </a>
-      </li>
-      <li class="--set-active-forms-html">
-        <a href="kelas.php">
-          <span class="icon"><i class="mdi mdi-table"></i></span>
-          <span class="menu-item-label">Kelas</span>
-        </a>
-      </li>
-      <li class="--set-active-profile-html">
-        <a href="buat.php">
-          <span class="icon"><i class="mdi mdi-book"></i></span>
-          <span class="menu-item-label">Buku</span>
-        </a>
-      </li>
-      <li>
-        <a href="petugas.php">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          <span class="menu-item-label">Petugas</span>
-        </a>
-      </li>
-      <li>
-        <a href="peminjaman.php">
+        
+        <a href="">
           <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
           <span class="menu-item-label">Peminjaman</span>
         </a>
       </li>
       <li>
-        <a href="pengembalian.php">
+        <a href="">
           <span class="icon"><i class="mdi mdi-cart-minus"></i></span>
           <span class="menu-item-label">Pengembalian</span>
         </a>
@@ -146,7 +123,7 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Halaman</li>
+      <li>Siswa</li>
     </ul>
   </div>
 </section>
@@ -154,75 +131,68 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Halaman
+      Dashboard
     </h1>
-    <a href="buat.php" class="button blue">Tambah Buku</a>
   </div>
 </section>
 
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
 
-<!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-  <tbody>
-      <tr>
-          <th>No Id</th>
-          <th>Cover</th>
-          <th>Judul</th>
-          <th>Penulis</th>
-          <th>Tahun Terbit</th>
-          <th>Kota Asal</th>
-          <th>Penerbit</th>
-          <!-- <th>Sinopsis</th> -->
-          <th>Stok</th>
-          <th class="text-center" >Update</th>
-      </tr>
-  </tbody>
-
-  <tbody>
-  <?php
+    <!-- main section -->
+    <table class="table table-primary p-1 mt-4 border border-primary container">
+      <tbody>
+          <tr>
+              <th>No Id</th>
+              <th>Cover</th>
+              <th>Judul</th>
+              <th>Penulis</th>
+              <th>Tahun Terbit</th>
+              <th>Kota Asal</th>
+              <th>Penerbit</th>
+              <!-- <th>Sinopsis</th> -->
+              <th>Stok</th>
+          </tr>
+      </tbody>
     
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM buku");
-    }
-    $no =1;
-    while($data = mysqli_fetch_array($result)) {         
-      ?>
-        <tbody>
-        <tr>
-            <td class="text-center"><?= $no ?></td>
-            <td>
-              <img src="img/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
-            </td>
-            <td><?= $data['3']?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['4']?></td>
-            <td><?= $data['5']?></td>
-            <!-- <td><?= $data['7']?></td> -->
-            <td><?= $data['8']?></td>
-            <td colspan="2">            
-            
-            <a href="edit/edit.php?id_buku=<?=$data['id_buku']?>" class="button green">Edit</a>
-            |
-            <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="button red">Hapus</a>
-            </td>
-
-        </tr>
-        </tbody>
-    <?php
-    $no++;
-      }
-      ?>
-</table>
-<!-- end main section -->
+      <tbody>
+      <?php
+        
+        if(isset($_GET['cari'])){
+          $cari = $_GET['cari'];
+          $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
+        }else{
+          $result = mysqli_query($conn,"SELECT * FROM buku");
+        }
+        $no =1;
+        while($data = mysqli_fetch_array($result)) {         
+          ?>
+            <tbody>
+            <tr>
+                <td class="text-center"><?= $no ?></td>
+                <td>
+                  <img src="img/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
+                </td>
+                <td><?= $data['3']?></td>
+                <td><?= $data['1']?></td>
+                <td><?= $data['2']?></td>
+                <td><?= $data['4']?></td>
+                <td><?= $data['5']?></td>
+                <!-- <td><?= $data['7']?></td> -->
+                <td><?= $data['8']?></td>
+    
+            </tr>
+            </tbody>
+        <?php
+        $no++;
+          }
+          ?>
+    </table>
+    <!-- end main section -->
 
   </div>
 </section>
+
 
         <div class="table-pagination">
           <div class="flex items-center justify-between">
