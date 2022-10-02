@@ -156,7 +156,7 @@ if(isset($_GET['cari'])){
     <h1 class="title">
       Dashboard
     </h1>
-    <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
+    <!-- <a href="buat.php" class="button blue">Tambah Buku</a> -->
   </div>
 </section>
 
@@ -204,9 +204,9 @@ if(isset($_GET['cari'])){
             <td><?= $data['8']?></td>
             <td colspan="2">            
             
-            <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
+            <a href="edit.php?id_buku=<?=$data['id_buku']?>" class="button green">Edit</a>
             |
-            <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
+            <a href="delete.php?id_buku=<?=$data['id_buku']?>" class="button red">Hapus</a>
             </td>
 
         </tr>

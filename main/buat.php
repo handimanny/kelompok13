@@ -1,3 +1,19 @@
+<?php
+
+include_once("config.php");
+
+session_start();
+
+// if(!isset($_SESSION['nama'])){
+//   header("Location: halaman.php");
+// }
+
+// if($_SESSION['level']==''){
+//   header("Location: halaman.php");
+// }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="">
 <head>
@@ -149,96 +165,90 @@
   </div>
 </section>
 
-  <section class="section main-section">
-    <div class="card mb-6">
-      <header class="card-header">
-        <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-ballot"></i></span>
-          Forms
-        </p>
-      </header>
-      <div class="card-content">
-        <form method="get">
-          <div class="field">
-            <label class="label">From</label>
-            <div class="field-body">
-              <div class="field">
-                <div class="control icons-left">
-                  <input class="input" type="text" placeholder="Name">
-                  <span class="icon left"><i class="mdi mdi-account"></i></span>
-                </div>
-              </div>
-              <div class="field">
-                <div class="control icons-left icons-right">
-                  <input class="input" type="email" placeholder="Email" value="alex@smith.com">
-                  <span class="icon left"><i class="mdi mdi-mail"></i></span>
-                  <span class="icon right"><i class="mdi mdi-check"></i></span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <div class="field-body">
-              <div class="field">
-                <div class="field addons">
-                  <div class="control">
-                    <input class="input" value="+44" size="3" readonly>
-                  </div>
-                  <div class="control expanded">
-                    <input class="input" type="tel" placeholder="Your phone number">
-                  </div>
-                </div>
-                <p class="help">Do not enter the first zero</p>
-              </div>
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Department</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option>Business development</option>
-                  <option>Marketing</option>
-                  <option>Sales</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div class="field">
-            <label class="label">Subject</label>
+<section class="is-hero-bar">
+  <div>
+    <div class="container mt-4">
+      <div class="col-xl-0">
+        <div class="row g-0">
+          <div>
+            <div class="login-wrap p-md-5 mx-md-1">
+                
+  <form action="buat.php" name="form1" method="POST" enctype="multipart/form-data">
+      <div>
+      <?php echo "<h4>Silahkan input buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+      <br>
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Id Buku</label>
+          <input type="text" class="input" placeholder="Input Id" name="id_buku">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Nama Penulis</label>
+          <input type="text" class="input" placeholder="Input Nama Penulis" name="penulis">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Tahun Terbit</label>
+          <input type="date" class="input" name="tahun">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Judul Buku</label>
+          <input type="text" class="input" placeholder="Input Judul" name="judul">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Kota Asal</label>
+          <input type="text" class="input" placeholder="Kota Asal" name="kota">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Penerbit</label>
+          <input type="text" class="input" placeholder="Nama Penerbit" name="penerbit">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Cover</label>
+          <input type="file" class="input" name="cover">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Sinopsis</label>
+          <input type="text" class="input" placeholder="Sinopsis" name="sinopsis">
+        </div>
+        <div class="mt-3">
+          <label class="form-lable">Stok</label>
+          <input type="text" class="input" placeholder="Jumlah Stok" name="stok">
+        </div>
+        <br>
+        <div class="mt-3">
+          <input class="button green" type="submit" name="submit" value="Tambah Data">
+        </div>
 
-            <div class="control">
-              <input class="input" type="text" placeholder="e.g. Partnership opportunity">
-            </div>
-            <p class="help">
-              This field is required
-            </p>
-          </div>
+<?php
+if(isset($_POST['submit'])) {
+    $id_buku = $_POST['id_buku'];
+    $penulis = $_POST['penulis'];
+    $tahun = $_POST['tahun'];
+    $judul = $_POST['judul'];
+    $kota = $_POST['kota'];
+    $penerbit = $_POST['penerbit'];
+    $sinopsis = $_POST['sinopsis'];
+    $stok = $_POST['stok'];
 
-          <div class="field">
-            <label class="label">Question</label>
-            <div class="control">
-              <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
-            </div>
-          </div>
-          <hr>
+    $file = $_FILES['cover']['name'];
+    $tmp_name = $_FILES['cover']['tmp_name'];
+    $upload = move_uploaded_file($tmp_name, "img/". $file);
 
-          <div class="field grouped">
-            <div class="control">
-              <button type="submit" class="button green">
-                Submit
-              </button>
-            </div>
-            <div class="control">
-              <button type="reset" class="button red">
-                Reset
-              </button>
+    $sql = "INSERT INTO buku (id_buku, penulis, tahun, judul, kota, penerbit, cover, sinopsis, stok) VALUES ('$id_buku', '$penulis', '$tahun', '$judul', '$kota', '$penerbit', '$file', '$sinopsis', '$stok')";
+    $result = mysqli_query($conn, $sql);
+    echo "Data berasil ditambah. <a href='index.php'>Klik Lihat Data</a>";
+}
+?>
+
+    </form>
+
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </div>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
