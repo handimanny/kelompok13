@@ -204,19 +204,7 @@ if(isset($_GET['cari'])){
       ?>
 </table>
 <!-- end main section -->
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
-            </div>
-            <small>Page 1 of 3</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">

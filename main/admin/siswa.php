@@ -94,9 +94,9 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="admin.php">
+        <a href="dashboard.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Halaman</span>
+          <span class="menu-item-label">Dashboard</span>
         </a>
       </li>
     </ul>
@@ -162,11 +162,50 @@ if(isset($_GET['cari'])){
 
 <!-- main section -->
 <table class="table table-primary p-1 mt-4 border border-primary container">
+  <tbody>
+      <tr>
+          <th>NIS</th>
+          <th>Nama</th>
+          <th>Jenis Kelamin</th>
+          <th>Alamat</th>
+          <th>Kelas</th>
+          <th class="text-center" >Update</th>
+      </tr>
+  </tbody>
 
-<center>
-  Tampilan taruh sini
-</center>  
+  <tbody>
+  <?php
+    
+    if(isset($_GET['cari'])){
+      $cari = $_GET['cari'];
+      $result = mysqli_query($conn,"SELECT * FROM `siswa` WHERE `nama` LIKE '%".$cari."%'");				
+    }else{
+      $result = mysqli_query($conn,"SELECT * FROM `siswa` join `kelas` where siswa.id_kelas=kelas.id_kelas");
+    }
+    $no =1;
+    while($data = mysqli_fetch_array($result)) {         
+      ?>
+        <tbody>
+        <tr>
+            <td class="text-center"><?= $no ?></td>
+            <td><?= $data['1']?></td>
+            <td><?= $data['4']?></td>
+            <td><?= $data['5']?></td>
+            <td><?= $data= mysqli_query($conn,"SELECT * FROM kelas") ?></td>
 
+            <td colspan="2">            
+            
+            <a href="edit.php?id_buku=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
+            |
+            <a href="delete.php?id_buku=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
+            </td>
+
+        </tr>
+        </tbody>
+    <?php
+    $no++;
+      }
+      ?>
 </table>
 <!-- end main section -->
         <div class="table-pagination">
