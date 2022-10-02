@@ -191,9 +191,9 @@ if(isset($_GET['cari'])){
            
             <td colspan="2">            
             
-            <a href="edit.php?id_buku=<?=$data['id_kelas']?>" class="btn btn-outline-primary">Edit</a>
+            <a href="edit.php?id_kelas=<?=$data['id_kelas']?>" class="btn btn-outline-primary">Edit</a>
             |
-            <a href="delete.php?id_buku=<?=$data['id_kelas']?>" class="btn btn-outline-danger">Hapus</a>
+            <a href="deletekelas.php?id=<?php echo $data['id_kelas'] ?>" class="btn btn-outline-danger">Hapus</a>
             </td>
 
         </tr>
