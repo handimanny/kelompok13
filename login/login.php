@@ -1,38 +1,37 @@
 <?php 
 
-include '../config.php';
+include '..\main\config.php';
  
-session_start();
+// session_start();
  
-// if (isset($_SESSION['nama'])) {
-//     header("Location: halaman.php");
-// }
-
 // if (isset($_SESSION['nis'])) {
-//   header("Location: siswa.php");
+//     header("Location: .main.html");
 // }
 
-error_reporting(0);
+// if (isset($_SESSION['nama'])) {
+//     header("Location: index.php");
+// }
+
+// error_reporting(0);
 
 if (isset($_POST['submit'])) {
-    $nama = $_POST['nama'];
-    $password = $_POST['password'];
+    $nis = $_POST['nis'];
     
-    $query = mysqli_query($conn, "SELECT * FROM petugas WHERE nama='$nama' AND password='$password'");
+    $query = mysqli_query($conn, "SELECT * FROM siswa WHERE nis='$nis'");
     $data = mysqli_fetch_assoc($query);
 
     if($data){
-        $_SESSION['nama']=$data['nama'];
+        $_SESSION['nis']=$data['nis'];
         $_SESSION['level']=$data['level'];
 
         if($_SESSION['level']=='admin'){
-          header('location:../main');
+          header('location:..\main\siswa.php');
         } else if($_SESSION['level']==''){
-          header('location:../main');
+          header('location:..\main\siswa.php');
         }
 
     } else {
-        echo "<script>alert('Username atau password Anda salah. Silahkan coba lagi!')</script>";
+        echo "<script>alert('NIS yang Anda masukan salah. Silahkan coba lagi!')</script>";
     }
 }
 
@@ -41,7 +40,7 @@ if (isset($_POST['submit'])) {
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Login Petugas</title>
+  	<title>Login Siswa</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -64,16 +63,16 @@ if (isset($_POST['submit'])) {
 		      	<h3 class="text-center mb-4">Sign In</h3>
 						<form action="#" class="login-form" method="POST">
 		      		<div class="form-group">
-		      			<input type="text" class="form-control rounded-left" placeholder="Username" name="nama"  required>
+		      			<input type="text" class="form-control rounded-left" placeholder="Input NIS" name="nis"  required>
 		      		</div>
-	            <div class="form-group d-flex">
-	              <input type="password" class="form-control rounded-left" placeholder="Password" name="password" required>
-	            </div>
+	            <!-- <div class="form-group d-flex">
+	              <input type="password" class="form-control rounded-left" placeholder="Password">
+	            </div> -->
 	            <div class="form-group">
 	            	<button type="submit" name="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
 	            </div>
 				<div class="form-group">
-					Masuk sebagai siswa!<a href="login.php"> Klik sini</a>
+					Masuk sebagai petugas!<a href="index.php"> Klik sini</a>
 				</div>
 	            
 	          </form>
@@ -83,10 +82,10 @@ if (isset($_POST['submit'])) {
 		</div>
 	</section>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/main.js"></script>
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
 
 	</body>
 </html>
