@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 <!DOCTYPE html>
@@ -205,3 +206,10 @@
 
 </body>
 </html>
+=======
+<?php 
+
+header("Location: admin.php");
+
+?>
+>>>>>>> 3f41e8b30b0c5aef5340681b7b002ca1e7e24a28
