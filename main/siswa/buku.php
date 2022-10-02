@@ -120,18 +120,6 @@ if(isset($_GET['cari'])){
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
-      <li>
-        <a href="peminjaman.php">
-          <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
-          <span class="menu-item-label">Peminjaman</span>
-        </a>
-      </li>
-      <li>
-        <a href="pengembalian.php">
-          <span class="icon"><i class="mdi mdi-cart-minus"></i></span>
-          <span class="menu-item-label">Pengembalian</span>
-        </a>
-      </li>
     </ul>
   </div>
 </aside>
@@ -139,7 +127,7 @@ if(isset($_GET['cari'])){
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
-      <li>Admin</li>
+      <li>Siswa</li>
       <li>Buku</li>
     </ul>
   </div>
@@ -167,7 +155,7 @@ if(isset($_GET['cari'])){
           <th>Penerbit</th>
           <!-- <th>Sinopsis</th> -->
           <th>Stok</th>
-          <th class="text-center" >Update</th>
+          <!-- <th class="text-center" >Update</th> -->
       </tr>
   </tbody>
 
@@ -196,12 +184,12 @@ if(isset($_GET['cari'])){
             <td><?= $data['5']?></td>
             <!-- <td><?= $data['7']?></td> -->
             <td><?= $data['8']?></td>
-            <td colspan="2">            
+            <!-- <td colspan="2">            
             
             <a href="editbuku.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
             |
             <a href="deletebuku.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
+            </td> -->
 
         </tr>
         </tbody>

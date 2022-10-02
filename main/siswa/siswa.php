@@ -120,18 +120,6 @@ if(isset($_GET['cari'])){
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
-      <li>
-        <a href="peminjaman.php">
-          <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
-          <span class="menu-item-label">Peminjaman</span>
-        </a>
-      </li>
-      <li>
-        <a href="pengembalian.php">
-          <span class="icon"><i class="mdi mdi-cart-minus"></i></span>
-          <span class="menu-item-label">Pengembalian</span>
-        </a>
-      </li>
     </ul>
   </div>
 </aside>
@@ -139,8 +127,8 @@ if(isset($_GET['cari'])){
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
-      <li>Admin</li>
       <li>Siswa</li>
+      <li>Daftar Siswa</li>
     </ul>
   </div>
 </section>

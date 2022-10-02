@@ -115,18 +115,6 @@ include('config.php');
         </a>
       </li>
       </li>
-      <li>
-        <a href="peminjaman.php">
-          <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
-          <span class="menu-item-label">Peminjaman</span>
-        </a>
-      </li>
-      <li>
-        <a href="pengembalian.php">
-          <span class="icon"><i class="mdi mdi-cart-minus"></i></span>
-          <span class="menu-item-label">Pengembalian</span>
-        </a>
-      </li>
     </ul>
   </div>
 </aside>
@@ -134,7 +122,7 @@ include('config.php');
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
-      <li>Admin</li>
+      <li>Siswa</li>
       <li>Dashboard</li>
     </ul>
   </div>
