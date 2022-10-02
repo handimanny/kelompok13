@@ -10,7 +10,7 @@ while($data = mysqli_fetch_array($result))
 {
   $id_kelas = $data['id_kelas'];
   $kelas = $data['nama_kelas'];
-  echo $kelas;
+
 }
 
 ?>
