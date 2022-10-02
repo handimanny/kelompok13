@@ -14,7 +14,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard - Admin One Tailwind CSS Admin Dashboard</title>
+  <title>Dashboard</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -91,50 +91,50 @@ if(isset($_GET['cari'])){
     </div>
   </div>
   <div class="menu is-menu-main">
-    <p class="menu-label">General</p>
+    <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="index.html">
+        <a href="admin.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Dashboard</span>
+          <span class="menu-item-label">Halaman</span>
         </a>
       </li>
     </ul>
     <p class="menu-label">Menu</p>
     <ul class="menu-list">
       <li class="--set-active-tables-html">
-        <a href="profile.html">
+        <a href="siswa.php">
           <span class="icon"><i class="mdi mdi-account-circle"></i></span>
           <span class="menu-item-label">Siswa</span>
         </a>
       </li>
       <li class="--set-active-forms-html">
-        <a href="forms.html">
-          <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+        <a href="kelas.php">
+          <span class="icon"><i class="mdi mdi-table"></i></span>
           <span class="menu-item-label">Kelas</span>
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="tables.html">
-          <span class="icon"><i class="mdi mdi-table"></i></span>
+        <a href="buat.php">
+          <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
       <li>
-        <a href="login.html">
+        <a href="petugas.php">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
           <span class="menu-item-label">Petugas</span>
         </a>
       </li>
       <li>
-        <a href="login.html">
-          <span class="icon"><i class="mdi mdi-minus"></i></span>
+        <a href="peminjaman.php">
+          <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
           <span class="menu-item-label">Peminjaman</span>
         </a>
       </li>
       <li>
-        <a href="login.html">
-          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        <a href="pengembalian.php">
+          <span class="icon"><i class="mdi mdi-cart-minus"></i></span>
           <span class="menu-item-label">Pengembalian</span>
         </a>
       </li>
@@ -146,7 +146,7 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Dashboard</li>
+      <li>Halaman</li>
     </ul>
   </div>
 </section>
@@ -161,7 +161,13 @@ if(isset($_GET['cari'])){
 </section>
 
 <!-- main section -->
+<table class="table table-primary p-1 mt-4 border border-primary container">
 
+<center>
+  Tampilan taruh sini
+</center>  
+
+</table>
 <!-- end main section -->
         <div class="table-pagination">
           <div class="flex items-center justify-between">
@@ -181,18 +187,11 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
     <div class="flex items-center justify-start space-x-3">
       <div>
-        © 2021, JustBoil.me
+        © 2022, Kelompok13
       </div>
-
-      <div>
-        <p>Distributed By: <a href="https://themewagon.com/" target="_blank">ThemeWagon</a></p>
-      </div>
-      <a href="https://github.com/justboil/admin-one-tailwind" style="height: 20px">
-        <img src="https://img.shields.io/github/v/release/justboil/admin-one-tailwind?color=%23999">
-      </a>
     </div>
-
-
+  </div>
+</footer>
    
 <!-- Scripts below are for demo only -->
 <script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
