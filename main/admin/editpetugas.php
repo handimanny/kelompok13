@@ -1,16 +1,20 @@
 <?php
-include 'config.php';
-if (isset($_POST['id'])) {
-    $id = $_POST['id'];
-    $sql = "SELECT * FROM `data_mahasiswa` WHERE no='$id';";
-    $result = mysqli_query($db,$sql);
-    $user_data = mysqli_fetch_array($result);
-        $nama=$user_data['nama'];
-        $nim=$user_data['nim'];
-        $jurusan=$user_data['jurusan'];
-        $alamat=$user_data['alamat'];
-        $ttl=$user_data['tanggal_lahir'];
-    
+include_once("config.php");
+
+
+$nip = $_GET['nip'];
+ 
+$result = mysqli_query($conn, "SELECT * FROM `petugas` ");
+
+while($data = mysqli_fetch_array($result))
+{
+  $nip = $data['nip'];
+  $nama = $data['nama'];
+  $jeniskel = $data['jenis_kelamin'];
+  $alamat = $data['alamat'];
+  $password= $data['password'];
+  $level=$data['level'];
+
 }
 ?>
 
@@ -166,82 +170,43 @@ if (isset($_POST['id'])) {
 </section>
 
 <!-- main section -->
-<section class="section main-section">
-    <div class="grid gap-6 grid-cols-3 md:grid-cols-3 mb-6">
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Jumlah Siswa
-              </h3>
-              <h1>
-              <?php $tampil = mysqli_query($conn, "SELECT * FROM `siswa` order by nis desc");
-                                $total = mysqli_num_rows($tampil);
-                                ?>
-                                <?php echo "$total"; ?>
-              </h1>
-            </div>
-            <span class="icon widget-icon text-green-500"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Kelas
-              </h3>
-              <h1>
-              <?php $tampil = mysqli_query($conn, "SELECT * FROM `kelas` order by 'id_kelas' desc");
-                                $total = mysqli_num_rows($tampil);
-                                ?>
-                                <?php echo "$total"; ?>
-              </h1>
-            </div>
-            <span class="icon widget-icon text-blue-500"><i class="mdi mdi-table mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
+<form name="update_user" method="post" enctype="multipart/form-data" action="">
 
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Jumlah Buku
-              </h3>
-              <h1>
-              <?php $tampil = mysqli_query($conn, "SELECT * FROM `buku` order by 'id_buku' desc");
-                                $total = mysqli_num_rows($tampil);
-                                ?>
-                                <?php echo "$total"; ?>
-              </h1>
-            </div>
-            <span class="icon widget-icon text-red-500"><i class="mdi mdi-book mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
+<div class="mb-3">
+<label class="form-lable">NIP</label>
+<input type="text" class="input" name="nip" value=<?php echo $nip;?>>
+</div>
+<br>
+<div class="mb-3">
+<label class="form-lable">Nama</label>
+<input type="text" class="input" name="nama" value=<?php echo $nama;?>>
+</div>
+<br>
+<div class="mb-3">
+<label class="form-lable">Jenis Kelamin</label>
+<input type="text" class="input" name="jeniskel" value=<?php echo $jeniskel;?>>
+</div>
+<br>
+<div class="mb-3">
+<label class="form-lable">Alamat</label>
+<input type="text" class="input" name="alamat" value=<?php echo $alamat;?>>
+</div>
+<br>
+<div class="mb-3">
+<label class="form-lable">Status</label>
+<input type="text" class="input" name="level" value=<?php echo $level;?>>
+</div>
+<br>
+<div class="mb-3">
+<label class="form-lable">Password</label>
+<input type="text" class="input" name="password" value=<?php echo $password;?>>
+</div>
+<br>
+<div class="mb-3">
+<input class="button green" type="submit" name="submit" value="Perbarui Data">
+</div>
+</form>
 
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Jumlah Terpinjam
-              </h3>
-              <h1>
-                256%
-              </h1>
-            </div>
-            <span class="icon widget-icon text-red-500"><i class="mdi mdi-cart-outline mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  
 
 <!-- end main section -->
         <!-- <div class="table-pagination">
@@ -294,3 +259,19 @@ if (isset($_POST['id'])) {
 
 </body>
 </html>
+
+<?php
+if(isset($_POST['submit']))
+{	
+    
+    $nip = $_POST['nip'];
+    $nama = $_POST['nama'];
+    $jeniskel = $_POST['jenis_kelamin'];
+    $alamat = $_POST['alamat'];
+    $password = $_POST['password'];
+    $level = $_POST['level'];
+
+    $result = mysqli_query($conn, "INSERT INTO `petugas` (`nip`, `nama`, `jenis_kelamin`, `alamat`,`level`, `password`) VALUES ('$nip', '$nama', '$jeniskel', '$alamat', '$level','$password' );");
+    header("Location: kelas.php");
+}
+?>

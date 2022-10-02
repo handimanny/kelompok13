@@ -14,7 +14,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Halaman Admin</title>
+  <title>Petugas</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -72,11 +72,11 @@ if(isset($_GET['cari'])){
   </div>
   <div class="navbar-menu" id="navbar-menu">
     <div class="navbar-end">
-      <a href="https://justboil.me/tailwind-admin-templates" class="navbar-item has-divider desktop-icon-only">
+      <a href="" class="navbar-item has-divider desktop-icon-only">
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
-      <a title="Log out" class="navbar-item desktop-icon-only">
+      <a href="keluar.php" title="Log out" class="navbar-item desktop-icon-only">
         <span class="icon"><i class="mdi mdi-logout"></i></span>
         <span>Log out</span>
       </a>
@@ -146,7 +146,7 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Halaman</li>
+      <li>Petugas</li>
     </ul>
   </div>
 </section>
@@ -154,7 +154,7 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Halaman
+      Dashboard
     </h1>
     <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
@@ -164,15 +164,12 @@ if(isset($_GET['cari'])){
 <table class="table table-primary p-1 mt-4 border border-primary container">
   <tbody>
       <tr>
-          <th>No Id</th>
-          <th>Cover</th>
-          <th>Judul</th>
-          <th>Penulis</th>
-          <th>Tahun Terbit</th>
-          <th>Kota Asal</th>
-          <th>Penerbit</th>
-          <!-- <th>Sinopsis</th> -->
-          <th>Stok</th>
+          <th>NIP</th>
+          <th>Nama</th>
+          <th>Jenis Kelamin</th>
+          <th>Alamat</th>
+          <th>Password</th>
+          <th>Level</th>
           <th class="text-center" >Update</th>
       </tr>
   </tbody>
@@ -182,9 +179,9 @@ if(isset($_GET['cari'])){
     
     if(isset($_GET['cari'])){
       $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
+      $result = mysqli_query($conn,"SELECT * FROM petugas WHERE nama LIKE '%".$cari."%'");				
     }else{
-      $result = mysqli_query($conn,"SELECT * FROM buku");
+      $result = mysqli_query($conn,"SELECT * FROM petugas");
     }
     $no =1;
     while($data = mysqli_fetch_array($result)) {         
@@ -192,21 +189,17 @@ if(isset($_GET['cari'])){
         <tbody>
         <tr>
             <td class="text-center"><?= $no ?></td>
-            <td>
-              <img src="img/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
-            </td>
-            <td><?= $data['3']?></td>
             <td><?= $data['1']?></td>
             <td><?= $data['2']?></td>
+            <td><?= $data['3']?></td>
             <td><?= $data['4']?></td>
             <td><?= $data['5']?></td>
-            <!-- <td><?= $data['7']?></td> -->
-            <td><?= $data['8']?></td>
+
             <td colspan="2">            
             
-            <a href="editbuku.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-primary">Edit</a>
+            <a href="editpetugas.php?nip=<?=$data['nip']?>" class="btn btn-outline-primary">Edit</a>
             |
-            <a href="deletebuku.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Hapus</a>
+            <a href="deletepetugas.php?nip=<?=$data['nip']?>" class="btn btn-outline-danger">Hapus</a>
             </td>
 
         </tr>
