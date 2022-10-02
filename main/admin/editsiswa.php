@@ -1,10 +1,19 @@
 <?php
-
 include_once("config.php");
 
-if(isset($_GET['cari'])){
-	$cari = $_GET['cari'];
-	echo "";
+
+$nis = $_GET['nis'];
+ 
+$result = mysqli_query($conn, "SELECT * FROM `siswa` join `kelas` ON siswa.id_kelas=kelas.id_kelas;");
+
+while($data = mysqli_fetch_array($result))
+{
+  $nis = $data['nis'];
+  $nama = $data['nama'];
+  $jeniskel = $data['jenis_kelamin'];
+  $alamat = $data['alamat'];
+  $kelas = $data['nama_kelas'];
+
 }
 ?>
 
@@ -14,7 +23,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kelas</title>
+  <title>Halaman Admin</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -72,11 +81,11 @@ if(isset($_GET['cari'])){
   </div>
   <div class="navbar-menu" id="navbar-menu">
     <div class="navbar-end">
-      <a href="" class="navbar-item has-divider desktop-icon-only">
+      <a href="https://justboil.me/tailwind-admin-templates" class="navbar-item has-divider desktop-icon-only">
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
-      <a href="keluar.php" title="Log out" class="navbar-item desktop-icon-only">
+      <a title="Log out" class="navbar-item desktop-icon-only">
         <span class="icon"><i class="mdi mdi-logout"></i></span>
         <span>Log out</span>
       </a>
@@ -146,7 +155,7 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Kelas</li>
+      <li>Halaman</li>
     </ul>
   </div>
 </section>
@@ -156,55 +165,57 @@ if(isset($_GET['cari'])){
     <h1 class="title">
       Dashboard
     </h1>
-    <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
 </section>
 
 <!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-  <tbody>
-      <tr>
-          <th>No</th>
-          <th>Kelas</th>
-          <th>Update</th>
-      </tr>
-  </tbody>
+<form name="update_user" method="post" enctype="multipart/form-data" action="">
 
-  <tbody>
-  <?php
-    
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM kelas WHERE judul LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM kelas");
-    }
-    $no =1;
-    while($data = mysqli_fetch_array($result)) {         
-      ?>
-        <tbody>
-        <tr>
-            <td class="text-center"><?= $no ?></td>
-            
-            <td><?= $data['1']?></td>
+<div class="mb-3">
+<label class="form-lable">NIS</label>
+<input type="text" class="input" name="nis" value=<?php echo $nis;?>>
+</div>
+<br>
+<div class="mb-3">
+<label class="form-lable">Nama</label>
+<input type="text" class="input" name="nama" value=<?php echo $nama;?>>
+</div>
+<br>
+<div class="mb-3">
+<label class="form-lable">Jenis Kelamin</label>
+<input type="text" class="input" name="jeniskel" value=<?php echo $jeniskel;?>>
+</div>
+<br>
+<div class="mb-3">
+<label class="form-lable">Alamat</label>
+<input type="text" class="input" name="alamat" value=<?php echo $alamat;?>>
+</div>
+<br>
+<div class="mb-3">
+<label class="form-lable">Kelas</label>
+<input type="text" class="input" name="kelas" value=<?php echo $kelas;?>>
+</div>
+<br>
+<div class="mb-3">
+<input class="button green" type="submit" name="submit" value="Perbarui Data">
+</div>
+</form>
 
-           
-            <td colspan="2">            
-            
-            <a href="editkelas.php?id_kelas=<?=$data['id_kelas']?>" class="btn btn-outline-primary">Edit</a>
-            |
-            <a href="deletekelas.php?id=<?php echo $data['id_kelas'] ?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
 
-        </tr>
-        </tbody>
-    <?php
-    $no++;
-      }
-      ?>
-</table>
 <!-- end main section -->
-
+        <!-- <div class="table-pagination">
+          <div class="flex items-center justify-between">
+            <div class="buttons">
+              <button type="button" class="button active">1</button>
+              <button type="button" class="button">2</button>
+              <button type="button" class="button">3</button>
+            </div>
+            <small>Page 1 of 3</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
@@ -242,3 +253,17 @@ if(isset($_GET['cari'])){
 
 </body>
 </html>
+
+<?php
+if(isset($_POST['submit']))
+{	
+    $kelas = $_POST['kelas'];
+    $nis = $_POST['nis'];
+    $nama = $_POST['nama'];
+    $jeniskel = $_POST['jenis_kelamin'];
+    $alamat = $_POST['alamat'];
+
+    $result = mysqli_query($conn, "INSERT INTO `siswa` (`nis`, `nama`, `jenis_kelamin`, `alamat`, `id_kelas`) VALUES ('$nis', '$nama', '$jeniskel', '$alamat', '$kelas');");
+    header("Location: kelas.php");
+}
+?>
