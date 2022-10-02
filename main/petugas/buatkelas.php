@@ -146,8 +146,8 @@ $result= mysqli_query($conn,$sql);
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
-      <li>Admin</li>
-      <li>Tambah Siswa</li>
+      <li>Petugas</li>
+      <li>Tambah Kelas</li>
     </ul>
   </div>
 </section>
@@ -155,7 +155,7 @@ $result= mysqli_query($conn,$sql);
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Forms Tambah Siswa
+      Forms Tambah Kelas
     </h1>
   </div>
 </section>
