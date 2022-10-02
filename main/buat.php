@@ -82,7 +82,7 @@ session_start();
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
-      <a href="" title="Log out" class="navbar-item desktop-icon-only">
+      <a href="keluar.php" title="Log out" class="navbar-item desktop-icon-only">
         <span class="icon"><i class="mdi mdi-logout"></i></span>
         <span>Log out</span>
       </a>
@@ -236,7 +236,7 @@ if(isset($_POST['submit'])) {
 
     $sql = "INSERT INTO buku (id_buku, penulis, tahun, judul, kota, penerbit, cover, sinopsis, stok) VALUES ('$id_buku', '$penulis', '$tahun', '$judul', '$kota', '$penerbit', '$file', '$sinopsis', '$stok')";
     $result = mysqli_query($conn, $sql);
-    echo "Data berasil ditambah. <a href='index.php'>Klik Lihat Data</a>";
+    echo "Buku berhasil ditambah. <a href='index.php'>Klik lihat buku</a>";
 }
 ?>
 
