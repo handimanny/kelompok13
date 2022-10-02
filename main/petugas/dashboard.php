@@ -1,5 +1,9 @@
 <?php
 include('config.php');
+session_start();
+if(!isset($_SESSION['nip'])){
+  header("Location: ../../login/loginpetugas.php");
+}
 ?>
 
 <!DOCTYPE html>

@@ -4,8 +4,8 @@ include_once("config.php");
 
 session_start();
 
-if(!isset($_SESSION['nip'])){
-  header("Location: ../../login/loginpetugas.php");
+if(!isset($_SESSION['username'])){
+  header("Location: ../../admin/loginadmin.php");
 }
 
 ?>

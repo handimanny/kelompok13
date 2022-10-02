@@ -1,6 +1,11 @@
 <?php
 include_once("config.php");
 
+session_start();
+
+if(!isset($_SESSION['username'])){
+  header("Location: ../../admin/loginadmin.php");
+}
 
 $id_kelas = $_GET['id_kelas'];
  
@@ -83,7 +88,7 @@ while($data = mysqli_fetch_array($result))
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
-      <a title="Log out" class="navbar-item desktop-icon-only">
+      <a href="keluar.php" title="Log out" class="navbar-item desktop-icon-only">
         <span class="icon"><i class="mdi mdi-logout"></i></span>
         <span>Log out</span>
       </a>

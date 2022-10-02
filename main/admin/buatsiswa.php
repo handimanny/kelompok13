@@ -1,6 +1,11 @@
 <?php
 
 include_once("config.php");
+session_start();
+
+if(!isset($_SESSION['username'])){
+  header("Location: ../../admin/loginadmin.php");
+}
 $sql="SELECT * FROM `kelas`";
 $result= mysqli_query($conn,$sql);
 // session_start();

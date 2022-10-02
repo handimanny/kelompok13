@@ -4,9 +4,6 @@ include 'config.php';
  
 // session_start();
  
-// if (isset($_SESSION['nis'])) {
-//     header("Location: .main.html");
-// }
 
 // if (isset($_SESSION['nama'])) {
 //     header("Location: index.php");
@@ -16,22 +13,24 @@ include 'config.php';
 
 session_start();
 
-if (isset($_SESSION['nis'])) {
-    header("Location: ../main/siswa/dashboard.php");
+if (isset($_SESSION['username'])) {
+    header("Location: ../main/admin/dashboard.php");
 }
 
 if(isset($_POST['submit'])){
-  $nis=$_POST['nis'];
+  $username=$_POST['username'];
+  $password=$_POST['password'];
 
-  $query= mysqli_query($conn,"SELECT * FROM `siswa` WHERE siswa.nis='$nis';");
+  $query= mysqli_query($conn,"SELECT * FROM `petugas` WHERE petugas.username='$username' and petugas.password='$password';");
   $data= mysqli_fetch_assoc($query);
-  echo $nis;
+  
   if ($data){
-    $_SESSION['nis']=$data['nis'];
-    if($_SESSION['level']=="petugas"){
-        header ('location: ../main/siswa/dashboard.php');
+    $_SESSION['username']=$data['username'];
+    $_SESSION['level']=$data['level'];
+    if($_SESSION['level']=="admin"){
+        header ('location: ../main/admin/dashboard.php');
     }else {
-        header ('location: ../main/admin/dashboard.php')
+        header ('location: ../main/petugas/dashboard.php');
     }
   }
   else {
@@ -71,9 +70,11 @@ if(isset($_POST['submit'])){
 		      	<h3 class="text-center mb-4">Sign In</h3>
 						<form action="#" class="login-form" method="POST">
 		      		<div class="form-group">
-		      			<input type="text" class="form-control rounded-left" placeholder="NIS" name="nis"  required>
+		      			<input type="text" class="form-control rounded-left" placeholder="NIP" name="nip"  required>
 		      		</div>
-					
+					  <div class="form-group">
+		      			<input type="text" class="form-control rounded-left" placeholder="Password" name="password"  required>
+		      		</div>
 	            <!-- <div class="form-group d-flex">
 	              <input type="password" class="form-control rounded-left" placeholder="Password">
 	            </div> -->
@@ -81,7 +82,7 @@ if(isset($_POST['submit'])){
 	            	<button type="submit" name="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
 	            </div>
 				<div class="form-group">
-					Masuk sebagai petugas!<a href="loginpetugas.php"> Klik sini</a>
+					Masuk sebagai siswa!<a href="loginsiswa.php"> Klik sini</a>
 				</div>
 	            
 	          </form>

@@ -1,6 +1,9 @@
 <?php
 
 include_once("config.php");
+if(!isset($_SESSION['username'])){
+  header("Location: ../../admin/loginadmin.php");
+}
 
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
