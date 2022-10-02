@@ -1,6 +1,6 @@
 <?php 
 
-include '..\main\config.php';
+include 'config.php';
  
 // session_start();
  
@@ -14,26 +14,27 @@ include '..\main\config.php';
 
 // error_reporting(0);
 
-if (isset($_POST['submit'])) {
-    $nis = $_POST['nis'];
+session_start();
+
+if(isset($_POST['submit'])){
+  $nis=$_POST['nis'];
+
+  $query= mysqli_query($conn,"SELECT * FROM `siswa` WHERE siswa.nis='$nis';");
+  $data= mysqli_fetch_assoc($query);
+  echo $nis;
+  if ($data){
+    $_SESSION['nis']=$data['nis'];
     
-    $query = mysqli_query($conn, "SELECT * FROM siswa WHERE nis='$nis'");
-    $data = mysqli_fetch_assoc($query);
-
-    if($data){
-        $_SESSION['nis']=$data['nis'];
-        $_SESSION['level']=$data['level'];
-
-        if($_SESSION['level']=='admin'){
-          header('location:..\main\home.php');
-        } else if($_SESSION['level']==''){
-          header('location:..\main\home.php');
-        }
-
-    } else {
-        echo "<script>alert('NIS yang Anda masukan salah. Silahkan coba lagi!')</script>";
-    }
+    header ('location: ../main/siswa/dashboard.php');
+  }
+  else {
+    echo "<script>alert('username salah')</script>";
+  }
 }
+// if(isset($_SESSION['username'])){
+// header ('location:direction.php');
+
+// }
 
 ?>
 
@@ -63,8 +64,9 @@ if (isset($_POST['submit'])) {
 		      	<h3 class="text-center mb-4">Sign In</h3>
 						<form action="#" class="login-form" method="POST">
 		      		<div class="form-group">
-		      			<input type="text" class="form-control rounded-left" placeholder="Input NIS" name="nis"  required>
+		      			<input type="text" class="form-control rounded-left" placeholder="NIS" name="nis"  required>
 		      		</div>
+					
 	            <!-- <div class="form-group d-flex">
 	              <input type="password" class="form-control rounded-left" placeholder="Password">
 	            </div> -->
@@ -72,7 +74,7 @@ if (isset($_POST['submit'])) {
 	            	<button type="submit" name="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
 	            </div>
 				<div class="form-group">
-					Masuk sebagai petugas!<a href="index.php"> Klik sini</a>
+					Masuk sebagai petugas!<a href="loginpetugas.php"> Klik sini</a>
 				</div>
 	            
 	          </form>
