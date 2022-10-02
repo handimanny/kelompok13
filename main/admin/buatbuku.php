@@ -100,9 +100,9 @@ include_once("config.php");
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="admin.php">
+        <a href="dashboard.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Halaman</span>
+          <span class="menu-item-label">Dashboard</span>
         </a>
       </li>
     </ul>

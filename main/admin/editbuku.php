@@ -140,9 +140,9 @@ while($data = mysqli_fetch_array($result))
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="admin.php">
+        <a href="dashboard.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Halaman</span>
+          <span class="menu-item-label">Dashboard</span>
         </a>
       </li>
     </ul>
@@ -201,7 +201,7 @@ while($data = mysqli_fetch_array($result))
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Forms Tambah Buku
+      Forms Edit Buku
     </h1>
   </div>
 </section>

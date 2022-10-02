@@ -153,7 +153,7 @@ while($data = mysqli_fetch_array($result))
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Halaman</li>
+      <li>Edit Kelas</li>
     </ul>
   </div>
 </section>
@@ -161,7 +161,7 @@ while($data = mysqli_fetch_array($result))
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Dashboard
+    Edit Kelas
     </h1>
   </div>
 </section>

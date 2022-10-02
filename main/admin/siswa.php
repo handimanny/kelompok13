@@ -154,7 +154,7 @@ if(isset($_GET['cari'])){
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Dashboard
+      Daftar Siswa
     </h1>
     <a href="buatsiswa.php" class="btn btn-outline-dark button light">Tambah Siswa</a>
   </div>
