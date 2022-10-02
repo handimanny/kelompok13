@@ -28,7 +28,7 @@ if(isset($_POST['update']))
     $upload = move_uploaded_file($tmp_name, "foto/". $file);
 
     $result = mysqli_query($conn, "UPDATE buku SET id_buku='$id_buku',penulis='$penulis',tahun='$tahun',judul='$judul',kota='$kota',penerbit='$penerbit',sinopsis='$sinopsis',stok='$stok',cover='$file' WHERE id_buku=$id_buku");
-    header("Location: halaman.php");
+    header("Location: admin.php");
 }
 ?>
 
@@ -54,129 +54,284 @@ while($data = mysqli_fetch_array($result))
 
 ?>
 
-<html>
-<head>	
-    <title>Edit</title>
-</head>
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit Buku</title>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="bootstrap/style.css">
-<link rel="stylesheet" href="bootstrap/style2.css">
- 
+  <!-- Tailwind is included -->
+  <link rel="stylesheet" href="css/main.css?v=1628755089081">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#00b4b6"/>
+
+  <meta name="description" content="Admin One - free Tailwind dashboard">
+
+  <meta property="og:url" content="https://justboil.github.io/admin-one-tailwind/">
+  <meta property="og:site_name" content="JustBoil.me">
+  <meta property="og:title" content="Admin One HTML">
+  <meta property="og:description" content="Admin One - free Tailwind dashboard">
+  <meta property="og:image" content="https://justboil.me/images/one-tailwind/repository-preview-hi-res.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="960">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Admin One HTML">
+  <meta property="twitter:description" content="Admin One - free Tailwind dashboard">
+  <meta property="twitter:image:src" content="https://justboil.me/images/one-tailwind/repository-preview-hi-res.png">
+  <meta property="twitter:image:width" content="1920">
+  <meta property="twitter:image:height" content="960">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130795909-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-130795909-1');
+  </script>
+
+</head>
 <body>
 
-<div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark"></i></a>
-  <a href="halaman.php">Halaman</a>
-  <a href="buat.php">Tambah Buku</a>
+<div id="app">
 
-<?php if($_SESSION['level'] == 'admin')
-{
-?>
-
-  <a href="daftar.php">Tambah Petugas</a>
-
-<?php
-}
-?>
-
-  <a href="daftarsiswa.php">Tambah Siswa</a>
-  <a href="riwayat.php">Riwayat Pinjam</a>
-  <a href="pinjam.php">Peminjaman</a>
-  <a href="kembalikan.php">Pengembalian</a>
-
-</div>
-
-<nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-  <div class="container">
-  <a class="navbar-brand text-white" onclick="openNav()" href="#"><i class="fa-solid fa-book"></i> Perpustakaan13</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-      </ul>
-      <form>
-        <a href='keluar.php' class="btn btn-danger rounded">Keluar</a>
-      </form>
+<nav id="navbar-main" class="navbar is-fixed-top">
+  <div class="navbar-brand">
+    <a class="navbar-item mobile-aside-button">
+      <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
+    </a>
+    <div class="navbar-item">
+      <div class="control"><input placeholder="Search everywhere..." class="input"></div>
+    </div>
+  </div>
+  <div class="navbar-brand is-right">
+    <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
+      <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
+    </a>
+  </div>
+  <div class="navbar-menu" id="navbar-menu">
+    <div class="navbar-end">
+      <a href="" class="navbar-item has-divider desktop-icon-only">
+        <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
+        <span>About</span>
+      </a>
+      <a href="" title="Log out" class="navbar-item desktop-icon-only">
+        <span class="icon"><i class="mdi mdi-logout"></i></span>
+        <span>Log out</span>
+      </a>
     </div>
   </div>
 </nav>
 
-<div class="container mt-4">
+<aside class="aside is-placed-left is-expanded">
+  <div class="aside-tools">
+    <div>
+    <b class="font-black">Perpustakaan</b>
+    </div>
+  </div>
+  <div class="menu is-menu-main">
+    <p class="menu-label">Umum</p>
+    <ul class="menu-list">
+      <li class="active">
+        <a href="admin.php">
+          <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+          <span class="menu-item-label">Halaman</span>
+        </a>
+      </li>
+    </ul>
+    <p class="menu-label">Menu</p>
+    <ul class="menu-list">
+      <li class="--set-active-tables-html">
+        <a href="siswa.php">
+          <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+          <span class="menu-item-label">Siswa</span>
+        </a>
+      </li>
+      <li class="--set-active-forms-html">
+        <a href="kelas.php">
+          <span class="icon"><i class="mdi mdi-table"></i></span>
+          <span class="menu-item-label">Kelas</span>
+        </a>
+      </li>
+      <li class="--set-active-profile-html">
+        <a href="buat.php">
+          <span class="icon"><i class="mdi mdi-book"></i></span>
+          <span class="menu-item-label">Buku</span>
+        </a>
+      </li>
+      <li>
+        <a href="petugas.php">
+          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+          <span class="menu-item-label">Petugas</span>
+        </a>
+      </li>
+      <li>
+        <a href="peminjaman.php">
+          <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
+          <span class="menu-item-label">Peminjaman</span>
+        </a>
+      </li>
+      <li>
+        <a href="pengembalian.php">
+          <span class="icon"><i class="mdi mdi-cart-minus"></i></span>
+          <span class="menu-item-label">Pengembalian</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+
+<section class="is-title-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <ul>
+      <li>Admin</li>
+      <li>Buku</li>
+      <li>Edit</li>
+    </ul>
+  </div>
+</section>
+
+<section class="is-hero-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <h1 class="title">
+      Forms Tambah Buku
+    </h1>
+  </div>
+</section>
+
+<section class="is-hero-bar">
+  <div>
+    <div class="container mt-4">
       <div class="col-xl-0">
-          <div class="row g-0">
-            
-            <div>
-              <div class="login-wrap p-md-5 mx-md-1">
+        <div class="row g-0">
+          <div>
+            <div class="login-wrap p-md-5 mx-md-1">
                 
-              <?php echo "<h4>Silahkan edit buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+<?php echo "<h4>Silahkan edit buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
+<br>
 
-              <form name="update_user" method="post" enctype="multipart/form-data" action="">
-    
-    <div class="mb-3">
-      <!-- <label class="form-lable">Nama Penulis</label> -->
-      <input type="text" class="form-control" name="penulis" value=<?php echo $penulis;?>>
-    </div>
-    <div class="mb-3">
-      <!-- <label class="form-lable">Tahun Terbit</label> -->
-      <input type="date" class="form-control" name="tahun" value=<?php echo $tahun;?>>
-    </div>
-    <div class="mb-3">
-      <!-- <label class="form-lable">Judul Buku</label> -->
-      <input type="text" class="form-control" name="judul" value=<?php echo $judul;?>>
-    </div>
+<form name="update_user" method="post" enctype="multipart/form-data" action="">
 
-    <div class="mb-3">
-          <!-- <label class="form-lable">Kota Asal</label> -->
-          <input type="text" class="form-control" name="kota" value=<?php echo $kota;?>>
-    </div>
-    <div class="mb-3">
-          <!-- <label class="form-lable">Penerbit</label> -->
-          <input type="text" class="form-control" name="penerbit" value=<?php echo $penerbit;?>>
-    </div>
+<div class="mb-3">
+<label class="form-lable">Nama Penulis</label>
+<input type="text" class="input" name="penulis" value=<?php echo $penulis;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Tahun Terbit</label>
+<input type="number" class="input" name="tahun" value=<?php echo $tahun;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Judul Buku</label>
+<input type="text" class="input" name="judul" value=<?php echo $judul;?>>
+</div>
 
-    <div class="mb-3">
-      <!-- <label class="form-lable">Cover</label> -->
-      <input type="file" class="form-control" name="cover" value=<?php echo $file;?>>
-    </div>
-    <div class="mb-3">
-          <!-- <label class="form-lable">Sinopsis</label> -->
-          <input type="text" class="form-control" name="sinopsis" value=<?php echo $sinopsis;?>>
-    </div>
-    <div class="mb-3">
-          <!-- <label class="form-lable">Stok</label> -->
-          <input type="number" class="form-control" name="stok" value=<?php echo $stok;?>>
-    </div>
+<div class="mb-3">
+<label class="form-lable">Kota Asal</label>
+<input type="text" class="input" name="kota" value=<?php echo $kota;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Penerbit</label>
+<input type="text" class="input" name="penerbit" value=<?php echo $penerbit;?>>
+</div>
 
-    <div class="mb-3">
-      <input type="hidden" name="id_buku" value=<?php echo $_GET['id_buku'];?>>
-      <input class="btn btn-outline-dark" type="submit" name="update" value="Perbarui Data">
-    </div>
-    </form>
+<div class="mb-3">
+<label class="form-lable">Cover</label>
+<input type="file" class="input" name="cover" value=<?php echo $file;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Sinopsis</label>
+<input type="text" class="input" name="sinopsis" value=<?php echo $sinopsis;?>>
+</div>
+<div class="mb-3">
+<label class="form-lable">Stok</label>
+<input type="number" class="input" name="stok" value=<?php echo $stok;?>>
+</div>
+<br>
+<div class="mb-3">
+<input type="hidden" name="id_buku" value=<?php echo $_GET['id_buku'];?>>
+<input class="button green" type="submit" name="update" value="Perbarui Data">
+</div>
+</form>
 
-              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="bootstrap/js/bootstrap.bundle.js" type="text/javascript"></script>
+<footer class="footer">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
+    <div class="flex items-center justify-start space-x-3">
+      <div>
+        © 2022, Kelompok13
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="sample-modal" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button red --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+<div id="sample-modal-2" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button blue --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div>
+
+</div>
+
+<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
+
 
 <script>
-  function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '658339141622648');
+  fbq('track', 'PageView');
 </script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=658339141622648&ev=PageView&noscript=1"/></noscript>
+
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 
 </body>
 </html>

@@ -236,7 +236,7 @@ if(isset($_POST['submit'])) {
 
     $sql = "INSERT INTO buku (id_buku, penulis, tahun, judul, kota, penerbit, cover, sinopsis, stok) VALUES ('$id_buku', '$penulis', '$tahun', '$judul', '$kota', '$penerbit', '$file', '$sinopsis', '$stok')";
     $result = mysqli_query($conn, $sql);
-    echo "Data berasil ditambah. <a href='index.php'>Klik Lihat Data</a>";
+    echo "Buku berhasil ditambah. <a href='index.php'>Klik lihat buku</a>";
 }
 ?>
 

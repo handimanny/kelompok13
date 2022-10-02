@@ -13,8 +13,8 @@ $data = $result -> fetch_assoc();
 
 $cover = $data['cover'];
 
-if (file_exists("foto/$cover")){
-  unlink("foto/$cover");
+if (file_exists("img/$cover")){
+  unlink("img/$cover");
 }
 
 $result = mysqli_query($conn, "DELETE FROM buku WHERE id_buku=$id_buku");
