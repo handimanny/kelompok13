@@ -1,11 +1,5 @@
 <?php
-
-include_once("config.php");
-
-if(isset($_GET['cari'])){
-	$cari = $_GET['cari'];
-	echo "";
-}
+include('config.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +8,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kelas</title>
+  <title>Halaman Admin</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -72,11 +66,11 @@ if(isset($_GET['cari'])){
   </div>
   <div class="navbar-menu" id="navbar-menu">
     <div class="navbar-end">
-      <a href="" class="navbar-item has-divider desktop-icon-only">
+      <a href="https://justboil.me/tailwind-admin-templates" class="navbar-item has-divider desktop-icon-only">
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
-      <a href="" title="Log out" class="navbar-item desktop-icon-only">
+      <a title="Log out" class="navbar-item desktop-icon-only">
         <span class="icon"><i class="mdi mdi-logout"></i></span>
         <span>Log out</span>
       </a>
@@ -94,9 +88,9 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="admin.php">
+        <a href="dashboard.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Halaman</span>
+          <span class="menu-item-label">Dashboard</span>
         </a>
       </li>
     </ul>
@@ -146,7 +140,7 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Kelas</li>
+      <li>Halaman</li>
     </ul>
   </div>
 </section>
@@ -156,20 +150,89 @@ if(isset($_GET['cari'])){
     <h1 class="title">
       Dashboard
     </h1>
-    <a href="buat.php" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
 </section>
 
 <!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
+<section class="section main-section">
+    <div class="grid gap-6 grid-cols-3 md:grid-cols-3 mb-6">
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Jumlah Siswa
+              </h3>
+              <h1>
+              <?php $tampil = mysqli_query($conn, "SELECT * FROM `siswa` order by nis desc");
+                                $total = mysqli_num_rows($tampil);
+                                ?>
+                                <?php echo "$total"; ?>
+              </h1>
+            </div>
+            <span class="icon widget-icon text-green-500"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Kelas
+              </h3>
+              <h1>
+              <?php $tampil = mysqli_query($conn, "SELECT * FROM `kelas` order by 'id_kelas' desc");
+                                $total = mysqli_num_rows($tampil);
+                                ?>
+                                <?php echo "$total"; ?>
+              </h1>
+            </div>
+            <span class="icon widget-icon text-blue-500"><i class="mdi mdi-table mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
 
-<center>
-  Tampilan taruh sini
-</center>  
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Jumlah Buku
+              </h3>
+              <h1>
+              <?php $tampil = mysqli_query($conn, "SELECT * FROM `buku` order by 'id_buku' desc");
+                                $total = mysqli_num_rows($tampil);
+                                ?>
+                                <?php echo "$total"; ?>
+              </h1>
+            </div>
+            <span class="icon widget-icon text-red-500"><i class="mdi mdi-book mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
 
-</table>
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Jumlah Terpinjam
+              </h3>
+              <h1>
+                256%
+              </h1>
+            </div>
+            <span class="icon widget-icon text-red-500"><i class="mdi mdi-cart-outline mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
+
 <!-- end main section -->
-        <div class="table-pagination">
+        <!-- <div class="table-pagination">
           <div class="flex items-center justify-between">
             <div class="buttons">
               <button type="button" class="button active">1</button>
@@ -181,7 +244,7 @@ if(isset($_GET['cari'])){
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
