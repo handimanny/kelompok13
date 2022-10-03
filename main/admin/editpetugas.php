@@ -173,6 +173,7 @@ while($data = mysqli_fetch_array($result))
   </div>
 </section>
 
+<section class="is-hero-bar">
 <!-- main section -->
 <form name="update_user" method="post" enctype="multipart/form-data" action="">
 
@@ -215,6 +216,7 @@ while($data = mysqli_fetch_array($result))
 <input class="button green" type="submit" name="submit" value="Perbarui Data">
 </div>
 </form>
+</section>
 
 
 <!-- end main section -->

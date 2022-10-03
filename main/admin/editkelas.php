@@ -171,6 +171,8 @@ while($data = mysqli_fetch_array($result))
   </div>
 </section>
 
+<section class="is-hero-bar">
+  <div>
 <!-- main section -->
 <form name="update_user" method="post" enctype="multipart/form-data" action="">
 
@@ -187,6 +189,9 @@ while($data = mysqli_fetch_array($result))
 
 
 <!-- end main section -->
+  </div>
+</section>
+
         <!-- <div class="table-pagination">
           <div class="flex items-center justify-between">
             <div class="buttons">

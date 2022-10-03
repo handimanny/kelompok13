@@ -173,11 +173,8 @@ $result= mysqli_query($conn,$sql);
 </section>
 
 <section class="is-hero-bar">
-    <div class="container mt-4">
-      <div class="col-xl-0">
-        <div class="row g-0">
-            <div class="login-wrap p-md-5 mx-md-1">
-                
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+
   <form name="form1" method="POST" enctype="multipart/form-data">
         </div>
         <div class="mt-3">
@@ -238,10 +235,7 @@ if(isset($_POST['submit'])) {
 ?>
 
     </form>
-    
-        </div>
-      </div>
-    </div>
+
   </div>
 </section>
 

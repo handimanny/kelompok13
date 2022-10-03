@@ -211,15 +211,7 @@ while($data = mysqli_fetch_array($result))
 </section>
 
 <section class="is-hero-bar">
-  <div>
-    <div class="container mt-4">
-      <div class="col-xl-0">
-        <div class="row g-0">
-          <div>
-            <div class="login-wrap p-md-5 mx-md-1">
-                
-<?php echo "<h4>Silahkan edit buku, " . $_SESSION['nama'] ."!". "</h4>"; ?>
-<br>
+  <!-- <div> -->
 
 <form name="update_user" method="post" enctype="multipart/form-data" action="">
 
@@ -264,12 +256,7 @@ while($data = mysqli_fetch_array($result))
 </div>
 </form>
 
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- </div> -->
 </section>
 
 <footer class="footer">

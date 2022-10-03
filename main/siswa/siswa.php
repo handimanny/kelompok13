@@ -165,7 +165,7 @@ if(isset($_GET['cari'])){
           <th>Jenis Kelamin</th>
           <th>Alamat</th>
           <th>Kelas</th>
-          <th class="text-center" >Update</th>
+          <!-- <th class="text-center" >Update</th> -->
       </tr>
   </tbody>
 
@@ -189,12 +189,12 @@ if(isset($_GET['cari'])){
             <td><?= $data['3']?></td>
             <td> <?php echo $data['nama_kelas'] ?></td>
 
-            <td colspan="2">            
+            <!-- <td colspan="2">            
             
             <a href="editsiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
             |
             <a href="deletesiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
+            </td> -->
             <?php
     }
     ?>
