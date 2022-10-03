@@ -3,9 +3,9 @@
 include_once("config.php");
 session_start();
 
-if (isset($_SESSION['nis'])) {
-    header("Location: ../main/siswa/dashboard.php");
-}
+// if (isset($_SESSION['nis'])) {
+//     header("Location: ../main/siswa/dashboard.php");
+// }
 
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
