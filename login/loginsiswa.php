@@ -16,28 +16,28 @@ include 'config.php';
 
 session_start();
 
-if (isset($_SESSION['nis'])) {
-    header("Location: ../main/siswa/dashboard.php");
-}
+// if (isset($_SESSION['nis'])) {
+//     header("Location: ../main/siswa/dashboard.php");
+// }
 
-if(isset($_POST['submit'])){
-  $nis=$_POST['nis'];
+// if(isset($_POST['submit'])){
+//   $nis=$_POST['nis'];
 
-  $query= mysqli_query($conn,"SELECT * FROM `siswa` WHERE siswa.nis='$nis';");
-  $data= mysqli_fetch_assoc($query);
-  echo $nis;
-  if ($data){
-    $_SESSION['nis']=$data['nis'];
-    if($_SESSION['level']=="petugas"){
-        header ('location: ../main/siswa/dashboard.php');
-    }else {
-        header ('location: ../main/admin/dashboard.php')
-    }
-  }
-  else {
-    echo "<script>alert('username salah')</script>";
-  }
-}
+//   $query= mysqli_query($conn,"SELECT * FROM `siswa` WHERE siswa.nis='$nis';");
+//   $data= mysqli_fetch_assoc($query);
+//   echo $nis;
+//   if ($data){
+//     $_SESSION['nis']=$data['nis'];
+//     if($_SESSION['level']=="petugas"){
+//         header ('location: ../main/siswa/dashboard.php');
+//     }else {
+//         header ('location: ../main/admin/dashboard.php')
+//     }
+//   }
+//   else {
+//     echo "<script>alert('username salah')</script>";
+//   }
+// }
 // if(isset($_SESSION['username'])){
 // header ('location:direction.php');
 

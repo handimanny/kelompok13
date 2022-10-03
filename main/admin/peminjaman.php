@@ -1,11 +1,8 @@
 <?php
 
 include_once("config.php");
-session_start();
 
-if(!isset($_SESSION['nama'])){
-  header("Location: ../../admin/loginadmin.php");
-}
+session_start();
 
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
@@ -19,7 +16,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Siswa</title>
+  <title>Peminjaman</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -66,9 +63,9 @@ if(isset($_GET['cari'])){
     <a class="navbar-item mobile-aside-button">
       <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
     </a>
-    <div class="navbar-item">
+    <!-- <div class="navbar-item">
       <div class="control"><input placeholder="Search everywhere..." class="input"></div>
-    </div>
+    </div> -->
   </div>
   <div class="navbar-brand is-right">
     <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
@@ -99,7 +96,7 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="dashboard.php">
+        <a href="index.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Dashboard</span>
         </a>
@@ -120,17 +117,23 @@ if(isset($_GET['cari'])){
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="buku.php">
+        <a href="buat.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
+<?php if($_SESSION['level'] == 'admin')
+{
+?>
       <li>
         <a href="petugas.php">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
           <span class="menu-item-label">Petugas</span>
         </a>
       </li>
+<?php
+}
+?>
       <li>
         <a href="peminjaman.php">
           <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
@@ -151,79 +154,106 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Siswa</li>
+      <li>Peminjaman</li>
     </ul>
   </div>
 </section>
 
 <section class="is-hero-bar">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-    <h1 class="title">
-      Daftar Siswa
-    </h1>
-    <a href="buatsiswa.php" class="btn btn-outline-dark button light">Tambah Siswa</a>
-  </div>
-</section>
 
-<!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-  <tbody>
-      <tr>
-          <th>NIS</th>
-          <th>Nama</th>
-          <th>Jenis Kelamin</th>
-          <th>Alamat</th>
-          <th>Kelas</th>
-          <th class="text-center" >Update</th>
-      </tr>
-  </tbody>
+  <table>
+    <h1>Proses Peminjaman</h1>
+    <form action="" method="POST">
+        <div class="mb-3">
+          <label class="form-lable">ID Peminjam</label>
+          <input type="text" class="input" placeholder="ID Peminjam" name="id_peminjam" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ID Siswa</label>
+            <input type="text" placeholder="ID Siswa" class="input" name="id_siswa" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">ID Petugas</label>
+            <input type="text" placeholder="ID Petugas" class="input" name="id_petugas" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tanggal Peminjaman</label>
+            <input type="date" class="input" name="tanggal_peminjaman" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Tanggal Pengembalian</label>
+            <input type="date" class="input" name="tanggal_pengembalian" required>
+        </div>
+        <br>
+        <div class="mb-3">
+            <button name="submit" class="button green">Proses</button>
+        </div>
 
-  <tbody>
-  <?php
+<?php
+
+if(isset($_POST['submit'])) {
+    $nis = $_POST['nis'];
+    $nama = $_POST['nama'];
+    $jenis_kelamin = $_POST['jenis_kelamin'];
+    $alamat = $_POST['alamat'];
+    $id_kelas = $_POST['id_kelas'];
+  
+    $sql = "INSERT INTO siswa (nis, nama, jenis_kelamin, alamat, id_kelas ) VALUES ('$nis', '$nama', '$jenis_kelamin', '$alamat', '$id_kelas')";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+    echo "<script>alert('Proses! pinjam berhasil')</script>";
+}
+}
+
+?>
+            <!-- Anda sudah punya akun? <a href="index.php">Masuk</a> -->
+        </form>
+</table>
+
+<br>
+
+<table>
+        <tbody>
+          <h1>Riwayat Peminjaman</h1>
+          <tr>
+              <th>Id Peminjaman</th>
+              <th>Id Siswa</th>
+              <th>Id Petugas</th>
+              <th>Tanggal Peminjaman</th>
+              <th>Tanggal Pengembalian</th>
+              <th>Update</th>
+          </tr>
+        </tbody>
+
+    <?php
+    $result = mysqli_query($conn,"SELECT * FROM peminjaman");
     
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM `siswa` WHERE `nama` LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM `siswa` join `kelas` where siswa.id_kelas=kelas.id_kelas");
-    }
     $no =1;
     while($data = mysqli_fetch_array($result)) {         
       ?>
         <tbody>
         <tr>
-            <td class="text-center"><?= $data['0'] ?></td>
+            <td><?= $data['0']?></td>
             <td><?= $data['1']?></td>
             <td><?= $data['2']?></td>
             <td><?= $data['3']?></td>
-            <td> <?php echo $data['nama_kelas'] ?></td>
-
-            <td colspan="2">            
-            
-            <a href="editsiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-primary">Edit</a>
+            <td><?= $data['4']?></td>
+            <td colspan="2">
+            <a href="#" class="button green">Edit</a>
             |
-            <a href="deletesiswa.php?nis=<?=$data['nis']?>" class="btn btn-outline-danger">Hapus</a>
+            <a href="#" class="button red">Hapus</a>
             </td>
-            <?php
-    }
-    ?>
         </tr>
         </tbody>
+    <?php
+    $no++;
+      }
+      ?>
 </table>
-<!-- end main section -->
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
-            </div>
-            <small>Page 1 of 3</small>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+</section>
+
+<br>
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
