@@ -3,7 +3,7 @@ include_once("config.php");
 session_start();
 
 if(!isset($_SESSION['nama'])){
-  header("Location: ../index.php");
+  header("Location: ../../login/loginadmin.php");
 }
 
 $id_kelas = $_GET['id_kelas'];

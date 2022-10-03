@@ -4,7 +4,7 @@ include_once("config.php");
 session_start();
 
 if(!isset($_SESSION['nis'])){
-  header("Location: ../index.php");
+  header("Location: ../../login/loginsiswa.php");
 }
 
 if(isset($_GET['cari'])){
@@ -123,6 +123,12 @@ if(isset($_GET['cari'])){
         <a href="buku.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
+        </a>
+      </li>
+      <li class="--set-active-profile-html">
+        <a href="riwayat.php">
+          <span class="icon"><i class="mdi mdi-book"></i></span>
+          <span class="menu-item-label">Riwayat</span>
         </a>
       </li>
     </ul>

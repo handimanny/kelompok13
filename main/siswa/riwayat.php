@@ -5,7 +5,7 @@ include_once("config.php");
 session_start();
 
 if(!isset($_SESSION['nis'])){
-  header("Location: ../index.php");
+  header("Location: ../../login/loginsiswa.php");
 }
 
 if(isset($_GET['cari'])){
