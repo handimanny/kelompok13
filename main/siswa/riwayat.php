@@ -100,9 +100,9 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="admin.php">
+        <a href="dashboard.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-          <span class="menu-item-label">Halaman</span>
+          <span class="menu-item-label">Dashboard</span>
         </a>
       </li>
     </ul>
@@ -121,33 +121,15 @@ if(isset($_GET['cari'])){
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="buat.php">
+        <a href="buku.php">
           <span class="icon"><i class="mdi mdi-book"></i></span>
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
-<?php if($_SESSION['level'] == 'admin')
-{
-?>
-      <li>
-        <a href="petugas.php">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          <span class="menu-item-label">Petugas</span>
-        </a>
-      </li>
-<?php
-}
-?>
-      <li>
-        <a href="peminjaman.php">
-          <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
-          <span class="menu-item-label">Peminjaman</span>
-        </a>
-      </li>
-      <li>
-        <a href="pengembalian.php">
-          <span class="icon"><i class="mdi mdi-cart-minus"></i></span>
-          <span class="menu-item-label">Pengembalian</span>
+      <li class="--set-active-profile-html">
+        <a href="riwayat.php">
+          <span class="icon"><i class="mdi mdi-book"></i></span>
+          <span class="menu-item-label">Riwayat</span>
         </a>
       </li>
     </ul>
@@ -164,59 +146,6 @@ if(isset($_GET['cari'])){
 </section>
 
 <section class="is-hero-bar">
-
-  <table>
-    <h1>Proses Peminjaman</h1>
-    <form action="" method="POST">
-        <div class="mb-3">
-          <label class="form-lable">ID Peminjam</label>
-          <input type="text" class="input" placeholder="ID Peminjam" name="id_peminjam" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">ID Siswa</label>
-            <input type="text" placeholder="ID Siswa" class="input" name="id_siswa" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">ID Petugas</label>
-            <input type="text" placeholder="ID Petugas" class="input" name="id_petugas" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Tanggal Peminjaman</label>
-            <input type="date" class="input" name="tanggal_peminjaman" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Tanggal Pengembalian</label>
-            <input type="date" class="input" name="tanggal_pengembalian" required>
-        </div>
-        <br>
-        <div class="mb-3">
-            <button name="submit" class="button green">Proses</button>
-        </div>
-
-<?php
-
-if(isset($_POST['submit'])) {
-    $nis = $_POST['nis'];
-    $nama = $_POST['nama'];
-    $jenis_kelamin = $_POST['jenis_kelamin'];
-    $alamat = $_POST['alamat'];
-    $id_kelas = $_POST['id_kelas'];
-  
-    $sql = "INSERT INTO siswa (nis, nama, jenis_kelamin, alamat, id_kelas ) VALUES ('$nis', '$nama', '$jenis_kelamin', '$alamat', '$id_kelas')";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result) {
-    echo "<script>alert('Proses! pinjam berhasil')</script>";
-}
-}
-
-?>
-            <!-- Anda sudah punya akun? <a href="index.php">Masuk</a> -->
-        </form>
-</table>
-
-<br>
-
 <table>
         <tbody>
           <h1>Riwayat Peminjaman</h1>
@@ -226,7 +155,6 @@ if(isset($_POST['submit'])) {
               <th>Id Petugas</th>
               <th>Tanggal Peminjaman</th>
               <th>Tanggal Pengembalian</th>
-              <th>Update</th>
           </tr>
         </tbody>
 
@@ -243,11 +171,6 @@ if(isset($_POST['submit'])) {
             <td><?= $data['2']?></td>
             <td><?= $data['3']?></td>
             <td><?= $data['4']?></td>
-            <td colspan="2">
-            <a href="#" class="button green">Edit</a>
-            |
-            <a href="#" class="button red">Hapus</a>
-            </td>
         </tr>
         </tbody>
     <?php
@@ -255,6 +178,40 @@ if(isset($_POST['submit'])) {
       }
       ?>
 </table>
+
+<br>
+
+<table>
+        <tbody>
+          <h1>Riwayat Pengembalian</h1>
+          <tr>
+              <th>Id Pengembalian</th>
+              <th>Id Peminjaman</th>
+              <th>Tanggal Pengembalian</th>
+              <th>Denda</th>
+          </tr>
+        </tbody>
+
+    <?php
+    $result = mysqli_query($conn,"SELECT * FROM pengembalian");
+    
+    $no =1;
+    while($data = mysqli_fetch_array($result)) {         
+      ?>
+        <tbody>
+        <tr>
+            <td><?= $data['0']?></td>
+            <td><?= $data['1']?></td>
+            <td><?= $data['2']?></td>
+            <td><?= $data['3']?></td>
+        </tr>
+        </tbody>
+    <?php
+    $no++;
+      }
+      ?>
+</table>
+
 </section>
 
 <br>

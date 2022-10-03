@@ -125,6 +125,12 @@ if(isset($_GET['cari'])){
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
+      <li class="--set-active-profile-html">
+        <a href="riwayat.php">
+          <span class="icon"><i class="mdi mdi-book"></i></span>
+          <span class="menu-item-label">Riwayat</span>
+        </a>
+      </li>
     </ul>
   </div>
 </aside>
@@ -143,17 +149,20 @@ if(isset($_GET['cari'])){
     <h1 class="title">
       Daftar Kelas
     </h1>
-    <a href="buatkelas.php" class="btn btn-outline-dark button light">Tambah Kelas</a>
+    <!-- <a href="buatkelas.php" class="btn btn-outline-dark button light">Tambah Kelas</a> -->
   </div>
 </section>
 
-<!-- main section -->
+<section class="is-hero-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+
+  <!-- main section -->
 <table class="table table-primary p-1 mt-4 border border-primary container">
   <tbody>
       <tr>
           <th>No</th>
           <th>Kelas</th>
-          <th>Update</th>
+          <!-- <th>Update</th> -->
       </tr>
   </tbody>
 
@@ -176,12 +185,12 @@ if(isset($_GET['cari'])){
             <td><?= $data['1']?></td>
 
            
-            <td colspan="2">            
+            <!-- <td colspan="2">            
             
             <a href="editkelas.php?id_kelas=<?=$data['id_kelas']?>" class="btn btn-outline-primary">Edit</a>
             |
             <a href="deletekelas.php?id=<?php echo $data['id_kelas'] ?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
+            </td> -->
 
         </tr>
         </tbody>
@@ -191,6 +200,9 @@ if(isset($_GET['cari'])){
       ?>
 </table>
 <!-- end main section -->
+
+  </div>
+</section>
 
 
 <footer class="footer">

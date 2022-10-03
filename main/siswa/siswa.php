@@ -143,11 +143,14 @@ if(isset($_GET['cari'])){
     <h1 class="title">
       Daftar Siswa
     </h1>
-    <a href="buatsiswa.php" class="btn btn-outline-dark button light">Tambah Siswa</a>
+    <!-- <a href="buatsiswa.php" class="btn btn-outline-dark button light">Tambah Siswa</a> -->
   </div>
 </section>
 
-<!-- main section -->
+<section class="is-hero-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+
+  <!-- main section -->
 <table class="table table-primary p-1 mt-4 border border-primary container">
   <tbody>
       <tr>
@@ -193,6 +196,10 @@ if(isset($_GET['cari'])){
         </tbody>
 </table>
 <!-- end main section -->
+
+  </div>
+</section>
+
         <div class="table-pagination">
           <div class="flex items-center justify-between">
             <div class="buttons">
