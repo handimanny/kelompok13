@@ -5,11 +5,11 @@ include 'config.php';
 session_start();
  
 if (isset($_SESSION['nis'])) {
-    header("Location: ../main/siswa/");
+    header("Location: ../main/siswa/dashboard.php");
 }
 
 if (isset($_SESSION['nama'])) {
-    header("Location: ../main/admin/");
+    header("Location: ../main/admin/dashboard.php");
 }
 
 error_reporting(0);
@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
         // if($_SESSION['level']=='admin'){
         //   header('location:..\main\home.php');
         // } else if($_SESSION['level']==''){
-          header('location:../main/siswa/');
+          header('location:../main/siswa/dashboard.php');
         // }
 
     } else {

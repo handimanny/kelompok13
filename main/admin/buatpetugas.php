@@ -4,7 +4,7 @@ include_once("config.php");
 session_start();
 
 if(!isset($_SESSION['nama'])){
-  header("Location: ../index.php");
+  header("Location: ../../login/loginadmin.php");
 }
 
 if(isset($_GET['cari'])){
@@ -237,100 +237,10 @@ if(isset($_GET['cari'])){
 
 <br>
 
-<table>
-        <tbody>
-          <h1>Petugas Terdaftar</h1>
-          <tr>
-              <th class="text-center">No</th>
-              <th class="text-center">Nama</th>
-              <th class="text-center">Jenis_kelamin</th>
-              <th class="text-center">Alamat</th>
-              <th class="text-center">Update</th>
-          </tr>
-        </tbody>
 
-        <?php
-    
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM petugas WHERE nama LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM petugas");
-    }
-    $no =1;
-    while($data = mysqli_fetch_array($result)) {         
-      ?>
-        <tbody>
-        <tr>
-            <td><?= $no ?></td>
-            <td><?= $data['1']?></td>
-            <td class="text-center"><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
-            <td colspan="2">
-            <a href="#?nip=<?=$data['nip']?>" class="button green">Edit</a>
-            |
-            <a href="hapus/deletenip.php?nip=<?=$data['nip']?>" class="button red">Hapus</a>
-            </td>
-        </tr>
-        </tbody>
-    <?php
-    $no++;
-      }
-      ?>
-</table>
 </section>
 
-<<<<<<< HEAD:main/petugas.php
 <br>
-=======
-<!-- main section -->
-<table class="table table-primary p-1 mt-4 border border-primary container">
-  <tbody>
-      <tr>
-          <th>NIP</th>
-          <th>Nama</th>
-          <th>Jenis Kelamin</th>
-          <th>Alamat</th>
-          <th class="text-center" >Update</th>
-      </tr>
-  </tbody>
-
-  <tbody>
-  <?php
-    
-    if(isset($_GET['cari'])){
-      $cari = $_GET['cari'];
-      $result = mysqli_query($conn,"SELECT * FROM petugas WHERE nama LIKE '%".$cari."%'");				
-    }else{
-      $result = mysqli_query($conn,"SELECT * FROM petugas");
-    }
-    $no =1;
-    while($data = mysqli_fetch_array($result)) {         
-      ?>
-        <tbody>
-        <tr>
-            <td class="text-center"><?= $no ?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
-
-            <td colspan="2">            
-            
-            <a href="edit.php?id_buku=<?=$data['nip']?>" class="btn btn-outline-primary">Edit</a>
-            |
-            <a href="delete.php?id_buku=<?=$data['nip']?>" class="btn btn-outline-danger">Hapus</a>
-            </td>
-
-        </tr>
-        </tbody>
-    <?php
-    $no++;
-      }
-      ?>
-</table>
-<!-- end main section -->
-
->>>>>>> 59df2f09631dd852552412ea90e519c03da33a2d:main/admin/petugas.php
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">

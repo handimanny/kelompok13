@@ -1,7 +1,6 @@
 <?php
 include "config.php";
 
-session_start();
 
 if(!isset($_SESSION['nama'])){
   header("Location: buku.php");
@@ -21,5 +20,5 @@ if (file_exists("img/$cover")){
 
 $result = mysqli_query($conn, "DELETE FROM buku WHERE id_buku=$id_buku");
 
-header("location:admin.php");
+header("location:buku.php");
 ?>
