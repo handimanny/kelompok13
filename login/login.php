@@ -49,6 +49,7 @@ if (isset($_POST['submit'])) {
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 	</head>
 	<body>
@@ -69,7 +70,7 @@ if (isset($_POST['submit'])) {
 	              <input type="password" class="form-control rounded-left" placeholder="Password">
 	            </div> -->
 	            <div class="form-group">
-	            	<button type="submit" name="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
+	            	<button type="submit" name="submit" class="form-control btn btn-dark rounded submit px-3">Login</button>
 	            </div>
 				<div class="form-group">
 					Masuk sebagai petugas!<a href="index.php"> Klik sini</a>
