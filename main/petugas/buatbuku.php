@@ -156,12 +156,9 @@ if(!isset($_SESSION['nama'])){
 </section>
 
 <section class="is-hero-bar">
-    <div class="container mt-4">
-      <div class="col-xl-0">
-        <div class="row g-0">
-            <div class="login-wrap p-md-5 mx-md-1">
-                
-  <form name="form1" method="POST" enctype="multipart/form-data">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    
+<form name="form1" method="POST" enctype="multipart/form-data">
         </div>
         <div class="mt-3">
           <label class="form-lable">Id Buku</label>
@@ -226,11 +223,7 @@ if(isset($_POST['submit'])) {
 ?>
 
     </form>
-    
-        </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <footer class="footer">

@@ -158,7 +158,9 @@ if(isset($_GET['cari'])){
     <a href="buatbuku.php" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
 </section>
-
+<section class="is-hero-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    
 <!-- main section -->
 <table class="table table-primary p-1 mt-4 border border-primary container">
   <tbody>
@@ -217,6 +219,8 @@ if(isset($_GET['cari'])){
 </table>
 <!-- end main section -->
 
+  </div>
+</section>
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
