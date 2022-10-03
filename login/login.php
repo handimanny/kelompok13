@@ -2,17 +2,17 @@
 
 include 'config.php';
  
-// session_start();
+session_start();
  
-// if (isset($_SESSION['nis'])) {
-//     header("Location: .main.html");
-// }
+if (isset($_SESSION['nis'])) {
+    header("Location: ../main/siswa/");
+}
 
-// if (isset($_SESSION['nama'])) {
-//     header("Location: index.php");
-// }
+if (isset($_SESSION['nama'])) {
+    header("Location: ../main/admin/");
+}
 
-// error_reporting(0);
+error_reporting(0);
 
 if (isset($_POST['submit'])) {
     $nis = $_POST['nis'];
