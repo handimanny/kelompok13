@@ -77,11 +77,11 @@ if(isset($_GET['cari'])){
   </div>
   <div class="navbar-menu" id="navbar-menu">
     <div class="navbar-end">
-      <a href="https://justboil.me/tailwind-admin-templates" class="navbar-item has-divider desktop-icon-only">
+      <a href="" class="navbar-item has-divider desktop-icon-only">
         <span class="icon"><i class="mdi mdi-help-circle-outline"></i></span>
         <span>About</span>
       </a>
-      <a title="Log out" class="navbar-item desktop-icon-only">
+      <a href="keluar.php" title="Log out" class="navbar-item desktop-icon-only">
         <span class="icon"><i class="mdi mdi-logout"></i></span>
         <span>Log out</span>
       </a>
@@ -143,7 +143,7 @@ if(isset($_GET['cari'])){
     <h1 class="title">
       Daftar Buku
     </h1>
-    <a href="buatbuku.php" class="btn btn-outline-dark button light">Tambah Buku</a>
+    <a href="" class="btn btn-outline-dark button light">Tambah Buku</a>
   </div>
 </section>
 
