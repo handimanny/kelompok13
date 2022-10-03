@@ -131,12 +131,18 @@ if(isset($_GET['cari'])){
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
+<?php if($_SESSION['level'] == 'admin')
+{
+?>
       <li>
         <a href="petugas.php">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
           <span class="menu-item-label">Petugas</span>
         </a>
       </li>
+<?php
+}
+?>
       <li>
         <a href="peminjaman.php">
           <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
