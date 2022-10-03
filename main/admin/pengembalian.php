@@ -231,7 +231,7 @@ if(isset($_GET['cari'])){
             <td colspan="2">            
             
             
-            <a href="kembali.php?id=<?php echo $data['id_peminjaman']; ?>" class="btn btn-outline-danger">Pinjam</a>
+            <a href="kembali.php?id_buku=<?php echo $data['id_peminjaman']; ?>" class="btn btn-outline-danger">Pengembalian</a>
             </td>
             <?php
     $no++;
