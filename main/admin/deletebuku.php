@@ -4,7 +4,7 @@ include "config.php";
 session_start();
 
 if(!isset($_SESSION['nama'])){
-  header("Location: home.php");
+  header("Location: buku.php");
 }
 
 $id_buku = $_GET['id_buku'];

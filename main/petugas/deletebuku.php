@@ -1,9 +1,9 @@
 <?php
 include "config.php";
 
-// if(!isset($_SESSION['username'])){
-//   header("Location: home.php");
-// }
+if(!isset($_SESSION['nama'])){
+  header("Location: buku.php");
+}
 
 $id_buku = $_GET['id_buku'];
 

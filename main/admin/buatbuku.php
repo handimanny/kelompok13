@@ -5,7 +5,7 @@ include_once("config.php");
 session_start();
 
 if(!isset($_SESSION['nama'])){
-  header("Location: ../../admin/loginadmin.php");
+  header("Location: ../index.php");
 }
 
 ?>

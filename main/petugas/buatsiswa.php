@@ -2,12 +2,13 @@
 
 include_once("config.php");
 session_start();
-// if(!isset($_SESSION['nip'])){
-//   header("Location: ../../login/loginpetugas.php");
-// }
+
+if(!isset($_SESSION['nama'])){
+  header("Location: ../index.php");
+}
+
 $sql="SELECT * FROM `kelas`";
 $result= mysqli_query($conn,$sql);
-// session_start();
 
 // if(!isset($_SESSION['nama'])){
 //   header("Location: halaman.php");

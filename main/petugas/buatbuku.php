@@ -3,9 +3,11 @@
 include_once("config.php");
 
 session_start();
-// if(!isset($_SESSION['nama'])){
-//   header("Location: ../../login/loginpetugas.php");
-// }
+
+if(!isset($_SESSION['nama'])){
+  header("Location: ../index.php");
+}
+
 ?>
 
 <!DOCTYPE html>

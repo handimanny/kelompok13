@@ -2,6 +2,10 @@
 
 include_once("config.php");
 
+if(!isset($_SESSION['nama'])){
+  header("Location: ../index.php");
+}
+
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
 	echo "";
