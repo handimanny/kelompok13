@@ -29,6 +29,8 @@ if (isset($_POST['submit'])) {
           header('location:../main/admin/dashboard.php');
         } else if($_SESSION['level']=='petugas'){
           header('location:../main/petugas/dashboard.php');
+        } else if($_SESSION['level']==''){
+          header('location:../main/petugas/dashboard.php');
         }
 
     } else {
