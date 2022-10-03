@@ -2,9 +2,9 @@
 include('config.php');
 session_start();
 
-if (isset($_SESSION['nis'])) {
-    header("Location: ../main/siswa/dashboard.php");
-}
+// if (isset($_SESSION['nis'])) {
+//     header("Location: ../main/siswa/dashboard.php");
+// }
 ?>
 
 <!DOCTYPE html>
