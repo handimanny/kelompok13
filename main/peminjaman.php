@@ -160,6 +160,7 @@ if(isset($_GET['cari'])){
 </section>
 
 <section class="is-hero-bar">
+
   <table>
     <h1>Proses Peminjaman</h1>
     <form action="" method="POST">
