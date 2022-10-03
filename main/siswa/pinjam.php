@@ -3,7 +3,7 @@ include_once("config.php");
 
 session_start();
 
-if(!isset($_SESSION['nama'])){
+if(!isset($_SESSION['nis'])){
   header("Location: ../../login/loginadmin.php");
 }
 

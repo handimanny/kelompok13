@@ -3,7 +3,7 @@
 include_once("config.php");
 session_start();
 
-if(!isset($_SESSION['nama'])){
+if(!isset($_SESSION['nis'])){
   header("Location: ../../login/loginadmin.php");
 }
 
@@ -144,8 +144,8 @@ if(isset($_GET['cari'])){
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
-      <li>Petugas</li>
-      <li>Buku</li>
+      <li>Siswa</li>
+      <li>Pinjam Buku</li>
     </ul>
   </div>
 </section>

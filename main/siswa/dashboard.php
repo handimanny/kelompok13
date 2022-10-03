@@ -120,7 +120,7 @@ if(!isset($_SESSION['nis'])){
           <span class="menu-item-label">Buku</span>
         </a>
       </li>
-      <li>
+      <li class="--set-active-profile-html">
         <a href="peminjaman.php">
           <span class="icon"><i class="mdi mdi-cart-plus"></i></span>
           <span class="menu-item-label">Peminjaman</span>
