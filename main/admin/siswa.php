@@ -1,7 +1,7 @@
 <?php
 
 include_once("config.php");
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['nama'])){
   header("Location: ../../admin/loginadmin.php");
 }
 

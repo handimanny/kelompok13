@@ -6,7 +6,7 @@ $sql="SELECT * FROM `kelas`";
 $result= mysqli_query($conn,$sql);
 
 
-if(!isset($_SESSION['username'])){
+if(!isset($_SESSION['nama'])){
   header("Location: ../../admin/loginadmin.php");
 }
 ?>
