@@ -5,11 +5,11 @@ include 'config.php';
 session_start();
  
 if (isset($_SESSION['nama'])) {
-    header("Location: ../main/admin/");
+    header("Location: ../main/admin/dashboard.php");
 }
 
 if (isset($_SESSION['nis'])) {
-  header("Location: ../main/siswa/");
+  header("Location: ../main/siswa/dashboard.php");
 }
 
 error_reporting(0);

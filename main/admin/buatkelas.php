@@ -7,7 +7,7 @@ $result= mysqli_query($conn,$sql);
 
 
 if(!isset($_SESSION['nama'])){
-  header("Location: ../index.php");
+  header("Location: ../../login/loginadmin.php");
 }
 ?>
 

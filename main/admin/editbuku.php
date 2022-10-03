@@ -4,7 +4,7 @@ include_once("config.php");
 session_start();
 
 if(!isset($_SESSION['nama'])){
-  header("Location: ../index.php");
+  header("Location: ../../login/loginadmin.php");
 }
 
 // if(!isset($_SESSION['nama'])){
@@ -32,7 +32,7 @@ if(isset($_POST['update']))
     $upload = move_uploaded_file($tmp_name, "foto/". $file);
 
     $result = mysqli_query($conn, "UPDATE buku SET id_buku='$id_buku',penulis='$penulis',tahun='$tahun',judul='$judul',kota='$kota',penerbit='$penerbit',sinopsis='$sinopsis',stok='$stok',cover='$file' WHERE id_buku=$id_buku");
-    header("Location: admin.php");
+    header("Location: buku.php");
 }
 ?>
 
