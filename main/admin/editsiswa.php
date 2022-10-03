@@ -174,6 +174,7 @@ $result=mysqli_query($conn,"SELECT * FROM `kelas` ")
   </div>
 </section>
 
+<section class="is-hero-bar">
 <!-- main section -->
 <form name="update_user" method="post" enctype="multipart/form-data" action="">
 
@@ -219,6 +220,7 @@ $result=mysqli_query($conn,"SELECT * FROM `kelas` ")
 <input class="button green" type="submit" name="submit" value="Perbarui Data">
 </div>
 </form>
+</section>
 
 
 <!-- end main section -->
