@@ -7,21 +7,6 @@ if(!isset($_SESSION['nama'])){
   header("Location: ../../login/loginadmin.php");
 }
 
-// $result = mysqli_query($conn, "SELECT * FROM detail_peminjaman JOIN buku JOIN peminjaman join siswa ON detail_peminjaman.id_buku=buku.id_buku AND detail_peminjaman.id_peminjaman=peminjaman.id_peminjaman and peminjaman.id_siswa=siswa.nis");
-
-$nis = $_SESSION['nis'];
-$nip = $_SESSION['nip'];
-$role = $_SESSION['level'];
-if ($role != 'siswa') {
-    $result = mysqli_query($conn, "SELECT * FROM detail_peminjaman JOIN buku JOIN peminjaman join siswa ON detail_peminjaman.id_buku=buku.id_buku AND detail_peminjaman.id_peminjaman=peminjaman.id_peminjaman and peminjaman.id_siswa=siswa.nis");
-}else{
-    $result = mysqli_query($conn, "SELECT * FROM detail_peminjaman JOIN buku JOIN peminjaman join siswa ON detail_peminjaman.id_buku=buku.id_buku AND detail_peminjaman.id_peminjaman=peminjaman.id_peminjaman and peminjaman.id_siswa=siswa.nis WHERE siswa.nis='$nis';");
-}
-
-$date = new DateTime('now');
-$tgl=$date->format('Y-m-d');
-
-
 if(isset($_GET['cari'])){
 	$cari = $_GET['cari'];
 	echo "";
@@ -183,11 +168,11 @@ if(isset($_GET['cari'])){
           <th>No.</th>
           <th>Cover</th>
           <th>Judul</th>
-          <th>Tanggal Kembali</th>
-          <th>Pengembalian</th>
-          <!-- <th>Kota Asal</th> -->
+          <!-- <th>Penulis</th> -->
+          <!-- <th>Tahun Terbit</th>
+          <th>Kota Asal</th> -->
           <!-- <th>Penerbit</th> -->
-          <!-- <th>Stok</th> -->
+          <th>Stok</th>
           <th class="text-center" >Update</th>
       </tr>
   </tbody>
@@ -195,7 +180,12 @@ if(isset($_GET['cari'])){
   <tbody>
   <?php
     
- 
+    if(isset($_GET['cari'])){
+      $cari = $_GET['cari'];
+      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
+    }else{
+      $result = mysqli_query($conn,"SELECT * FROM buku");
+    }
     $no =1;
     while($data = mysqli_fetch_array($result)) {         
       ?>
@@ -203,48 +193,23 @@ if(isset($_GET['cari'])){
         <tr>
             <td class="text-center"><?= $no ?></td>
             <td>
-              <img src="img/<?= $data['cover']?>" width="30px" class="img-thumbnail" alt="">
+              <img src="img/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
             </td>
             <td><?= $data['judul']?></td>
-            <td><?php echo $data['tanggal_pengembalian']?></td>
-            <td><?php 
-                    $num =$data['id_peminjaman'];
-                    
-                    $sql = "SELECT * FROM pengembalian WHERE id_peminjaman = '$num'";
-                    $hitung = mysqli_query($conn,$sql);
-                    $numro = mysqli_num_rows($hitung);
-                    if($numro == 0){
-                    if ($tgl > $data['tanggal_pengembalian']) {
-                        echo "telat";
-                    }else{
-                        echo "dipinjam";
-                    }  
-                    }else{
-                        echo "dikembalikan";
-                    }
-                ?></td>
-                <?php
-                    if ($numro==0) {                                                    
-                ?>
-            
+            <td><?= $data['stok']?></td>
       
             <td colspan="2">            
             
             
-            <a href="kembali.php?id_buku=<?php echo $data['id_peminjaman']; ?>" class="btn btn-outline-danger">Pengembalian</a>
+            <a href="pinjam.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Pinjam</a>
             </td>
-            <?php
+
+        </tr>
+        </tbody>
+    <?php
     $no++;
       }
       ?>
-
-        </tr>
-        
-    <?php
-      }
-      ?>
-      </tbody>
-
 </table>
 <!-- end main section -->
 
