@@ -23,6 +23,7 @@ if (isset($_POST['submit'])) {
 
     if($data){
         $_SESSION['nama']=$data['nama'];
+		$_SESSION['nip']=$data['nip'];
         $_SESSION['level']=$data['level'];
 
         if($_SESSION['level']=='admin'){

@@ -1,11 +1,10 @@
 <?php
 
 include_once("config.php");
-
 session_start();
 
 if(!isset($_SESSION['nama'])){
-  header("Location: ../index.php");
+  header("Location: ../../login/loginadmin.php");
 }
 
 if(isset($_GET['cari'])){
@@ -20,7 +19,7 @@ if(isset($_GET['cari'])){
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Peminjaman</title>
+  <title>Daftar Buku</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -67,9 +66,9 @@ if(isset($_GET['cari'])){
     <a class="navbar-item mobile-aside-button">
       <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
     </a>
-    <!-- <div class="navbar-item">
+    <div class="navbar-item">
       <div class="control"><input placeholder="Search everywhere..." class="input"></div>
-    </div> -->
+    </div>
   </div>
   <div class="navbar-brand is-right">
     <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
@@ -100,7 +99,7 @@ if(isset($_GET['cari'])){
     <p class="menu-label">Umum</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="index.php">
+        <a href="dashboard.php">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Dashboard</span>
         </a>
@@ -146,96 +145,65 @@ if(isset($_GET['cari'])){
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Petugas</li>
-      <li>Peminjaman</li>
+      <li>Buku</li>
     </ul>
   </div>
 </section>
 
 <section class="is-hero-bar">
-
-  <table>
-    <h1>Proses Peminjaman</h1>
-    <form action="" method="POST">
-        <div class="mb-3">
-          <label class="form-lable">ID Peminjam</label>
-          <input type="text" class="input" placeholder="ID Peminjam" name="id_peminjam" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">ID Siswa</label>
-            <input type="text" placeholder="ID Siswa" class="input" name="id_siswa" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">ID Petugas</label>
-            <input type="text" placeholder="ID Petugas" class="input" name="id_petugas" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Tanggal Peminjaman</label>
-            <input type="date" class="input" name="tanggal_peminjaman" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Tanggal Pengembalian</label>
-            <input type="date" class="input" name="tanggal_pengembalian" required>
-        </div>
-        <br>
-        <div class="mb-3">
-            <button name="submit" class="button green">Proses</button>
-        </div>
-
-<?php
-
-if(isset($_POST['submit'])) {
-    $nis = $_POST['nis'];
-    $nama = $_POST['nama'];
-    $jenis_kelamin = $_POST['jenis_kelamin'];
-    $alamat = $_POST['alamat'];
-    $id_kelas = $_POST['id_kelas'];
-  
-    $sql = "INSERT INTO siswa (nis, nama, jenis_kelamin, alamat, id_kelas ) VALUES ('$nis', '$nama', '$jenis_kelamin', '$alamat', '$id_kelas')";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result) {
-    echo "<script>alert('Proses! pinjam berhasil')</script>";
-}
-}
-
-?>
-            <!-- Anda sudah punya akun? <a href="index.php">Masuk</a> -->
-        </form>
-</table>
-
-<br>
-
-<table>
-        <tbody>
-          <h1>Riwayat Peminjaman</h1>
-          <tr>
-              <th>Id Peminjaman</th>
-              <th>Id Siswa</th>
-              <th>Id Petugas</th>
-              <th>Tanggal Peminjaman</th>
-              <th>Tanggal Pengembalian</th>
-              <th>Update</th>
-          </tr>
-        </tbody>
-
-    <?php
-    $result = mysqli_query($conn,"SELECT * FROM peminjaman");
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <h1 class="title">
+      Daftar Buku
+    </h1>
+    <a href="buatbuku.php" class="btn btn-outline-dark button light">Tambah Buku</a>
+  </div>
+</section>
+<section class="is-hero-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     
+<!-- main section -->
+<table class="table table-primary p-1 mt-4 border border-primary container">
+  <tbody>
+      <tr>
+          <th>No.</th>
+          <th>Cover</th>
+          <th>Judul</th>
+          <!-- <th>Penulis</th> -->
+          <!-- <th>Tahun Terbit</th>
+          <th>Kota Asal</th> -->
+          <!-- <th>Penerbit</th> -->
+          <th>Stok</th>
+          <th class="text-center" >Update</th>
+      </tr>
+  </tbody>
+
+  <tbody>
+  <?php
+    
+    if(isset($_GET['cari'])){
+      $cari = $_GET['cari'];
+      $result = mysqli_query($conn,"SELECT * FROM buku WHERE judul LIKE '%".$cari."%'");				
+    }else{
+      $result = mysqli_query($conn,"SELECT * FROM buku");
+    }
     $no =1;
     while($data = mysqli_fetch_array($result)) {         
       ?>
         <tbody>
         <tr>
-            <td><?= $data['0']?></td>
-            <td><?= $data['1']?></td>
-            <td><?= $data['2']?></td>
-            <td><?= $data['3']?></td>
-            <td><?= $data['4']?></td>
-            <td colspan="2">
-            <a href="#" class="button green">Edit</a>
-            |
-            <a href="#" class="button red">Hapus</a>
+            <td class="text-center"><?= $no ?></td>
+            <td>
+              <img src="img/<?= $data['6']?>" width="30px" class="img-thumbnail" alt="">
             </td>
+            <td><?= $data['judul']?></td>
+            <td><?= $data['stok']?></td>
+      
+            <td colspan="2">            
+            
+            
+            <a href="pinjam.php?id_buku=<?=$data['id_buku']?>" class="btn btn-outline-danger">Pinjam</a>
+            </td>
+
         </tr>
         </tbody>
     <?php
@@ -243,9 +211,10 @@ if(isset($_POST['submit'])) {
       }
       ?>
 </table>
-</section>
+<!-- end main section -->
 
-<br>
+  </div>
+</section>
 
 <footer class="footer">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
