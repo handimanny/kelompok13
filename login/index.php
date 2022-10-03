@@ -74,7 +74,7 @@ if (isset($_POST['submit'])) {
 	            	<button type="submit" name="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
 	            </div>
 				<div class="form-group">
-					Masuk sebagai siswa!<a href="login.php"> Klik sini</a>
+					Masuk sebagai siswa!<a href="loginsiswa.php"> Klik sini</a>
 				</div>
 	            
 	          </form>
