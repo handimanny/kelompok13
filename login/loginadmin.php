@@ -13,9 +13,9 @@ include 'config.php';
 
 session_start();
 
-if (isset($_SESSION['nama'])) {
-    header("Location: ../main/admin/dashboard.php");
-}
+// if (isset($_SESSION['nama'])) {
+//     header("Location: ../main/admin/dashboard.php");
+// }
 
 if(isset($_POST['submit'])){
   $username=$_POST['username'];

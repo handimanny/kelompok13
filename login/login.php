@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
         // if($_SESSION['level']=='admin'){
         //   header('location:..\main\home.php');
         // } else if($_SESSION['level']==''){
-          header('location:..\main\home.php');
+          header('location:../main/siswa/');
         // }
 
     } else {

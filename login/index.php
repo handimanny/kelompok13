@@ -26,9 +26,9 @@ if (isset($_POST['submit'])) {
         $_SESSION['level']=$data['level'];
 
         if($_SESSION['level']=='admin'){
-          header('location:../main');
+          header('location:../main/admin/');
         } else if($_SESSION['level']==''){
-          header('location:../main');
+          header('location:../main/petugas/');
         }
 
     } else {
